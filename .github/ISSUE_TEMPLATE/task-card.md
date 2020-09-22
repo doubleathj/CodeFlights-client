@@ -1,7 +1,7 @@
 ---
 name: Task Card
 about: Task card template
-title: "[Tast] What to do"
+title: "[Task] What to do"
 labels: ''
 assignees: ''
 
