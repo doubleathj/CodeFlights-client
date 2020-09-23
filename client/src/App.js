@@ -6,6 +6,7 @@ import Mypage from './pages/Mypage';
 import Posting from './pages/Editor';
 
 import './App.css';
+import LikeBtn from './component/LikeBtn';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/Posting' component={Posting} />
         </Switch>
       </Router>
+      <LikeBtn />
     </>
   );
 }
