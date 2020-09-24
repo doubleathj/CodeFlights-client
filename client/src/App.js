@@ -6,7 +6,8 @@ import Mypage from './pages/Mypage';
 import Posting from './pages/Editor';
 import axios from 'axios';
 import './App.css';
-import LikeBtn from './component/LikeBtn';
+import Signup from './component/Signup';
+import Login from './component/Login';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,6 +15,8 @@ class App extends React.Component {
     this.state = {
       inLogin: false,
       userinfo: {},
+      // sign: false,
+      // login: false,
     };
   }
 
@@ -24,6 +27,22 @@ class App extends React.Component {
     });
   }
 
+  // onOpenModal = () => {
+  //   this.setState({ sign: true });
+  // };
+
+  // onOpenModalLogin = () => {
+  //   this.setState({ login: true });
+  // };
+
+  // onCloseModal = () => {
+  //   this.setState({ sign: false });
+  // };
+
+  // onCloseModalLogin = () => {
+  //   this.setState({ login: false });
+  // };
+
   render() {
     return (
       <>
@@ -33,6 +52,8 @@ class App extends React.Component {
             <Route path='/' exact component={Main} />
             <Route path='/Mypage' component={Mypage} />
             <Route path='/Posting' component={Posting} />
+            <Route path='/Signup' component={Signup} />
+            <Route path='/Login' component={Login} />
           </Switch>
         </Router>
       </>

@@ -2,6 +2,7 @@ import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as IoIcons from 'react-icons/io';
 import * as FiIcons from 'react-icons/fi';
+import modalOpen from '../../App';
 
 export const SidebarNewUserData = [
   {
@@ -12,13 +13,13 @@ export const SidebarNewUserData = [
   },
   {
     title: 'SIGN UP',
-    path: '/signup',
+    path: '/Signup',
     icon: <FiIcons.FiUserPlus />,
     className: 'nav-text',
   },
   {
     title: 'SIGN IN',
-    path: '/signin',
+    path: '/Login',
     icon: <IoIcons.IoIosLogIn />,
     className: 'nav-text',
   },

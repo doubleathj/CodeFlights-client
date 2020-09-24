@@ -11,7 +11,7 @@ function Navbar(props) {
 
   const showSidebar = () => setSidebar(!sidebar);
 
-  const { isLogin } = props;
+  const { isLogin, sign, login } = props;
 
   if (isLogin) {
     return (
