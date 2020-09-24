@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { SidebarNewUserData } from './NotLoginSidelist';
+
 import { SidebarUserData } from './LoginSidelist';
 import { IconContext } from 'react-icons';
 import * as FaIcons from 'react-icons/fa';
+import * as IoIcons from 'react-icons/io';
+import * as FiIcons from 'react-icons/fi';
 import './Navbar.css';
 
 function Navbar(props) {
@@ -60,16 +62,18 @@ function Navbar(props) {
                   <FaIcons.FaWindowClose />
                 </Link>
               </li>
-              {SidebarNewUserData.map((item, index) => {
-                return (
-                  <li key={index} className={item.className}>
-                    
-                      {item.icon}
-                      <span onClick={props.handleModal}>{item.title}</span>
-                    
-                  </li>
-                );
-              })}
+              <li className='nav-text'>
+                <FaIcons.FaHome />
+                <span>Main</span>
+              </li>
+              <li className='nav-text'>
+                <FiIcons.FiUserPlus />
+                <span onClick={props.handleSignupModal}>SIGN UP</span>
+              </li>
+              <li className='nav-text'>
+                <IoIcons.IoIosLogIn />
+                <span onClick={props.handleLoginModal}>LOGIN</span>
+              </li>
             </ul>
           </nav>
         </IconContext.Provider>

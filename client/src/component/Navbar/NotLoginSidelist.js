@@ -2,7 +2,6 @@ import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as IoIcons from 'react-icons/io';
 import * as FiIcons from 'react-icons/fi';
-import modalOpen from '../../App';
 
 export const SidebarNewUserData = [
   {
