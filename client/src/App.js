@@ -11,15 +11,14 @@ import Login from './component/Login';
 import Result from './pages/Result';
 import Schedule from './pages/Schedule';
 import View from './pages/View';
-
+import Modal from './component/Modal/Modal'
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       inLogin: false,
       userinfo: {},
-      // sign: false,
-      // login: false,
+      modal : false
     };
   }
 
@@ -30,9 +29,9 @@ class App extends React.Component {
     });
   }
 
-  // onOpenModal = () => {
-  //   this.setState({ sign: true });
-  // };
+  handleModal = () => {
+    this.setState({ modal: !this.state.modal });
+  }
 
   // onOpenModalLogin = () => {
   //   this.setState({ login: true });
@@ -50,7 +49,8 @@ class App extends React.Component {
     return (
       <>
         <Router>
-          <Navbar />
+          <Navbar handleModal={this.handleModal} />
+          {this.state.modal ? <Modal /> : false}
           <Switch>
             <Route path='/' exact component={Main} />
             <Route path='/Mypage' component={Mypage} />

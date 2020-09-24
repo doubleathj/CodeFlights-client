@@ -1,27 +1,35 @@
 import React from 'react';
+import './Modal.css'
+import { Link, withRouter } from 'react-router-dom';
 
-import { Modal } from 'react-responsive-modal';
-
-class modal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sign: false,
-      login: false,
-    };
-  }
-
-  render() {
-    const { sign, login } = this.state;
-    return (
-      <>
-        <Modal sign={sign} onClose={this.props.onCloseModal}>
-          <div className='modal-body'>
-            <h3>SIGNUP</h3>
-            <div className='email'></div>
+function Modal () {
+  return (
+    <div>
+    <div className='modal'></div>
+    <div className='modalContents'>
+        <form >
+          <input
+            type='email'
+            name='email'
+            placeholder='Email'
+            
+          />
+          <input
+            type='password'
+            minLength='8'
+            name='password'
+            placeholder='password'
+            
+            
+          />
+          <div>
+            <Link to='/'>아직 아이디가 없으신가요?</Link>
           </div>
-        </Modal>
-      </>
-    );
-  }
+          <button type='submit'>Login</button>
+        </form>
+      </div>
+      </div>
+  )
 }
+
+export default Modal

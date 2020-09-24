@@ -11,7 +11,7 @@ function Navbar(props) {
 
   const showSidebar = () => setSidebar(!sidebar);
 
-  const { isLogin, sign, login } = props;
+  const { isLogin, modal } = props;
 
   if (isLogin) {
     return (
@@ -63,10 +63,10 @@ function Navbar(props) {
               {SidebarNewUserData.map((item, index) => {
                 return (
                   <li key={index} className={item.className}>
-                    <Link to={item.path}>
+                    
                       {item.icon}
-                      <span>{item.title}</span>
-                    </Link>
+                      <span onClick={props.handleModal}>{item.title}</span>
+                    
                   </li>
                 );
               })}
