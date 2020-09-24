@@ -1,0 +1,21 @@
+.ticket-container {
+  display: flex;
+  flex-direction: row;
+}
+.ticket { 
+  flex: auto;
+  border: 5px solid black;
+  text-align: center;
+}
+.article-container {
+  display: flex;
+  flex-direction: column;
+}
+.article {
+  flex : auto;
+  display: flex;
+  flex-direction: row;
+}
+.article p {
+  flex : auto
+}
