@@ -8,6 +8,9 @@ import axios from 'axios';
 import './App.css';
 import Signup from './component/Signup';
 import Login from './component/Login';
+import Result from './pages/Result';
+import Schedule from './pages/Schedule';
+import View from './pages/View';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,6 +57,9 @@ class App extends React.Component {
             <Route path='/Posting' component={Posting} />
             <Route path='/Signup' component={Signup} />
             <Route path='/Login' component={Login} />
+            <Route path='/result/:city/:article' component={View} />
+            <Route path='/result/:city' component={Schedule} />
+            <Route path='/result' component={Result} />
           </Switch>
         </Router>
       </>
