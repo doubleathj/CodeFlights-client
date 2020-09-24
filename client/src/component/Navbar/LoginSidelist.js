@@ -1,9 +1,7 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
-import * as IoIcons from 'react-icons/io';
-import * as FiIcons from 'react-icons/fi';
 
-export const SidebarData = [
+export const SidebarUserData = [
   {
     title: 'Main',
     path: '/',
@@ -14,18 +12,6 @@ export const SidebarData = [
     title: 'My Page',
     path: '/mypage',
     icon: <FaIcons.FaUserCircle />,
-    className: 'nav-text',
-  },
-  {
-    title: 'SIGN UP',
-    path: '/signup',
-    icon: <FiIcons.FiUserPlus />,
-    className: 'nav-text',
-  },
-  {
-    title: 'SIGN IN',
-    path: '/signin',
-    icon: <IoIcons.IoIosLogIn />,
     className: 'nav-text',
   },
   {
