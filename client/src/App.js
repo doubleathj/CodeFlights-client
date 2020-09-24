@@ -8,21 +8,22 @@ import Result from './pages/Result';
 import Schedule from './pages/Schedule';
 import './App.css';
 import LikeBtn from './component/LikeBtn';
+import View from './pages/View';
 
 function App() {
   return (
     <>
       <Router>
-        <Navbar />
+        
         <Switch>
           <Route path='/' exact component={Main} />
           <Route path='/Mypage' component={Mypage} />
           <Route path='/Posting' component={Posting} />
+          <Route path='/result/:city/:article' component={View} />
           <Route path='/result/:city' component={Schedule} />
           <Route path='/result' component={Result} />
         </Switch>
       </Router>
-      <LikeBtn />
     </>
   );
 }
