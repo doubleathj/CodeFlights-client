@@ -1,0 +1,16 @@
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: #070707;
+  height: 1px;
+}
+
+.submitBtn {
+  width: 200px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: skyblue;
+}
