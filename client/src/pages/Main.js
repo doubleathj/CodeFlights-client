@@ -11,7 +11,7 @@ function Main() {
     if(e.key === 'Enter'){
       setDep(e.target.value)
       e.target.value = null
-    }
+    } 
   }
   let handleKeyPressPeriod = (e) => {
     if(e.key === 'Enter' ){
@@ -24,10 +24,10 @@ function Main() {
       <source src="/Videos/background.mp4" type="video/mp4"></source>
     </video>
     <div className="search">
-      {depDate === null ? <div><h1>며칠 후에 출발하실 건가요?</h1><input type="text" onKeyPress={handleKeyPressDep} className="dep" placeholder="숫자를 입력해주세요."></input></div> : 
+      {depDate === null ? <div><h1>며칠 후에 출발하실 건가요?</h1><input type="text" pattern="[0-9]" onKeyPress={handleKeyPressDep} className="dep" placeholder="숫자를 입력해주세요." ></input></div> : 
       false
       }
-      {period === null && depDate !== null? <div><h1>얼마동안 여행하실 건가요?</h1><input className="period" onKeyPress={handleKeyPressPeriod} type="text" placeholder="숫자를 입력해주세요."></input></div> : false}
+      {period === null && depDate !== null? <div><h1>얼마동안 여행하실 건가요?</h1><input className="period" onKeyPress={handleKeyPressPeriod} type="number" placeholder="숫자를 입력해주세요."></input></div> : false}
       {period !== null && depDate !== null ? <Redirect to={`/search/${depDate}=${period}`}></Redirect> : false }
     </div>
   </div>
