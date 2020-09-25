@@ -13,7 +13,7 @@ function Navbar(props) {
 
   const showSidebar = () => setSidebar(!sidebar);
 
-  const { isLogin, modal } = props;
+  const { isLogin } = props;
 
   if (isLogin) {
     return (

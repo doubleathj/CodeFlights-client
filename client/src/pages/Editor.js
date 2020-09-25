@@ -19,14 +19,13 @@ class Posting extends React.Component {
   };
 
   postingArticle() {
-    // return axios
-    //   .post('http://codeflights.com/post/write', {
-    //     author: this.state.author + 1,
-    //     title: this.state.title,
-    //     content: this.state.content,
-    //   })
-    console.log(this.state.title);
-    console.log(this.state.content);
+    return axios
+      .post('http://15.164.229.68:8080/post/write', {
+        author: this.state.author + 1,
+        title: this.state.title,
+        content: this.state.content,
+      })
+    
   }
 
   render() {

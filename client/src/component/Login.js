@@ -23,7 +23,7 @@ class Login extends React.Component {
     const { handleLogin } = this.props;
 
     axios
-      .post('http://codeflight.com/user/signin', {
+      .post('http://15.164.229.68:8080/user/signin', {
         email: email,
         password: password,
       })

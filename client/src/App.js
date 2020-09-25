@@ -18,7 +18,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inLogin: false,
+      isLogin: false,
       userinfo: {},
       signupmodal: false,
       loginmodal: false,
@@ -27,9 +27,13 @@ class App extends React.Component {
 
   handleLogin() {
     this.setState({ isLogin: true });
-    axios.get('http://codeflights/user/info').then((res) => {
-      this.setState({ userinfo: res.data });
-    });
+
+    axios({
+      method: 'GET',
+      url: 'http://15.164.229.68:8080/user/info',
+      withCredentials: true,
+      crendtials : 'include'
+    }).then(res => this.setState({userinfo : res.data}))
   }
 
   handleSignupModal = () => {
@@ -40,16 +44,19 @@ class App extends React.Component {
     this.setState({ loginmodal: !this.state.loginmodal });
   };
 
+  
+
   render() {
     return (
       <>
         <Router>
           <Navbar
+            isLogin={this.state.isLogin}
             handleSignupModal={this.handleSignupModal}
             handleLoginModal={this.handleLoginModal}
           />
-          {this.state.signupmodal ? <SignupModal /> : false}
-          {this.state.loginmodal ? <LoginModal /> : false}
+          {this.state.signupmodal ? <SignupModal handleSignupModal={this.handleSignupModal.bind(this)} /> : false}
+          {this.state.loginmodal ? <LoginModal handleLoginModal={this.handleLoginModal.bind(this)} handleLogin={this.handleLogin.bind(this)}/> : false}
           <Switch>
             <Route path='/' exact component={Main} />
             <Route path='/Mypage' component={Mypage} />
