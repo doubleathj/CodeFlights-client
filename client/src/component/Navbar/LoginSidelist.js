@@ -20,4 +20,10 @@ export const SidebarUserData = [
     icon: <FaIcons.FaTelegramPlane />,
     className: 'nav-text',
   },
+  {
+    title: 'LOGOUT',
+    path: '/',
+    icon: <FaIcons.FaSignOutAlt />,
+    className: 'nav-text',
+  },
 ];
