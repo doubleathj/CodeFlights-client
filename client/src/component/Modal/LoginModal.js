@@ -21,16 +21,24 @@ class LoginModal extends React.Component {
 
   handleLoginSubmit(e) {
     const { email, password } = this.state;
-    const { handleLogin } = this.props;
+    const { handleLogin,handleLoginModal } = this.props;
 
-    axios
-      .post('http://codeflight.com/user/signin', {
-        email: email,
-        password: password,
-      })
+    let data ={email : email, password : password}
+    axios.post('http://15.164.229.68:8080/user/signin',data, {withCredentials: true}
+      )
+    
+    // fetch('http://15.164.229.68:8080/user/signin', {
+    //   method : 'POST',
+    //   body : JSON.stringify({ email : email, password : password}),
+    //   headers : {
+    //     "contents-type" : "application/json"
+    //   },
+    //   credentials : "include"
+    // })
       .then(() => {
         handleLogin();
         this.props.history.push('/');
+        handleLoginModal();
       })
       .catch((err) => {
         console.log('err: ', err);
@@ -62,7 +70,7 @@ class LoginModal extends React.Component {
             <div>
               <Link to='/'>아직 아이디가 없으신가요?</Link>
             </div>
-            <button type='submit'>Login</button>
+            <button type='submit' >Login</button>
           </form>
         </div>
       </div>

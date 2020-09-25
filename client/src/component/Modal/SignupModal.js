@@ -25,15 +25,21 @@ class SignupModal extends React.Component {
   handleSignupSubmit(e) {
     const { email, username, password, passwordConfirm } = this.state;
 
-    axios
-      .post('http://codeflight.com/user/signup', {
-        email: email,
-        username: username,
-        password: password,
-        passwordConfirm: passwordConfirm,
+      axios({
+        method: 'post',
+        url: 'http://15.164.229.68:8080/user/signup',
+        data: {
+          email: email,
+          username: username,
+          password: password,
+          passwordConfirm: passwordConfirm,
+        },
+        withCredentials: true,
+        crendtials : 'include'
       })
       .then(() => {
         this.props.history.push('/');
+        this.props.handleSignupModal()
       })
       .catch((err) => {
         console.log('err: ', err);
