@@ -30,7 +30,7 @@ class Posting extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="editor-container">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -92,7 +92,7 @@ class Posting extends React.Component {
             Submit
           </button>
         </form>
-      </>
+      </div>
     );
   }
 }

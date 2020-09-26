@@ -68,6 +68,6 @@ form div {
 a { 
   text-decoration: none;
 }
-a:visited { 
+p:visited { 
   color : black
 }
