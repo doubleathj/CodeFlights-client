@@ -1,21 +1,73 @@
-.modal{
+.modal {
   position: fixed;
   z-index: 9999;
   height: 100%;
   width: 100%;
   background-color: black;
-  opacity: 30%;
+  opacity: 70%;
 }
 
 .modalContents {
   position: fixed;
   display: block;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   
-  z-Index: 10000;  
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-Index: 10000;
   top: 50%;
   left: 50%;
+  padding: 2rem;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   background-color: white;
+  border-radius: 1rem;
+  color: black;
+}
+
+form h3 {
+  align-self: start;
+  font-size: 1rem;
+}
+
+form h2 {
+  font-size: 1.5rem;
+  
+}
+
+form input {
+  font-size: 1rem;
+  color: black
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+form  h2, input,button {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+button {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.3rem ;
+  background-color: #99ccdd;
+  border : none;
+  border-radius: 0.3rem;
+  font-weight: bolder;
+  font-size: 1rem;
+}
+form div {
+  font-size: 0.7rem;
+  font-weight: bold;
+  
+}
+a { 
+  text-decoration: none;
+}
+a:visited { 
+  color : black
 }

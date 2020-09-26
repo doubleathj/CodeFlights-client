@@ -16,8 +16,8 @@ function Navbar(props) {
 
   const { isLogin } = props;
 
-  // if (isLogin)
-  //  {
+  if (isLogin)
+   {
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -48,40 +48,40 @@ function Navbar(props) {
       </IconContext.Provider>
     </>
   );
-  // } else {
-  //   return (
-  //     <>
-  //       <IconContext.Provider value={{ color: '#fff' }}>
-  //         <div className='navbar'>
-  //           <Link to='#' className='menu-bars'>
-  //             <FaIcons.FaBars onClick={showSidebar} />
-  //           </Link>
-  //         </div>
-  //         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-  //           <ul className='nav-menu-items' onClick={showSidebar}>
-  //             <li className='navbar-toggle'>
-  //               <Link to='#' className='menu-bars'>
-  //                 <FaIcons.FaWindowClose />
-  //               </Link>
-  //             </li>
-  //             <li className='nav-text'>
-  //               <FaIcons.FaHome />
-  //               <span>Main</span>
-  //             </li>
-  //             <li className='nav-text'>
-  //               <FiIcons.FiUserPlus />
-  //               <span onClick={props.handleSignupModal}>SIGN UP</span>
-  //             </li>
-  //             <li className='nav-text'>
-  //               <IoIcons.IoIosLogIn />
-  //               <span onClick={props.handleLoginModal}>LOGIN</span>
-  //             </li>
-  //           </ul>
-  //         </nav>
-  //       </IconContext.Provider>
-  //     </>
-  //   );
-  // }
+  } else {
+    return (
+      <>
+        <IconContext.Provider value={{ color: '#fff' }}>
+          <div className='navbar'>
+            <Link to='#' className='menu-bars'>
+              <FaIcons.FaBars onClick={showSidebar} />
+            </Link>
+          </div>
+          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <ul className='nav-menu-items' onClick={showSidebar}>
+              <li className='navbar-toggle'>
+                <Link to='#' className='menu-bars'>
+                  <FaIcons.FaWindowClose />
+                </Link>
+              </li>
+              <li className='nav-text'>
+                <FaIcons.FaHome />
+                <span>Main</span>
+              </li>
+              <li className='nav-text'>
+                <FiIcons.FiUserPlus />
+                <span onClick={props.handleSignupModal}>SIGN UP</span>
+              </li>
+              <li className='nav-text'>
+                <IoIcons.IoIosLogIn />
+                <span onClick={props.handleLoginModal}>LOGIN</span>
+              </li>
+            </ul>
+          </nav>
+        </IconContext.Provider>
+      </>
+    );
+  }
 }
 
 export default Navbar;

@@ -1,5 +1,7 @@
 .navbar {
-  background-color: #99ccff;
+  position: absolute;
+  z-index: 9998;
+  background-color: none;
   height: 80px;
   display: flex;
   align-items: center;
@@ -15,7 +17,8 @@
 }
 
 .nav-menu {
-  background-color: #99ccff;
+  background-color: none;
+  color : white;
   width: 12rem;
   height: 100vh;
   display: flex;
