@@ -30,7 +30,7 @@ class App extends React.Component {
 
     axios({
       method: 'GET',
-      url: 'http://15.164.229.68:8080/user/info',
+      url: 'http://codeflights.xyz/user/info',
       withCredentials: true,
       crendtials : 'include'
     }).then(res => this.setState({userinfo : res.data}))

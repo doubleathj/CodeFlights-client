@@ -28,12 +28,12 @@ class Mypage extends React.Component {
 
     axios({
       method: 'POST',
-      url: 'http://codeflight.com/user/info',
+      url: 'https://codeflights.xyz/user/info',
       data: {
         username: username,
         password: password,
         passwordConfirm: passwordConfirm,
-      },
+      }
     })
       .then(() => {
         this.props.history.push('/Mypage');
