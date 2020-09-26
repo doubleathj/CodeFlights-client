@@ -16,8 +16,7 @@ function Navbar(props) {
 
   const { isLogin } = props;
 
-  if (isLogin)
-   {
+  if (isLogin){
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -66,15 +65,17 @@ function Navbar(props) {
               </li>
               <li className='nav-text'>
                 <FaIcons.FaHome />
-                <span>Main</span>
+                
+                <span><Link to='/'>Main</Link></span>
+                
               </li>
               <li className='nav-text'>
                 <FiIcons.FiUserPlus />
-                <span onClick={props.handleSignupModal}>SIGN UP</span>
+                <span onClick={props.handleSignupModal}><Link>SIGN UP</Link></span>
               </li>
               <li className='nav-text'>
                 <IoIcons.IoIosLogIn />
-                <span onClick={props.handleLoginModal}>LOGIN</span>
+                <span onClick={props.handleLoginModal}><Link>LOGIN</Link></span>
               </li>
             </ul>
           </nav>

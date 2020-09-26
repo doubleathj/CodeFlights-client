@@ -30,7 +30,7 @@ class SignupModal extends React.Component {
 
       axios({
         method: 'post',
-        url: 'http://15.164.229.68:80/user/signup',
+        url: 'https://codeflights.xyz/user/signup',
         data: {
           email: email,
           username: username,
@@ -55,7 +55,7 @@ class SignupModal extends React.Component {
       <div>
         <div className='modal'></div>
         <div className='modalContents'>
-          <form onSubmit={this.handleSignupSubmit}>
+          <form className="modalForm" onSubmit={this.handleSignupSubmit}>
           <h3 onClick={this.props.handleSignupModal}>✖</h3>
           <h2>회원가입</h2>
             <input

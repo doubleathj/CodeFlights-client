@@ -23,22 +23,21 @@
   color: black;
 }
 
-form h3 {
+.modalForm h3 {
   align-self: start;
   font-size: 1rem;
 }
 
-form h2 {
+.modalForm h2 {
   font-size: 1.5rem;
-  
 }
 
-form input {
+.modalForm input {
   font-size: 1rem;
   color: black
 }
 
-form {
+.modalForm {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,11 +45,11 @@ form {
   width: 100%;
   height: 100%;
 }
-form  h2, input,button {
+.modalForm  h2, input,button {
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
-button {
+.modalForm button {
   box-sizing: border-box;
   width: 100%;
   padding: 0.3rem ;
@@ -60,14 +59,14 @@ button {
   font-weight: bolder;
   font-size: 1rem;
 }
-form div {
+.modalForm div {
   font-size: 0.7rem;
   font-weight: bold;
   
 }
-a { 
+.modalForm a { 
   text-decoration: none;
 }
-p:visited { 
+.modalForm p:visited { 
   color : black
 }

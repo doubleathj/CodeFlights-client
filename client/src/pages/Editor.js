@@ -1,4 +1,5 @@
 import React from 'react';
+import './Editor.css'
 const axios = require('axios');
 
 class Posting extends React.Component {
@@ -20,7 +21,7 @@ class Posting extends React.Component {
 
   postingArticle() {
     return axios
-      .post('http://15.164.229.68:8080/post/write', {
+      .post('http://codeflights.xyz/post/write', {
         author: this.state.author + 1,
         title: this.state.title,
         content: this.state.content,
@@ -30,68 +31,37 @@ class Posting extends React.Component {
 
   render() {
     return (
-      <div className="editor-container">
-        <form
+      <div className="editor">
+        <video muted play="true" autoPlay loop>
+          <source src="/Videos/background.mp4" type="video/mp4"></source>
+        </video>
+        <div className="article-container">
+        <form className="article"
           onSubmit={(e) => {
             e.preventDefault();
             this.postingArticle();
           }}
         >
-          <p
-            className='post_title'
-            style={{
-              borderBottom: '1px solid rgba(0,0,0,0.2)',
-              paddingBottom: '1.5rem',
-            }}
-          >
-            <textarea
-              style={{
-                width: '70%',
-                height: '3rem',
-                margin: '1rem',
-                padding: '1rem',
-                borderRadius: '5px',
-                resize: 'none',
-                border: 'none',
-                outline: 'none',
-                fontSize: '1.5rem',
-              }}
-              className='textarea_title'
+          
+            <input type="text"
+              className='title'
               placeholder='제목을 입력하세요'
               onChange={this.handleChange('title')}
-            ></textarea>
-          </p>
-          <p>
-            <textarea
-              style={{
-                width: '70%',
-                margin: '1rem',
-                padding: '1rem',
-                borderRadius: '5px',
-                resize: 'none',
-                border: 'none',
-                outline: 'none',
-              }}
+            ></input>
+          
+          
+            <textarea className='contents'
               rows={20}
-              className='textarea_content'
               onChange={this.handleChange('content')}
             ></textarea>
-          </p>
+          
           <button
-            style={{
-              borderRadius: '5px',
-              backgroundColor: '#99ccff',
-              float: 'right',
-              margin: '1rem',
-              padding: '0.5rem',
-              color: 'white',
-              border: 'none',
-            }}
             type='submit'
           >
             Submit
           </button>
         </form>
+        </div>
       </div>
     );
   }
