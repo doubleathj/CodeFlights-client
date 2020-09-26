@@ -27,7 +27,7 @@ class LoginModal extends React.Component {
     const { handleLogin,handleLoginModal } = this.props;
 
     let data ={email : email, password : password}
-    axios.post('http://codeflights.xyz/user/signin',data, {withCredentials: true}
+    axios.post('https://codeflights.xyz/user/signin',data, {withCredentials: true}
       )
     
     // fetch('http://15.164.229.68:8080/user/signin', {
@@ -54,8 +54,7 @@ class LoginModal extends React.Component {
       <div>
         <div className='modal'></div>
         <div className='modalContents'>
-          <form onSubmit={this.handleLoginSubmit}>
-            
+          <form className="modalForm"  onSubmit={this.handleLoginSubmit}>
             <h3 onClick={this.props.handleLoginModal}>✖</h3>
             <h2>로그인</h2>
             

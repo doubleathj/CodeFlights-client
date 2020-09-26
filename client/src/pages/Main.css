@@ -5,12 +5,12 @@
   overflow: hidden;
   margin: 0px auto;
   position: relative;
+  background: none;
 }
 .search { 
   position: absolute; top: 50%; width: 100%; 
   text-align: center;
   color: white;
-  
 }
 
 input {
