@@ -55,8 +55,8 @@ class App extends React.Component {
             handleSignupModal={this.handleSignupModal}
             handleLoginModal={this.handleLoginModal}
           />
-          {this.state.signupmodal ? <SignupModal handleSignupModal={this.handleSignupModal.bind(this)} /> : false}
-          {this.state.loginmodal ? <LoginModal handleLoginModal={this.handleLoginModal.bind(this)} handleLogin={this.handleLogin.bind(this)}/> : false}
+          {this.state.signupmodal ? <SignupModal handleSignupModal={this.handleSignupModal.bind(this)} handleLoginModal={this.handleLoginModal.bind(this)}/> : false}
+          {this.state.loginmodal ? <LoginModal handleSignupModal={this.handleSignupModal} handleLoginModal={this.handleLoginModal.bind(this)} handleLogin={this.handleLogin.bind(this)}/> : false}
           <Switch>
             <Route path='/' exact component={Main} />
             <Route path='/Mypage' component={Mypage} />

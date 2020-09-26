@@ -7,3 +7,9 @@
   font-family: 'Noto+Sans+KR:wght@500', sans-serif;
   list-style: none;
 }
+
+body::-webkit-scrollbar {
+
+  display:none;
+  
+  }

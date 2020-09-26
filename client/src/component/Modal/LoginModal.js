@@ -18,13 +18,16 @@ class LoginModal extends React.Component {
   handleChange = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
-
+  goToSignUp = () => {
+    this.props.handleLoginModal();
+    this.props.handleSignupModal();
+  }
   handleLoginSubmit(e) {
     const { email, password } = this.state;
     const { handleLogin,handleLoginModal } = this.props;
 
     let data ={email : email, password : password}
-    axios.post('http://15.164.229.68:8080/user/signin',data, {withCredentials: true}
+    axios.post('http://codeflights.xyz/user/signin',data, {withCredentials: true}
       )
     
     // fetch('http://15.164.229.68:8080/user/signin', {
@@ -52,6 +55,10 @@ class LoginModal extends React.Component {
         <div className='modal'></div>
         <div className='modalContents'>
           <form onSubmit={this.handleLoginSubmit}>
+            
+            <h3 onClick={this.props.handleLoginModal}>✖</h3>
+            <h2>로그인</h2>
+            
             <input
               type='email'
               name='email'
@@ -63,14 +70,14 @@ class LoginModal extends React.Component {
               type='password'
               minLength='8'
               name='password'
-              placeholder='password'
+              placeholder='Password'
               value={this.state.password}
               onChange={this.handleChange('password')}
             />
-            <div>
-              <Link to='/'>아직 아이디가 없으신가요?</Link>
-            </div>
             <button type='submit' >Login</button>
+            <div>
+              <p onClick={this.goToSignUp}>아직 아이디가 없으신가요?</p>
+            </div>
           </form>
         </div>
       </div>

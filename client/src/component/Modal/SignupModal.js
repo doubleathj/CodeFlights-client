@@ -17,7 +17,10 @@ class SignupModal extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
   }
-
+  goToLogin = () => {
+    this.props.handleSignupModal();
+    this.props.handleLoginModal();
+  }
   handleChange = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
@@ -27,7 +30,7 @@ class SignupModal extends React.Component {
 
       axios({
         method: 'post',
-        url: 'http://15.164.229.68:8080/user/signup',
+        url: 'http://15.164.229.68:80/user/signup',
         data: {
           email: email,
           username: username,
@@ -53,6 +56,8 @@ class SignupModal extends React.Component {
         <div className='modal'></div>
         <div className='modalContents'>
           <form onSubmit={this.handleSignupSubmit}>
+          <h3 onClick={this.props.handleSignupModal}>✖</h3>
+          <h2>회원가입</h2>
             <input
               type='email'
               name='email'
@@ -83,10 +88,11 @@ class SignupModal extends React.Component {
               value={this.state.passwordConfirm}
               onChange={this.handleChange('passwordConfirm')}
             />
-            <div>
-              <Link to='/'>이미 아이디가 있으신가요??</Link>
-            </div>
             <button type='submit'>submit</button>
+            <div>
+              <p onClick={this.goToLogin}>이미 아이디가 있으신가요?</p>
+            </div>
+            
           </form>
         </div>
       </div>
