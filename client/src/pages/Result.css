@@ -7,5 +7,25 @@
 .city {
   border: 5px solid black;
   background-size: cover;
-  color : white
+  color: white;
+}
+
+.result-container {
+  position: absolute;
+  display: block;
+  box-shadow: 0 4px 8px 0 none, 0 6px 20px none;
+  z-index: 10000;
+  top: 45%;
+  left: 45%;
+  padding: 2rem;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background-color: none;
+  border-radius: 1rem;
+  color: black;
+}
+
+.result-title {
+  color: aliceblue;
 }
