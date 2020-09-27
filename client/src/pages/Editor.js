@@ -1,5 +1,5 @@
 import React from 'react';
-import './Editor.css'
+import './Editor.css';
 const axios = require('axios');
 
 class Posting extends React.Component {
@@ -20,47 +20,42 @@ class Posting extends React.Component {
   };
 
   postingArticle() {
-    return axios
-      .post('http://codeflights.xyz/post/write', {
-        author: this.state.author + 1,
-        title: this.state.title,
-        content: this.state.content,
-      })
-    
+    return axios.post('https://codeflights.xyz/post/write', {
+      author: this.state.author + 1,
+      title: this.state.title,
+      content: this.state.content,
+    });
   }
 
   render() {
     return (
-      <div className="editor">
-        <video muted play="true" autoPlay loop>
-          <source src="/Videos/background.mp4" type="video/mp4"></source>
+      <div className='editor'>
+        <video muted play='true' autoPlay loop>
+          <source src='/Videos/background.mp4' type='video/mp4'></source>
         </video>
-        <div className="article-container">
-        <form className="article"
-          onSubmit={(e) => {
-            e.preventDefault();
-            this.postingArticle();
-          }}
-        >
-          
-            <input type="text"
+        <div className='article-container'>
+          <form
+            className='article'
+            onSubmit={(e) => {
+              e.preventDefault();
+              this.postingArticle();
+            }}
+          >
+            <input
+              type='text'
               className='title'
               placeholder='제목을 입력하세요'
               onChange={this.handleChange('title')}
             ></input>
-          
-          
-            <textarea className='contents'
+
+            <textarea
+              className='contents'
               rows={20}
               onChange={this.handleChange('content')}
             ></textarea>
-          
-          <button
-            type='submit'
-          >
-            Submit
-          </button>
-        </form>
+
+            <button type='submit'>Submit</button>
+          </form>
         </div>
       </div>
     );

@@ -21,23 +21,25 @@ class LoginModal extends React.Component {
   goToSignUp = () => {
     this.props.handleLoginModal();
     this.props.handleSignupModal();
-  }
+  };
   handleLoginSubmit(e) {
     const { email, password } = this.state;
-    const { handleLogin,handleLoginModal } = this.props;
+    const { handleLogin, handleLoginModal } = this.props;
 
-    let data ={email : email, password : password}
-    axios.post('https://codeflights.xyz/user/signin',data, {withCredentials: true}
-      )
-    
-    // fetch('http://15.164.229.68:8080/user/signin', {
-    //   method : 'POST',
-    //   body : JSON.stringify({ email : email, password : password}),
-    //   headers : {
-    //     "contents-type" : "application/json"
-    //   },
-    //   credentials : "include"
-    // })
+    let data = { email: email, password: password };
+    axios
+      .post('https://codeflights.xyz/user/signin', data, {
+        withCredentials: true,
+      })
+
+      // fetch('http://15.164.229.68:8080/user/signin', {
+      //   method : 'POST',
+      //   body : JSON.stringify({ email : email, password : password}),
+      //   headers : {
+      //     "contents-type" : "application/json"
+      //   },
+      //   credentials : "include"
+      // })
       .then(() => {
         handleLogin();
         this.props.history.push('/');
@@ -54,10 +56,10 @@ class LoginModal extends React.Component {
       <div>
         <div className='modal'></div>
         <div className='modalContents'>
-          <form className="modalForm"  onSubmit={this.handleLoginSubmit}>
+          <form className='modalForm' onSubmit={this.handleLoginSubmit}>
             <h3 onClick={this.props.handleLoginModal}>✖</h3>
             <h2>로그인</h2>
-            
+
             <input
               type='email'
               name='email'
@@ -73,7 +75,7 @@ class LoginModal extends React.Component {
               value={this.state.password}
               onChange={this.handleChange('password')}
             />
-            <button type='submit' >Login</button>
+            <button type='submit'>Login</button>
             <div>
               <p onClick={this.goToSignUp}>아직 아이디가 없으신가요?</p>
             </div>

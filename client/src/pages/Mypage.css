@@ -1,3 +1,60 @@
+.mypage {
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  margin: 0px auto;
+  position: relative;
+  background: none;
+}
+
+.userinfo-container {
+  position: fixed;
+  display: block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 10000;
+  top: 50%;
+  left: 50%;
+  padding: 2rem;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 1rem;
+  color: black;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.usertitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.changeinfotitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.changeinfo input {
+  font-size: 2rem;
+  color: black;
+}
+
 hr {
   border: 0;
   clear: both;
@@ -8,9 +65,12 @@ hr {
 }
 
 .submitBtn {
-  width: 200px;
-  height: 30px;
-  margin: 5px;
-  border-radius: 5px;
-  background-color: skyblue;
+  position: fixed;
+  padding: 1px;
+  right: 120px;
+  border: 10;
+  background-color: #99ccdd;
+  border-radius: 0.3rem;
+  font-weight: bolder;
+  font-size: 1rem;
 }
