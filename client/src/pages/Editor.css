@@ -21,7 +21,7 @@
 .article-container {
   top: 50%;
   left: 50%;
-  position: fixed;
+  position: absolute;
   display: block;
   z-index: 99;
   padding: 2rem;
@@ -63,4 +63,13 @@
   border-radius: 0.3rem;
   font-weight: bolder;
   font-size: 1rem;
+}
+
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: #070707;
+  height: 1px;
 }
