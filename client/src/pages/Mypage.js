@@ -110,8 +110,11 @@ class Mypage extends React.Component {
     );
   }
 }
-export default connect((state) => ({
-  userinfo : state.user.userinfo,
-}), (dispatch) => ({
-  userinfo : () => dispatch(userActions.userinfo())
-}))(Mypage);
+export default connect(
+  (state) => ({
+    userinfo: state.user.userinfo,
+  }),
+  (dispatch) => ({
+    userinfo: () => dispatch(userActions.userinfo()),
+  })
+)(Mypage);
