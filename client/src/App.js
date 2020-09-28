@@ -30,8 +30,6 @@ class App extends React.Component {
             <Route path='/' exact component={Main} />
             <Route path='/Mypage' component={Mypage} />
             <Route path='/Posting' component={Posting} />
-            {/* <Route path='/Signup' component={Signup} /> 
-            <Route path='/Login' component={Login} />  모달창으로 구현 기존 페이지 삭제 요망*/}
             <Route path='/result/:city/:article' component={View} />
             <Route path='/result/:city' component={Schedule} />
             <Route path='/result' component={Result} />
