@@ -10,6 +10,10 @@ export const destinationsCheck = createAction(DESTINATIONS)
 const initialState = {
   place: [{
     destination: "나트랑"
+  }, {
+    destination: "도쿄"
+  }, {
+    destination: "상하이"
   }]
 };
 
