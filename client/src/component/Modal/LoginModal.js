@@ -48,8 +48,7 @@ class LoginModal extends React.Component {
       .then(() => {
         this.props.loginStatus();
         this.props.changeLogin();
-        this.updateUserinfo();
-      })
+      }).then(()=> this.updateUserinfo())
       .catch((err) => {
         console.log('err: ', err);
       });

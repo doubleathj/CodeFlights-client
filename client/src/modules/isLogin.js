@@ -5,9 +5,9 @@ const ISLOGIN = 'loginStatus';
 export const loginStatus = createAction(ISLOGIN)
 
 const initialState = {
-  loginStatus: false
+  login: false
 };
 
 export default handleActions({
-  [ISLOGIN] : ( { loginStatus } )=> ({ loginStatus: !loginStatus })
+  [ISLOGIN] : ( { login } )=> ({ login: !login })
   } , initialState);

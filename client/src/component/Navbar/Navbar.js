@@ -14,9 +14,9 @@ import './Navbar.css';
 function Navbar(props) {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
-  const { loginStatus }= props;
+  const { login }= props;
 
-  if (loginStatus){
+  if (login){
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -46,8 +46,7 @@ function Navbar(props) {
         </nav>
       </IconContext.Provider>
     </>
-  );
-  } else {
+  )} else {
     return (
       <>
         <IconContext.Provider value={{ color: '#fff' }}>
@@ -88,7 +87,7 @@ function Navbar(props) {
 export default connect((state) => ({
   loginModal: state.loginModal.loginModal,
   signupModal : state.signupModal.signupModal,
-  isLogin : state.isLogin.isLogin
+  login : state.isLogin.login
 }), (dispatch) => ({
   changeLogin: () => dispatch(loginActions.changeLogin()), changeSignup : () => dispatch(signupActions.changeSignup()), loginStatus : () => dispatch(signinActions.loginStatus()),
 }))(Navbar);
