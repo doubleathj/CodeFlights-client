@@ -41,7 +41,7 @@ function Schedule({ match }) {
         <div className='tip'>
           <h2>{city}의 여행 팁</h2>
         </div>
-        <ul className='article-container'>{article}</ul>
+        <ul className='article-list'>{article}</ul>
       </div>
     </div>
   );
