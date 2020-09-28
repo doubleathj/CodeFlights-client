@@ -30,7 +30,7 @@ class App extends React.Component {
             <Route path='/Posting' component={Posting} />
             <Route path='/result/:city/:article' component={View} />
             <Route path='/result/:city' component={Schedule} />
-            <Route path='/result' component={Result} />
+            <Route path='/search/result' component={Result} />
           </Switch>
         </Router>
       </>

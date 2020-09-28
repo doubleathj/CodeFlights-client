@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './Main.css'
 import { Redirect } from 'react-router-dom';
-
+import axios from 'axios';
+import { connect } from 'react-redux';
+import * as planCheck from '../modules/destinations';
 
 function Main() {
   const [ depDate , setDep ] = useState(null)
@@ -18,6 +20,10 @@ function Main() {
       setPeriod(e.target.value)   
     }
   }
+  let searchPlans = () => {
+    axios.get(`https://codeflights.xyz/search?departureDate=${depDate}&arrivalDate=${period}`)
+    .then(res => this.props.destinationsCheck(res))
+  }
   return (
   <div className='Main'>
     <video muted play="true" autoPlay loop>
@@ -28,10 +34,16 @@ function Main() {
       false
       }
       {period === null && depDate !== null? <div><h1>얼마동안 여행하실 건가요?</h1><input className="period" onKeyPress={handleKeyPressPeriod} type="number" placeholder="숫자를 입력해주세요."></input></div> : false}
-      {period !== null && depDate !== null ? <Redirect to={`/search/${depDate}=${period}`}></Redirect> : false }
+      {period !== null && depDate !== null ? searchPlans() : false }
     </div>
   </div>
   )
 }
 
-export default Main;
+
+export default connect((state) => ({
+  place: state.destinations.place,
+  
+}), (dispatch) => ({
+  destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data))
+}))(Main);

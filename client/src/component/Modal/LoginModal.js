@@ -8,6 +8,7 @@ import * as signupActions from '../../modules/signupModal';
 import * as signinActions from '../../modules/isLogin';
 import * as userActions from '../../modules/user';
 import google from '../../Images/google.png';
+
 axios.defaults.withCredentials = true;
 
 class LoginModal extends React.Component {
@@ -28,15 +29,13 @@ class LoginModal extends React.Component {
     this.props.changeLogin();
     this.props.changeSignup();
   };
-  updateUserinfo = () => {
+  updateUserinfo = (e) => {
     axios({
       method: 'GET',
       url: 'http://localhost:8080/user/info',
       withCredentials: true,
       crendtials : 'include'
-    }).then(res => {
-      this.props.userinfo(res)
-    })
+    }).then(res => this.props.userinfo(res))
   }
   handleLoginSubmit(e) {
     const { email, password } = this.state;
@@ -65,7 +64,7 @@ class LoginModal extends React.Component {
       <div>
         <div className='modal'></div>
         <div className='modalContents'>
-          <form className='modalForm' onSubmit={this.handleLoginSubmit}>    
+          <form className='modalForm' onSubmit={(e) => this.updateUserinfo(e)}>    
             <div className='login'><h3 onClick={this.props.changeLogin}>✖</h3><h2>로그인</h2></div>
             <div className='social'><img onClick={this.socialLogin} src={google}></img></div>
             <input
@@ -101,7 +100,7 @@ export default connect((state) => ({
   loginModal: state.loginModal.loginModal,
   signupModal : state.signupModal.signupModal,
   isLogin : state.isLogin.isLogin,
-  userinfo : state.user.userinfo,
+  info : state.user.info,
 }), (dispatch) => ({
-  changeLogin: () => dispatch(loginActions.changeLogin()), changeSignup : () => dispatch(signupActions.changeSignup()), loginStatus : () => dispatch(signinActions.loginStatus()), userinfo : () => dispatch(userActions.userinfo())
+  changeLogin: () => dispatch(loginActions.changeLogin()), changeSignup : () => dispatch(signupActions.changeSignup()), loginStatus : () => dispatch(signinActions.loginStatus()), userinfo : (data) => dispatch(userActions.userinfo(data))
 }))(LoginModal);
