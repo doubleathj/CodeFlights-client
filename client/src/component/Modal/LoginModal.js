@@ -2,6 +2,12 @@ import React from 'react';
 import './Modal.css';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import * as loginActions from '../../modules/loginModal';
+import * as signupActions from '../../modules/signupModal';
+import * as signinActions from '../../modules/isLogin';
+import * as userActions from '../../modules/user';
+
 axios.defaults.withCredentials = true;
 
 class LoginModal extends React.Component {
@@ -19,31 +25,30 @@ class LoginModal extends React.Component {
     this.setState({ [key]: e.target.value });
   };
   goToSignUp = () => {
-    this.props.handleLoginModal();
-    this.props.handleSignupModal();
+    this.props.changeLogin();
+    this.props.changeSignup();
   };
+  updateUserinfo = () => {
+    axios({
+      method: 'GET',
+      url: 'http://localhost:8080/user/info',
+      withCredentials: true,
+      crendtials : 'include'
+    }).then(res => {
+      this.props.userinfo(res)
+    })
+  }
   handleLoginSubmit(e) {
     const { email, password } = this.state;
-    const { handleLogin, handleLoginModal } = this.props;
-
     let data = { email: email, password: password };
     axios
-      .post('https://codeflights.xyz/user/signin', data, {
+      .post('http://localhost:8080/user/signin', data, {
         withCredentials: true,
       })
-
-      // fetch('http://15.164.229.68:8080/user/signin', {
-      //   method : 'POST',
-      //   body : JSON.stringify({ email : email, password : password}),
-      //   headers : {
-      //     "contents-type" : "application/json"
-      //   },
-      //   credentials : "include"
-      // })
       .then(() => {
-        handleLogin();
-        this.props.history.push('/');
-        handleLoginModal();
+        this.props.loginStatus();
+        this.props.changeLogin();
+        this.updateUserinfo();
       })
       .catch((err) => {
         console.log('err: ', err);
@@ -52,14 +57,15 @@ class LoginModal extends React.Component {
   }
 
   render() {
+    const { loginModal } = this.props
+    if(loginModal){
     return (
       <div>
         <div className='modal'></div>
         <div className='modalContents'>
           <form className='modalForm' onSubmit={this.handleLoginSubmit}>
-            <h3 onClick={this.props.handleLoginModal}>✖</h3>
+            <h3 onClick={this.props.changeLogin}>✖</h3>
             <h2>로그인</h2>
-
             <input
               type='email'
               name='email'
@@ -83,7 +89,17 @@ class LoginModal extends React.Component {
         </div>
       </div>
     );
+    }else {
+      return <div></div>
+    }
   }
 }
 
-export default withRouter(LoginModal);
+export default connect((state) => ({
+  loginModal: state.loginModal.loginModal,
+  signupModal : state.signupModal.signupModal,
+  isLogin : state.isLogin.isLogin,
+  userinfo : state.user.userinfo,
+}), (dispatch) => ({
+  changeLogin: () => dispatch(loginActions.changeLogin()), changeSignup : () => dispatch(signupActions.changeSignup()), loginStatus : () => dispatch(signinActions.loginStatus()), userinfo : () => dispatch(userActions.userinfo())
+}))(LoginModal);

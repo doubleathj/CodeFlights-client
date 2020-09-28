@@ -2,7 +2,8 @@ import React from 'react';
 import './Mypage.css';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-
+import { connect } from 'react-redux';
+import * as userActions from '../modules/user';
 axios.defaults.withCredentials = true;
 
 class Mypage extends React.Component {
@@ -12,7 +13,6 @@ class Mypage extends React.Component {
       username: '',
       password: '',
       password_confirm: '',
-      userinfo: {},
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeUserInfoSubmit = this.handleChangeUserInfoSubmit.bind(
@@ -26,14 +26,12 @@ class Mypage extends React.Component {
 
   handleChangeUserInfoSubmit(e) {
     const { username, password, passwordConfirm } = this.state;
-
     axios({
       method: 'POST',
-      url: 'https://codeflights.xyz/user/info',
+      url: 'http://localhost:8080/user/info',
       data: {
         username: username,
         password: password,
-        passwordConfirm: passwordConfirm,
       },
     })
       .then(() => {
@@ -46,7 +44,7 @@ class Mypage extends React.Component {
   }
 
   render() {
-    const { userinfo } = this.state;
+    const { userinfo } = this.props;
 
     return (
       <div className='mypage'>
@@ -112,4 +110,8 @@ class Mypage extends React.Component {
     );
   }
 }
-export default withRouter(Mypage);
+export default connect((state) => ({
+  userinfo : state.user.userinfo,
+}), (dispatch) => ({
+  userinfo : () => dispatch(userActions.userinfo())
+}))(Mypage);

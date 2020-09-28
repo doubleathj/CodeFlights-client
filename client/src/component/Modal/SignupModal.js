@@ -2,7 +2,9 @@ import React from 'react';
 import './Modal.css';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
-
+import { connect } from 'react-redux';
+import * as loginActions from '../../modules/loginModal';
+import * as signupActions from '../../modules/signupModal';
 axios.defaults.withCredentials = true;
 
 class SignupModal extends React.Component {
@@ -18,8 +20,8 @@ class SignupModal extends React.Component {
     this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
   }
   goToLogin = () => {
-    this.props.handleSignupModal();
-    this.props.handleLoginModal();
+    this.props.changeSignup();
+    this.props.changeLogin();
   }
   handleChange = (key) => (e) => {
     this.setState({ [key]: e.target.value });
@@ -30,7 +32,7 @@ class SignupModal extends React.Component {
 
       axios({
         method: 'post',
-        url: 'https://codeflights.xyz/user/signup',
+        url: 'http://localhost:8080/user/signup',
         data: {
           email: email,
           username: username,
@@ -41,7 +43,6 @@ class SignupModal extends React.Component {
         crendtials : 'include'
       })
       .then(() => {
-        this.props.history.push('/');
         this.props.handleSignupModal()
       })
       .catch((err) => {
@@ -51,12 +52,14 @@ class SignupModal extends React.Component {
   }
 
   render() {
+    const { signupModal } = this.props
+    if(signupModal){
     return (
       <div>
         <div className='modal'></div>
         <div className='modalContents'>
           <form className="modalForm" onSubmit={this.handleSignupSubmit}>
-          <h3 onClick={this.props.handleSignupModal}>✖</h3>
+          <h3 onClick={this.props.changeSignup}>✖</h3>
           <h2>회원가입</h2>
             <input
               type='email'
@@ -96,8 +99,16 @@ class SignupModal extends React.Component {
           </form>
         </div>
       </div>
-    );
+    )}
+    else{
+      return <div></div>
+    }
   }
 }
 
-export default withRouter(SignupModal);
+export default connect((state) => ({
+  loginModal: state.loginModal.loginModal,
+  signupModal : state.signupModal.signupModal
+}), (dispatch) => ({
+  changeLogin: () => dispatch(loginActions.changeLogin()), changeSignup : () => dispatch(signupActions.changeSignup()),
+}))(SignupModal);
