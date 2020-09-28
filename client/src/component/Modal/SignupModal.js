@@ -32,7 +32,7 @@ class SignupModal extends React.Component {
 
     axios({
       method: 'post',
-      url: 'http://localhost:8080/user/signup',
+      url: 'https://codeflights.xyz/user/signup',
       data: {
         email: email,
         username: username,

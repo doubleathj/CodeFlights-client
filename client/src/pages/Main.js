@@ -18,12 +18,15 @@ function Main() {
     }
   };
 
-  
-
   return (
     <div className='Main'>
-      <video muted play='true' autoPlay loop>
-        <source src='/Videos/background.mp4' type='video/mp4'></source>
+      <video muted play='true' autoPlay muted>
+        <source
+          src='/Videos/background.mp4'
+          type='video/mp4'
+          autoplay
+          muted
+        ></source>
       </video>
       <div className='search'>
         {depDate === null ? (

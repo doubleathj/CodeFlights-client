@@ -31,7 +31,7 @@ class LoginModal extends React.Component {
   updateUserinfo = () => {
     axios({
       method: 'GET',
-      url: 'http://localhost:8080/user/info',
+      url: 'https://codeflights.xyz/user/info',
       withCredentials: true,
       crendtials: 'include',
     }).then((res) => {
@@ -42,7 +42,7 @@ class LoginModal extends React.Component {
     const { email, password } = this.state;
     let data = { email: email, password: password };
     axios
-      .post('http://localhost:8080/user/signin', data, {
+      .post('https://codeflights.xyz/user/signin', data, {
         withCredentials: true,
       })
       .then(() => {
@@ -57,7 +57,7 @@ class LoginModal extends React.Component {
   }
   socialLogin = () => {
     this.props.changeLogin();
-    axios.get('http://localhost:8080/auth/google');
+    axios.get('https://codeflights.xyz/auth/google');
   };
   render() {
     const { loginModal } = this.props;
