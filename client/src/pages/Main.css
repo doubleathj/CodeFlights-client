@@ -1,9 +1,11 @@
 .Main {
   width: auto;
   height: auto;
+  min-width: 100%;
+  min-height: 100%;
   overflow: hidden;
   margin: 0px auto;
-  position: relative;
+  position: relativea;
   background: none;
 }
 .search {

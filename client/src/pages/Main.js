@@ -20,7 +20,13 @@ function Main() {
 
   return (
     <div className='Main'>
-      <video muted play='true' autoPlay muted>
+      <video
+        className='video'
+        preload='auto'
+        autoPlay='true'
+        loop='loop'
+        muted='true'
+      >
         <source
           src='/Videos/background.mp4'
           type='video/mp4'
