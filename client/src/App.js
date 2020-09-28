@@ -4,9 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Main from './pages/Main';
 import Mypage from './pages/Mypage';
 import Posting from './pages/Editor';
-
 import './App.css';
-
 import Result from './pages/Result';
 import Schedule from './pages/Schedule';
 import View from './pages/View';
