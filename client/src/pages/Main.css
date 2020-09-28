@@ -1,14 +1,17 @@
-
 .Main {
   width: auto;
   height: auto;
+  min-width: 100%;
+  min-height: 100%;
   overflow: hidden;
   margin: 0px auto;
-  position: relative;
+  position: relativea;
   background: none;
 }
-.search { 
-  position: absolute; top: 50%; width: 100%; 
+.search {
+  position: absolute;
+  top: 50%;
+  width: 100%;
   text-align: center;
   color: white;
 }
@@ -21,6 +24,25 @@ input {
   font-size: xx-large;
   font-weight: bold;
   border: none;
-  
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .search {
+    width: 50%;
+    top: 50%;
+    left: 25%;
+    margin: 0 auto;
+    padding-bottom: 30%;
+    color: rgb(250, 248, 248);
+    font-size: 1.7vh;
+  }
+  .search input {
+    width: 100%;
+    left: 30%;
+    margin: 0 auto;
+    padding-bottom: 30%;
+    color: rgb(250, 248, 248);
+    font-size: 1rem;
+  }
 }
