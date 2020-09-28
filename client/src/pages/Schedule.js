@@ -1,31 +1,45 @@
 import React from 'react';
 import './Schedule.css';
 import { Link } from 'react-router-dom';
-import { data } from '../Datas/Dummy';
-function Schedule({ match }) {
-  const { city } = match.params;
-  const cityData = data[city];
-  let air;
-  let article;
-  if (!cityData) {
-    air = 'unvaliable';
-    article = 'unvaliable';
-  } else {
-    air = cityData.flights.map((ele) => (
-      <li className='ticket'>
-        <div>{ele.Airline}</div>
-        <div>출발 : {ele.departure}</div>
-        <div>도착 : {ele.arrival}</div>
-      </li>
-    ));
-    article = cityData.articles.map((ele) => (
+import axios from 'axios';
+import { connect } from 'react-redux';
+import * as planCheck from '../modules/destinations';
+import * as plan from '../modules/plan';
+
+function Schedule(props) {
+  const { city } = props.match.params;
+  const { flights, userPostings, blogPostings} = props
+  console.log(city)
+  console.log(props)
+  console.log(flights, userPostings, blogPostings)
+  let counter = 10
+  if(userPostings)  counter -= userPostings.length;
+  let tickets = flights.map(ele => (
+    <li className='ticket'>
+      <div>{ele.carrier}</div>
+      <div>{ele.carrierNo}</div>
+      <div>{ele.departure}</div>
+    </li>
+  ))
+  let userPost;
+  if(userPostings){
+    userPost = userPostings.map(ele => (
       <li className='article'>
         <Link className='view' to={`/result/${city}/${ele.id}`}>
-          <p>{ele.id}</p>
-          <p>{ele.title}</p>
+          <p className="title">{ele.title}</p>
+          <p className="contents">{ele.contents}</p>
         </Link>
       </li>
-    ));
+    ))
+  }
+  let blog =[];
+  for(let i = 0; i < counter; i++){
+      blog[i] = <li className='article'>
+                  <a className='view' href={blogPostings[i].link}>
+                    <p className="title">{blogPostings[i].title}</p>
+                    <p className="contents">{blogPostings[i].contents}</p>
+                  </a>         
+                </li>
   }
 
   return (
@@ -37,14 +51,22 @@ function Schedule({ match }) {
         <div className='info'>
           <h2>{city}로 가는 항공편</h2>
         </div>
-        <ul className='ticket-container'>{air}</ul>
-        <div className='tip'>
-          <h2>{city}의 여행 팁</h2>
-        </div>
-        <ul className='article-list'>{article}</ul>
+        <ul className='ticket-container'>{tickets}</ul>
+          <div className='tip'>
+            <h2>{city}의 여행 팁</h2>
+          </div>
+        <ul className='article-container'>{userPost ? userPost : false}{blog}</ul>
       </div>
     </div>
-  );
+  )
 }
 
-export default Schedule;
+export default connect((state) => ({
+  place: state.destinations.place,
+  flights: state.plan.flights,
+  blogPostings: state.plan.blogPostings,
+  userPostings: state.plan.userPostings
+}), (dispatch) => ({
+  destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
+  getPlan : (data) => dispatch(plan.getPlan(data))
+}))(Schedule);

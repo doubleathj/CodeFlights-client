@@ -2,15 +2,14 @@ import { createAction, handleActions } from 'redux-actions';
 
 const USERINFO = 'userinfo';
 
-export const userinfo = createAction(USERINFO, (data) => data);
-
+export const userinfo = createAction(USERINFO)
+  
 const initialState = {
-  userinfo: {},
+  info: null
 };
 
-export default handleActions(
-  {
-    [USERINFO]: (state, action) => state.set('userinfo', action.payload),
-  },
-  initialState
-);
+export default handleActions({
+  [USERINFO]: (state, action) => ({
+    info : action.payload
+  })
+}, initialState);
