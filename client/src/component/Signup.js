@@ -25,7 +25,7 @@ class Signup extends React.Component {
     const { email, username, password, passwordConfirm } = this.state;
 
     axios
-      .post('https://codeflight.com/user/signup', {
+      .post('https://codeflights.xyz/user/signup', {
         email: email,
         username: username,
         password: password,

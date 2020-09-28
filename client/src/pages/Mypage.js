@@ -28,7 +28,7 @@ class Mypage extends React.Component {
     const { username, password, passwordConfirm } = this.state;
     axios({
       method: 'POST',
-      url: 'http://localhost:8080/user/info',
+      url: 'https://codeflights.xyz/user/info',
       data: {
         username: username,
         password: password,

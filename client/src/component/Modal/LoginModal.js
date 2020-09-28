@@ -31,24 +31,25 @@ class LoginModal extends React.Component {
   updateUserinfo = () => {
     axios({
       method: 'GET',
-      url: 'http://localhost:8080/user/info',
+      url: 'https://codeflights.xyz/user/info',
       withCredentials: true,
-      crendtials : 'include'
-    }).then(res => {
-      this.props.userinfo(res)
-    })
-  }
+      crendtials: 'include',
+    }).then((res) => {
+      this.props.userinfo(res);
+    });
+  };
   handleLoginSubmit(e) {
     const { email, password } = this.state;
     let data = { email: email, password: password };
     axios
-      .post('http://localhost:8080/user/signin', data, {
+      .post('https://codeflights.xyz/user/signin', data, {
         withCredentials: true,
       })
       .then(() => {
         this.props.loginStatus();
         this.props.changeLogin();
-      }).then(()=> this.updateUserinfo())
+      })
+      .then(() => this.updateUserinfo())
       .catch((err) => {
         console.log('err: ', err);
       });
@@ -56,49 +57,55 @@ class LoginModal extends React.Component {
   }
 
   render() {
-    const { loginModal } = this.props
-    if(loginModal){
-    return (
-      <div>
-        <div className='modal'></div>
-        <div className='modalContents'>
-          <form className='modalForm' onSubmit={this.handleLoginSubmit}>
-            <h3 onClick={this.props.changeLogin}>✖</h3>
-            <h2>로그인</h2>
-            <input
-              type='email'
-              name='email'
-              placeholder='Email'
-              value={this.state.email}
-              onChange={this.handleChange('email')}
-            />
-            <input
-              type='password'
-              minLength='8'
-              name='password'
-              placeholder='Password'
-              value={this.state.password}
-              onChange={this.handleChange('password')}
-            />
-            <button type='submit'>Login</button>
-            <div>
-              <p onClick={this.goToSignUp}>아직 아이디가 없으신가요?</p>
-            </div>
-          </form>
+    const { loginModal } = this.props;
+    if (loginModal) {
+      return (
+        <div>
+          <div className='modal'></div>
+          <div className='modalContents'>
+            <form className='modalForm' onSubmit={this.handleLoginSubmit}>
+              <h3 onClick={this.props.changeLogin}>✖</h3>
+              <h2>로그인</h2>
+              <input
+                type='email'
+                name='email'
+                placeholder='Email'
+                value={this.state.email}
+                onChange={this.handleChange('email')}
+              />
+              <input
+                type='password'
+                minLength='8'
+                name='password'
+                placeholder='Password'
+                value={this.state.password}
+                onChange={this.handleChange('password')}
+              />
+              <button type='submit'>Login</button>
+              <div>
+                <p onClick={this.goToSignUp}>아직 아이디가 없으신가요?</p>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    );
-    }else {
-      return <div></div>
+      );
+    } else {
+      return <div></div>;
     }
   }
 }
 
-export default connect((state) => ({
-  loginModal: state.loginModal.loginModal,
-  signupModal : state.signupModal.signupModal,
-  isLogin : state.isLogin.isLogin,
-  userinfo : state.user.userinfo,
-}), (dispatch) => ({
-  changeLogin: () => dispatch(loginActions.changeLogin()), changeSignup : () => dispatch(signupActions.changeSignup()), loginStatus : () => dispatch(signinActions.loginStatus()), userinfo : () => dispatch(userActions.userinfo())
-}))(LoginModal);
+export default connect(
+  (state) => ({
+    loginModal: state.loginModal.loginModal,
+    signupModal: state.signupModal.signupModal,
+    isLogin: state.isLogin.isLogin,
+    userinfo: state.user.userinfo,
+  }),
+  (dispatch) => ({
+    changeLogin: () => dispatch(loginActions.changeLogin()),
+    changeSignup: () => dispatch(signupActions.changeSignup()),
+    loginStatus: () => dispatch(signinActions.loginStatus()),
+    userinfo: () => dispatch(userActions.userinfo()),
+  })
+)(LoginModal);
