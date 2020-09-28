@@ -1,19 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './Result.css';
 import { connect } from 'react-redux';
 import * as planCheck from '../modules/destinations';
-
-
+import * as plan from '../modules/plan';
+import axios from 'axios'
 function Result(props) {
-  
+  let load = false
+  let planToGo = (city) => {
+    axios.get(`http://codeflights.xyz/search/result/destination?city=${city}`)
+      .then(res => {
+        props.getPlan(res.data)
+        props.loaded()
+    })
+  }
   let city = props.place.map((ele) => (
-    <Link
-      className='city'
-      to={`/result/${ele.destination}`}
-    >
-      <h3>{ele.destination}</h3>
-    </Link>
+    <div onClick={() => planToGo(ele.destination)}>{props.load ? <Redirect className='city' to={`/result/${ele.destination}`}>
+    </Redirect> : <h3>{ele.destination}</h3>}
+    
+    </div>
   ));
   return (
     <>
@@ -34,7 +39,12 @@ function Result(props) {
 
 export default connect((state) => ({
   place: state.destinations.place,
-  
+  flights: state.plan.flights,
+  blogPostings: state.plan.blogPostings,
+  userPostings: state.plan.userPostings,
+  load : state.plan.load
 }), (dispatch) => ({
-  destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data))
+  destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
+  getPlan : (data) => dispatch(plan.getPlan(data)),
+  loaded : () => dispatch(plan.loaded()),
 }))(Result);
