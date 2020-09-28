@@ -52,6 +52,7 @@ function Schedule({ match }) {
           <h2>{city}의 여행 팁</h2>
         </div>
       <ul className='article-container'>{userPost}{blog}</ul>
+        
       </div>
     </div>
       )

@@ -47,13 +47,11 @@ class Posting extends React.Component {
               placeholder='제목을 입력하세요'
               onChange={this.handleChange('title')}
             ></input>
-
             <textarea
               className='contents'
-              rows={20}
+              rows={10}
               onChange={this.handleChange('content')}
             ></textarea>
-
             <button type='submit'>Submit</button>
           </form>
         </div>
