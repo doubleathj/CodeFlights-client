@@ -18,6 +18,8 @@ function Main() {
     }
   };
 
+  
+
   return (
     <div className='Main'>
       <video muted play='true' autoPlay loop>

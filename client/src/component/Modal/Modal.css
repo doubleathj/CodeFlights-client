@@ -24,7 +24,6 @@
 }
 
 .modalForm h3 {
-  align-self: start;
   font-size: 1rem;
 }
 
@@ -36,7 +35,12 @@
   font-size: 1rem;
   color: black
 }
-
+.login h2, h3 {
+  display: inline;
+}
+.login h2 {
+  margin : 0 auto
+}
 .modalForm {
   display: flex;
   flex-direction: column;
@@ -45,8 +49,15 @@
   width: 100%;
   height: 100%;
 }
-.modalForm  h2, input,button {
-  margin-bottom: 0.5rem;
+.login { 
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid lightgray;
+  width: 100%;
+  
+}
+.modalForm input,button, p {
+  margin-top : 0.5rem;
   font-weight: bold;
 }
 .modalForm button {
@@ -69,4 +80,23 @@
 }
 .modalForm p:visited { 
   color : black
+}
+.modalForm input{
+  border : 1px solid lightgray;
+  margin-bottom: 0;
+}
+
+.social {
+  padding-top : 0.5rem;
+  padding-bottom : 0.5rem;
+  border-bottom: 1px solid lightgray;
+  
+  width: 100%;
+  text-align: center;
+}
+
+img { 
+  box-sizing: border-box;
+  width: 60%;
+  
 }

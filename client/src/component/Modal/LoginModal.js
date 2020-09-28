@@ -1,13 +1,13 @@
 import React from 'react';
 import './Modal.css';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as loginActions from '../../modules/loginModal';
 import * as signupActions from '../../modules/signupModal';
 import * as signinActions from '../../modules/isLogin';
 import * as userActions from '../../modules/user';
-
+import google from '../../Images/google.png';
 axios.defaults.withCredentials = true;
 
 class LoginModal extends React.Component {
@@ -31,7 +31,7 @@ class LoginModal extends React.Component {
   updateUserinfo = () => {
     axios({
       method: 'GET',
-      url: 'https://codeflights.xyz/user/info',
+      url: 'http://localhost:8080/user/info',
       withCredentials: true,
       crendtials: 'include',
     }).then((res) => {
@@ -42,7 +42,7 @@ class LoginModal extends React.Component {
     const { email, password } = this.state;
     let data = { email: email, password: password };
     axios
-      .post('https://codeflights.xyz/user/signin', data, {
+      .post('http://localhost:8080/user/signin', data, {
         withCredentials: true,
       })
       .then(() => {
@@ -55,7 +55,10 @@ class LoginModal extends React.Component {
       });
     e.preventDefault();
   }
-
+  socialLogin = () => {
+    this.props.changeLogin();
+    axios.get('http://localhost:8080/auth/google');
+  };
   render() {
     const { loginModal } = this.props;
     if (loginModal) {
@@ -64,8 +67,13 @@ class LoginModal extends React.Component {
           <div className='modal'></div>
           <div className='modalContents'>
             <form className='modalForm' onSubmit={this.handleLoginSubmit}>
-              <h3 onClick={this.props.changeLogin}>✖</h3>
-              <h2>로그인</h2>
+              <div className='login'>
+                <h3 onClick={this.props.changeLogin}>✖</h3>
+                <h2>로그인</h2>
+              </div>
+              <div className='social'>
+                <img onClick={this.socialLogin} src={google}></img>
+              </div>
               <input
                 type='email'
                 name='email'
