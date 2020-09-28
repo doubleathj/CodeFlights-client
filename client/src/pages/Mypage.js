@@ -25,18 +25,15 @@ class Mypage extends React.Component {
   };
 
   handleChangeUserInfoSubmit(e) {
-    const { username, password, passwordConfirm } = this.state;
+    const { username, password } = this.state;
     axios({
       method: 'POST',
-      url: 'http://localhost:8080/user/info',
+      url: 'https://codeflights.xyz/user/info',
       data: {
         username: username,
         password: password,
       },
     })
-      .then(() => {
-        this.props.history.push('/Mypage');
-      })
       .catch((err) => {
         console.log('err: ', err);
       });
@@ -44,7 +41,7 @@ class Mypage extends React.Component {
   }
 
   render() {
-    const { userinfo } = this.props;
+    const { info } = this.props;
 
     return (
       <div className='mypage'>
@@ -58,11 +55,11 @@ class Mypage extends React.Component {
             </span>
             <h3>
               username:
-              <span className='username'>{userinfo.username}</span>
+              <span className='username'>{info.username}</span>
             </h3>
             <h3>
               email:
-              <span className='email'>{userinfo.email}</span>
+              <span className='email'>{info.email}</span>
             </h3>
           </div>
           <hr />
