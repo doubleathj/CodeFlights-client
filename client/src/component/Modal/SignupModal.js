@@ -59,8 +59,8 @@ class SignupModal extends React.Component {
         <div className='modal'></div>
         <div className='modalContents'>
           <form className="modalForm" onSubmit={this.handleSignupSubmit}>
-          <h3 onClick={this.props.changeSignup}>✖</h3>
-          <h2>회원가입</h2>
+          <div className='login'> <h3 onClick={this.props.changeSignup}>✖</h3>
+          <h2>회원가입</h2></div>
             <input
               type='email'
               name='email'

@@ -6,8 +6,6 @@ import Mypage from './pages/Mypage';
 import Posting from './pages/Editor';
 import axios from 'axios';
 import './App.css';
-import Signup from './component/Signup';
-import Login from './component/Login';
 import Result from './pages/Result';
 import Schedule from './pages/Schedule';
 import View from './pages/View';
