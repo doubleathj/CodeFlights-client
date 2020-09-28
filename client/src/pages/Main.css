@@ -1,0 +1,26 @@
+
+.Main {
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  margin: 0px auto;
+  position: relative;
+  background: none;
+}
+.search { 
+  position: absolute; top: 50%; width: 100%; 
+  text-align: center;
+  color: white;
+}
+
+input {
+  background: none;
+  outline: none;
+  box-shadow: 0 0;
+  color: white;
+  font-size: xx-large;
+  font-weight: bold;
+  border: none;
+  
+  text-align: center;
+}
