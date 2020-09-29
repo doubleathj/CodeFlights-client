@@ -46,14 +46,17 @@ class Result extends React.Component {
   }
 }
 
-export default connect((state) => ({
-  place: state.destinations.place,
-  flights: state.plan.flights,
-  blogPostings: state.plan.blogPostings,
-  userPostings: state.plan.userPostings,
-  load : state.plan.load
-}), (dispatch) => ({
-  destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
-  getPlan : (data) => dispatch(plan.getPlan(data)),
-  loaded : () => dispatch(plan.loaded()),
-}))(Result);
+export default connect(
+  (state) => ({
+    place: state.destinations.place,
+    flights: state.plan.flights,
+    blogPostings: state.plan.blogPostings,
+    userPostings: state.plan.userPostings,
+    load: state.plan.load,
+  }),
+  (dispatch) => ({
+    destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
+    getPlan: (data) => dispatch(plan.getPlan(data)),
+    loaded: () => dispatch(plan.loaded()),
+  })
+)(Result);
