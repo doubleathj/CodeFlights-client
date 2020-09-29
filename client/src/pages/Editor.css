@@ -10,8 +10,8 @@
 .article-container {
   position: absolute;
   top: 20vh;
-  left: 20vh;
-  right: 20vh;
+  left: 5vh;
+  right: 5vh;
   display: flex;
   z-index: 100;
   padding: 1.5rem;
@@ -38,7 +38,7 @@
   width: 100%;
   border: none;
   outline: none;
-  font-size: 1.5rem;
+  font-size: medium;
   margin-bottom: 1rem;
   resize: both;
 }
@@ -58,4 +58,19 @@ hr {
   width: 96%;
   background-color: #070707;
   height: 1px;
+}
+
+@media screen and (max-width: 640px) {
+  .article-container {
+    position: absolute;
+    top: 20vh;
+
+    display: flex;
+    z-index: 100;
+    padding: 1.5rem;
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 2rem;
+    color: rgb(5, 5, 5);
+  }
 }
