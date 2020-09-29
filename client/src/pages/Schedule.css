@@ -10,8 +10,8 @@
 .schedule-containaer {
   position: absolute;
   top: 20vh;
-  left: 20vh;
-  right: 20vh;
+  left: 10vw;
+  right: 10vw;
   display: block;
   z-index: 100;
   padding: 1.5rem;
@@ -31,7 +31,7 @@
 }
 
 .ticket {
-  flex: auto;
+  flex: content;
   border: 1px solid black;
   text-align: center;
 }
@@ -53,4 +53,20 @@
 }
 .article p {
   flex: auto;
+}
+
+@media screen and (max-width: 640px) {
+  .userinfo-container {
+    position: absolute;
+    top: 20vh;
+    left: 10vw;
+    right: 10vw;
+    display: block;
+    z-index: 100;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 2rem;
+    color: black;
+    opacity: 0.9;
+  }
 }

@@ -10,8 +10,8 @@
 .article-container {
   position: absolute;
   top: 20vh;
-  left: 5vh;
-  right: 5vh;
+  left: 10vw;
+  right: 10vw;
   display: flex;
   z-index: 100;
   padding: 1.5rem;
@@ -64,7 +64,6 @@ hr {
   .article-container {
     position: absolute;
     top: 20vh;
-
     display: flex;
     z-index: 100;
     padding: 1.5rem;

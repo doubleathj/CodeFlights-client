@@ -1,7 +1,6 @@
 import React from 'react';
 import './Mypage.css';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as userActions from '../modules/user';
 axios.defaults.withCredentials = true;
