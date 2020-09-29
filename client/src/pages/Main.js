@@ -22,17 +22,14 @@ function Main() {
     <div className='Main'>
       <video
         className='video'
-        preload='auto'
-        autoPlay='true'
+        autoPlay='true' //모바일 재생 필수 태그
+        playsInline='true' //모바일 재생 필수 태그
         loop='loop'
-        muted='true'
+        muted='true' //모바일 재생 필수 태그 ios 저전력 모드일 때는 작동 불가 애플 정책
+        width='1280'
+        height='720'
       >
-        <source
-          src='/Videos/background.mp4'
-          type='video/mp4'
-          autoplay
-          muted
-        ></source>
+        <source src='/Videos/background.mp4' type='video/mp4' />
       </video>
       <div className='search'>
         {depDate === null ? (

@@ -1,35 +1,29 @@
 .mypage {
-  width: auto;
-  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  margin: 0px auto;
-  position: relative;
-  background: none;
 }
 
 .userinfo-container {
-  position: fixed;
+  position: absolute;
+  top: 20vh;
+  left: 20vh;
+  right: 20vh;
   display: block;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  z-index: 10000;
-  top: 50%;
-  left: 50%;
-  padding: 2rem;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
+  z-index: 100;
+  padding: 1.5rem;
   background-color: white;
   border-radius: 2rem;
   color: black;
+  opacity: 0.9;
 }
 
 .userinfo {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
 }
 
 .usertitle {
@@ -46,13 +40,27 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  width: 100%;
   height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  resize: both;
 }
 
 .changeinfo input {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: black;
+}
+
+.submitBtn {
+  border: none;
+  background-color: #99ccdd;
+  border: none;
+  border-radius: 0.3rem;
+  font-weight: bolder;
+  font-size: 1rem;
 }
 
 hr {
@@ -62,15 +70,4 @@ hr {
   width: 96%;
   background-color: #070707;
   height: 1px;
-}
-
-.submitBtn {
-  position: fixed;
-  padding: 1px;
-  right: 120px;
-  border: 10;
-  background-color: #99ccdd;
-  border-radius: 0.3rem;
-  font-weight: bolder;
-  font-size: 1rem;
 }
