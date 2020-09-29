@@ -2,12 +2,15 @@ import { createAction, handleActions } from 'redux-actions';
 
 const CHANGELOGIN = 'changeLogin';
 
-export const changeLogin = createAction(CHANGELOGIN)
+export const changeLogin = createAction(CHANGELOGIN);
 
 const initialState = {
-  loginModal: false
+  loginModal: false,
 };
 
-export default handleActions({
-  [CHANGELOGIN] : ( { loginModal } )=> ({ loginModal: !loginModal })
-  } , initialState);
+export default handleActions(
+  {
+    [CHANGELOGIN]: ({ loginModal }) => ({ loginModal: !loginModal }),
+  },
+  initialState
+);

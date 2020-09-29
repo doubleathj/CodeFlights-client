@@ -1,17 +1,50 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Result.css'
-import { cities } from '../Datas/Dummy'
-function Result() {
-  
-  let city = cities.map(ele => <Link className="city" to={`/result/${ele.destination}`} style={{backgroundImage: "url("+ele.img+")"}} ><h3>{ele.destination}</h3></Link> )
-  return (
-    <h2>예정된 기간 동안 방문 가능한 {cities.length}개 도시 입니다.
-    <div className='cities'>  
-      {city}
+import { Link, Redirect } from 'react-router-dom';
+import './Result.css';
+import { connect } from 'react-redux';
+import * as planCheck from '../modules/destinations';
+import * as plan from '../modules/plan';
+import axios from 'axios'
+function Result(props) {
+  let load = false
+  let planToGo = (city) => {
+    axios.get(`http://codeflights.xyz/search/result/destination?city=${city}`)
+      .then(res => {
+        props.getPlan(res.data)
+        props.loaded()
+    })
+  }
+  let city = props.place.map((ele) => (
+    <div onClick={() => planToGo(ele.destination)}>{props.load ? <Redirect className='city' to={`/result/${ele.destination}`}>
+    </Redirect> : <h3>{ele.destination}</h3>}
+    
     </div>
-    </h2>
-  )
+  ));
+  return (
+    <>
+      <div className='result'>
+        <video muted play='true' autoPlay loop>
+          <source src='/Videos/background.mp4' type='video/mp4'></source>
+        </video>
+        <div className='result-container'>
+          <span className='result-title'>
+            <h2>예정된 기간 동안 방문 가능한 {props.place.length}개 도시 입니다.</h2>
+          </span>
+          <div className='cities'>{city}</div>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Result;
+export default connect((state) => ({
+  place: state.destinations.place,
+  flights: state.plan.flights,
+  blogPostings: state.plan.blogPostings,
+  userPostings: state.plan.userPostings,
+  load : state.plan.load
+}), (dispatch) => ({
+  destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
+  getPlan : (data) => dispatch(plan.getPlan(data)),
+  loaded : () => dispatch(plan.loaded()),
+}))(Result);

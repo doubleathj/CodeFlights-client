@@ -30,8 +30,16 @@ class Posting extends React.Component {
   render() {
     return (
       <div className='editor'>
-        <video muted play='true' autoPlay loop>
-          <source src='/Videos/background.mp4' type='video/mp4'></source>
+        <video
+          className='video'
+          autoPlay='true'
+          playsInline='true'
+          loop='loop'
+          muted='true'
+          width='1280'
+          height='720'
+        >
+          <source src='/Videos/background.mp4' type='video/mp4' />
         </video>
         <div className='article-container'>
           <form
@@ -47,13 +55,11 @@ class Posting extends React.Component {
               placeholder='제목을 입력하세요'
               onChange={this.handleChange('title')}
             ></input>
-
             <textarea
               className='contents'
-              rows={20}
+              rows={10}
               onChange={this.handleChange('content')}
             ></textarea>
-
             <button type='submit'>Submit</button>
           </form>
         </div>

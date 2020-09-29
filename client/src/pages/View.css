@@ -1,4 +1,4 @@
-.result {
+.view {
   width: auto;
   height: auto;
   overflow: hidden;
@@ -7,19 +7,7 @@
   background: none;
 }
 
-.cities {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  grid-auto-rows: minmax(300px, auto);
-}
-.city {
-  border: 5px solid black;
-  background-size: cover;
-  color: white;
-}
-
-.result-container {
+.aticleview {
   top: 50%;
   left: 50%;
   position: absolute;
@@ -35,6 +23,11 @@
   color: rgb(5, 5, 5);
 }
 
-.result-title {
-  color: rgb(8, 8, 8);
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: #070707;
+  height: 1px;
 }

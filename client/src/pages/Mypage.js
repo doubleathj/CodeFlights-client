@@ -25,31 +25,35 @@ class Mypage extends React.Component {
   };
 
   handleChangeUserInfoSubmit(e) {
-    const { username, password, passwordConfirm } = this.state;
+    const { username, password } = this.state;
     axios({
       method: 'POST',
-      url: 'http://localhost:8080/user/info',
+      url: 'https://codeflights.xyz/user/info',
       data: {
         username: username,
         password: password,
       },
-    })
-      .then(() => {
-        this.props.history.push('/Mypage');
-      })
-      .catch((err) => {
-        console.log('err: ', err);
-      });
+    }).catch((err) => {
+      console.log('err: ', err);
+    });
     e.preventDefault();
   }
 
   render() {
-    const { userinfo } = this.props;
+    const { info } = this.props;
 
     return (
       <div className='mypage'>
-        <video muted play='true' autoPlay loop>
-          <source src='/Videos/background.mp4' type='video/mp4'></source>
+        <video
+          className='video'
+          autoPlay='true' //모바일 재생 필수 태그
+          playsInline='true' //모바일 재생 필수 태그
+          loop='loop'
+          muted='true' //모바일 재생 필수 태그 ios 저전력 모드일 때는 작동 불가 애플 정책
+          width='1280'
+          height='720'
+        >
+          <source src='/Videos/background.mp4' type='video/mp4' />
         </video>
         <div className='userinfo-container'>
           <div className='userinfo'>
@@ -58,11 +62,11 @@ class Mypage extends React.Component {
             </span>
             <h3>
               username:
-              <span className='username'>{userinfo.username}</span>
+              {/* <span className='username'>{info.username}</span> */}
             </h3>
             <h3>
               email:
-              <span className='email'>{userinfo.email}</span>
+              {/* <span className='email'>{info.email}</span> */}
             </h3>
           </div>
           <hr />
@@ -110,8 +114,11 @@ class Mypage extends React.Component {
     );
   }
 }
-export default connect((state) => ({
-  userinfo : state.user.userinfo,
-}), (dispatch) => ({
-  userinfo : () => dispatch(userActions.userinfo())
-}))(Mypage);
+export default connect(
+  (state) => ({
+    userinfo: state.user.userinfo,
+  }),
+  (dispatch) => ({
+    userinfo: () => dispatch(userActions.userinfo()),
+  })
+)(Mypage);

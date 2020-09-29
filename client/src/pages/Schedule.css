@@ -1,23 +1,58 @@
+.schedule {
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  margin: 0px auto;
+  position: relative;
+  background: none;
+}
+
+.schedule-containaer {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  display: block;
+  z-index: 99;
+  padding: 2rem;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background-color: white;
+  opacity: 0.9;
+  border-radius: 2rem;
+  color: rgb(5, 5, 5);
+}
+
 .ticket-container {
   display: flex;
   flex-direction: row;
+  position: relative;
+  top: 15%;
+  left: 0%;
+  background-color: none;
 }
-.ticket { 
+
+.ticket {
   flex: auto;
-  border: 5px solid black;
+  border: 1px solid black;
   text-align: center;
 }
-.article-container {
+.article-list {
   display: flex;
   flex-direction: column;
+  position: relative;
+  top: 50%;
+  left: 0%;
+  background-color: none;
 }
+
 .view {
   display: flex;
   flex-direction: row;
 }
 .article {
-  flex : auto;
+  flex: auto;
 }
 .article p {
-  flex : auto
+  flex: auto;
 }
