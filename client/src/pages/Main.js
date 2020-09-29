@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Main.css';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 function Main() {
   const [depDate, setDep] = useState(null);
@@ -17,7 +18,9 @@ function Main() {
       setPeriod(e.target.value);
     }
   };
-
+  let searchDate = () => {
+    axios.get(`https://codeflights.xyz/search?departureDate=${depDate}&arrivalDate=${period}`)
+  }
   return (
     <div className='Main'>
       <video
@@ -52,18 +55,18 @@ function Main() {
             <input
               className='period'
               onKeyPress={handleKeyPressPeriod}
-              type='number'
+              type='text'
               placeholder='숫자를 입력해주세요.'
             ></input>
           </div>
         ) : (
           false
         )}
-        {period !== null && depDate !== null ? (
-          <Redirect to={`/search/${depDate}=${period}`}></Redirect>
-        ) : (
+        {period !== null && depDate !== null ? 
+          searchDate()
+          : 
           false
-        )}
+        }
       </div>
     </div>
   );

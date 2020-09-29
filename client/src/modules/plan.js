@@ -27,6 +27,6 @@ export default handleActions({
     flights: state.flights,
     blogPostings: state.blogPostings,
     userPostings: state.userPostings,
-    load : !state.load
+    load : !  state.load
   })
 }, initialState);
