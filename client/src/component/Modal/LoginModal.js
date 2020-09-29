@@ -8,6 +8,8 @@ import * as signupActions from '../../modules/signupModal';
 import * as signinActions from '../../modules/isLogin';
 import * as userActions from '../../modules/user';
 import google from '../../Images/google.png';
+import GoogleLogin from 'react-google-login';
+
 axios.defaults.withCredentials = true;
 
 class LoginModal extends React.Component {
@@ -55,10 +57,15 @@ class LoginModal extends React.Component {
       });
     e.preventDefault();
   }
-  socialLogin = () => {
-    this.props.changeLogin();
-    axios.get('https://codeflights.xyz/auth/google');
-  };
+
+  responseGoogle = (res) => {
+    this.props.changeLogin()
+    let data = { tokenId : res.tokenId}
+    axios.post('https://codeflights.xyz/auth/google', data)
+    .then(() => {
+      this.updateUserinfo()
+    })
+  }
   render() {
     const { loginModal } = this.props;
     if (loginModal) {
@@ -71,9 +78,13 @@ class LoginModal extends React.Component {
                 <h3 onClick={this.props.changeLogin}>✖</h3>
                 <h2>로그인</h2>
               </div>
-              <div className='social'>
-                <img onClick={this.socialLogin} src={google}></img>
-              </div>
+              <GoogleLogin
+                  clientId="956886343865-f8080heu2d93mukf82e027btrg0mgcl8.apps.googleusercontent.com"
+                  buttonText="Login"
+                  onSuccess={this.responseGoogle}
+                  onFailure={this.responseGoogle}
+                  cookiePolicy={'single_host_origin'}
+              />
               <input
                 type='email'
                 name='email'
