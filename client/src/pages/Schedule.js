@@ -46,8 +46,16 @@ function Schedule(props) {
 
   return (
     <div className='schedule'>
-      <video muted play='true' autoPlay loop>
-        <source src='/Videos/background.mp4' type='video/mp4'></source>
+      <video
+        className='video'
+        autoPlay='true'
+        playsInline='true'
+        loop='loop'
+        muted='true'
+        width='1280'
+        height='720'
+      >
+        <source src='/Videos/background.mp4' type='video/mp4' />
       </video>
       <div className='schedule-containaer'>
         <div className='info'>
@@ -57,7 +65,7 @@ function Schedule(props) {
         <div className='tip'>
           <h2>{city}의 여행 팁</h2>
         </div>
-        <ul className='article-container'>
+        <ul className='article-list'>
           {userPost ? userPost : false}
           {blog}
         </ul>
