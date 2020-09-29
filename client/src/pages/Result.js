@@ -4,40 +4,58 @@ import './Result.css';
 import { connect } from 'react-redux';
 import * as planCheck from '../modules/destinations';
 import * as plan from '../modules/plan';
-import axios from 'axios'
+import axios from 'axios';
 
 class Result extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
   }
   planToGo = (city) => {
-    axios.get(`http://codeflights.xyz/search/result/destination?city=${city}`)
-      .then(res => {
-        this.props.getPlan(res.data)
-        this.props.loaded()
-    })
+    axios
+      .get(`http://codeflights.xyz/search/result/destination?city=${city}`)
+      .then((res) => {
+        this.props.getPlan(res.data);
+        this.props.loaded();
+      });
+  };
+  componentDidMount() {
+    axios
+      .get('http://codeflights.xyz/search/result')
+      .then((data) => this.props.destinationsCheck(data));
   }
-  componentDidMount(){
-    axios.get('http://codeflights.xyz/search/result')
-    .then(data => this.props.destinationsCheck(data))
-  }
-  render () {
+  render() {
     let city = this.props.place.map((ele) => (
-      <div onClick={() => this.planToGo(ele.destination)}>{this.props.load ? <Redirect className='city' to={`/result/${ele.destination}`}>
-      </Redirect> : <h3>{ele.destination}</h3>}
+      <div onClick={() => this.planToGo(ele.destination)}>
+        {this.props.load ? (
+          <Redirect
+            className='city'
+            to={`/result/${ele.destination}`}
+          ></Redirect>
+        ) : (
+          <h3>{ele.destination}</h3>
+        )}
       </div>
     ));
 
     return (
       <>
         <div className='result'>
-          <video muted play='true' autoPlay loop>
-            <source src='/Videos/background.mp4' type='video/mp4'></source>
+          <video
+            className='video'
+            autoPlay='true'
+            playsInline='true'
+            loop='loop'
+            muted='true'
+            width='1280'
+            height='720'
+          >
+            <source src='/Videos/background.mp4' type='video/mp4' />
           </video>
           <div className='result-container'>
-            <span className='result-title'>
-              <h2>예정된 기간 동안 방문 가능한 {this.props.place.length}개 도시 입니다.</h2>
-            </span>
+            <div className='result-title'>
+              예정된 기간 동안 방문 가능한 {this.props.place.length}개 도시
+              입니다.
+            </div>
             <div className='cities'>{city}</div>
           </div>
         </div>
