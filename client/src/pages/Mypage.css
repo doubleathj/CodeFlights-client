@@ -50,15 +50,24 @@
 }
 
 .changeinfo input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
   font-size: 1.5rem;
-  color: black;
+  margin-bottom: 1rem;
+  resize: both;
 }
 
 .submitBtn {
-  border: none;
+  width: 100%;
   background-color: #99ccdd;
   border: none;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   font-weight: bolder;
   font-size: 1rem;
 }

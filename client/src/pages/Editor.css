@@ -40,14 +40,13 @@
   outline: none;
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  resize: none;
+  resize: both;
 }
 
 .article button {
-  border: none;
   background-color: #99ccdd;
   border: none;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   font-weight: bolder;
   font-size: 1rem;
 }

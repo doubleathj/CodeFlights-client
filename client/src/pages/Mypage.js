@@ -46,10 +46,10 @@ class Mypage extends React.Component {
       <div className='mypage'>
         <video
           className='video'
-          autoPlay='true' //모바일 재생 필수 태그
-          playsInline='true' //모바일 재생 필수 태그
+          autoPlay='true'
+          playsInline='true'
           loop='loop'
-          muted='true' //모바일 재생 필수 태그 ios 저전력 모드일 때는 작동 불가 애플 정책
+          muted='true'
           width='1280'
           height='720'
         >
@@ -74,7 +74,6 @@ class Mypage extends React.Component {
             <span className='changeinfotitle'>
               <h1>회원정보 수정</h1>
             </span>
-
             <form
               className='changeinfo'
               onSubmit={this.handleChangeUserInfoSubmit}
