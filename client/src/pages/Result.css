@@ -12,6 +12,7 @@
   top: 20vh;
   left: 10vw;
   right: 10vw;
+  bottom: 20vh;
   display: block;
   z-index: 100;
   padding: 1.5rem;
@@ -20,6 +21,7 @@
   border-radius: 2rem;
   color: rgb(5, 5, 5);
   flex-direction: row;
+  overflow: auto;
 }
 
 .result-title {
@@ -53,6 +55,7 @@
     top: 20vh;
     left: 10vw;
     right: 10vw;
+    bottom: 20vh;
     display: block;
     z-index: 100;
     padding: 1.5rem;
@@ -60,6 +63,7 @@
     border-radius: 2rem;
     color: black;
     opacity: 0.9;
+    overflow: auto;
   }
 
   .result-title {

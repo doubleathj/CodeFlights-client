@@ -23,7 +23,7 @@
 
 .ticket-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   box-sizing: border-box;
   width: 100%;
@@ -37,7 +37,7 @@
 }
 .article-list {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   position: relative;
   top: 50%;
   left: 0%;

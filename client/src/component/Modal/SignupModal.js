@@ -91,7 +91,7 @@ class SignupModal extends React.Component {
               <input
                 type='username'
                 name='username'
-                placeholder='username'
+                placeholder='Username'
                 value={this.state.username}
                 onChange={this.handleChange('username')}
               />
@@ -99,7 +99,7 @@ class SignupModal extends React.Component {
                 type='password'
                 minLength='8'
                 name='password'
-                placeholder='password'
+                placeholder='Password'
                 value={this.state.password}
                 onChange={this.handleChange('password')}
               />
@@ -107,7 +107,7 @@ class SignupModal extends React.Component {
                 type='password'
                 minLength='8'
                 name='passwordConfirm'
-                placeholder='passwordConfirm'
+                placeholder='PasswordConfirm'
                 value={this.state.passwordConfirm}
                 onChange={this.handleChange('passwordConfirm')}
               />
