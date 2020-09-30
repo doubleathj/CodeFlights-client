@@ -5,7 +5,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import * as travelActions from '../modules/travel';
 import * as planCheck from '../modules/destinations';
-function Main() {
+function Main(props) {
   const [depDate, setDep] = useState(null);
   const [period, setPeriod] = useState(null);
   let handleKeyPressDep = (e) => {
@@ -21,11 +21,11 @@ function Main() {
   };
   let searchDate = () => {
     axios.post("https://codeflights.xyz/search/result", {
-      departureDate: this.props.departureDate,
-      arrivalDate: this.props.arrivalDate
+      departureDate: depDate,
+      arrivalDate: period
     }).then((res) => {
-      this.props.destinationsCheck(res.data)
-    }).then(() => this.props.start())
+      props.destinationsCheck(res.data)
+    }).then(() => props.start())
   }
   return (
     <div className='Main'>
@@ -73,7 +73,7 @@ function Main() {
           : 
           false
         } 
-        {this.props.isLoad ? <Redirect to="/search/result"></Redirect> : <></>}
+        {props.isLoad ? <Redirect to="/search/result"></Redirect> : <></>}
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ class Result extends React.Component {
     axios.get(`https://codeflights.xyz/search/result/destination?city=${city}`)
       .then(res => {
         this.props.getPlan(res.data)
-        this.props.loaded()
+        this.props.loaded(city)
     })
   }
   // componentDidMount(){
@@ -25,8 +25,8 @@ class Result extends React.Component {
   // }
   render () {
     let city = this.props.place.map((ele) => (
-      <div onClick={() => this.planToGo(ele.destinations)}>{this.props.load ? <Redirect className='city' to={`/result/${ele.destinations}`}>
-      </Redirect> : <h3>{ele.portName}</h3>}
+      <div onClick={() => this.planToGo(ele.destinations)}>{this.props.load && this.props.city=== ele.destinations ? <Redirect className='city' to={`/result/${ele.destinations}`}>
+      </Redirect> : <h3>{ele.destinations}</h3>}
       </div>
     ));
 
@@ -64,10 +64,11 @@ export default connect(
     blogPostings: state.plan.blogPostings,
     userPostings: state.plan.userPostings,
     load: state.plan.load,
+    city: state.plan.city,
   }),
   (dispatch) => ({
     destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
     getPlan: (data) => dispatch(plan.getPlan(data)),
-    loaded: () => dispatch(plan.loaded()),
+    loaded: (data) => dispatch(plan.loaded(data)),
   })
 )(Result);
