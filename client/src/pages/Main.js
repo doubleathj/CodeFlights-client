@@ -20,6 +20,7 @@ function Main(props) {
     }
   };
   let searchDate = () => {
+
     axios.post("https://codeflights.xyz/search/result", {
       departureDate: depDate,
       arrivalDate: period
@@ -27,6 +28,7 @@ function Main(props) {
       props.destinationsCheck(res.data)
     }).then(() => props.start())
   }
+
   return (
     <div className='Main'>
       <video
@@ -45,7 +47,7 @@ function Main(props) {
           <div>
             <h1>며칠 후에 출발하실 건가요?</h1>
             <input
-              type='text'
+              type='number'
               pattern='[0-9]'
               onKeyPress={handleKeyPressDep}
               className='dep'
@@ -61,23 +63,26 @@ function Main(props) {
             <input
               className='period'
               onKeyPress={handleKeyPressPeriod}
-              type='text'
+              type='number'
               placeholder='숫자를 입력해주세요.'
             ></input>
           </div>
         ) : (
           false
         )}
+
         {period !== null && depDate !== null ? 
           searchDate()
           : 
           false
         } 
         {props.isLoad ? <Redirect to="/search/result"></Redirect> : <></>}
+
       </div>
     </div>
   );
 }
+
 
 export default connect(
   (state) => ({
@@ -91,3 +96,4 @@ export default connect(
     destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data))
   })
 )(Main);
+

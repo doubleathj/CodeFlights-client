@@ -16,7 +16,7 @@
   color: white;
 }
 
-input {
+.search input {
   background: none;
   outline: none;
   box-shadow: 0 0;
@@ -25,6 +25,12 @@ input {
   border: none;
   text-align: center;
   font-size: large;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 @media screen and (max-width: 640px) {
@@ -43,5 +49,10 @@ input {
     font-size: x-small;
     color: rgb(250, 248, 248);
     font-size: 1rem;
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 }
