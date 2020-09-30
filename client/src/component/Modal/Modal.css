@@ -11,7 +11,7 @@
   position: fixed;
   display: block;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  z-Index: 10000;
+  z-index: 10000;
   top: 50%;
   left: 50%;
   padding: 2rem;
@@ -33,13 +33,14 @@
 
 .modalForm input {
   font-size: 1rem;
-  color: black
+  color: black;
 }
-.login h2, h3 {
+.login h2,
+h3 {
   display: inline;
 }
 .login h2 {
-  margin : 0 auto
+  margin: 0 auto;
 }
 .modalForm {
   display: flex;
@@ -49,23 +50,24 @@
   width: 100%;
   height: 100%;
 }
-.login { 
+.login {
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid lightgray;
   width: 100%;
-  
 }
-.modalForm input,button, p {
-  margin-top : 0.5rem;
+.modalForm input,
+button,
+p {
+  margin-top: 0.5rem;
   font-weight: bold;
 }
 .modalForm button {
   box-sizing: border-box;
   width: 100%;
-  padding: 0.3rem ;
+  padding: 0.3rem;
   background-color: #99ccdd;
-  border : none;
+  border: none;
   border-radius: 0.3rem;
   font-weight: bolder;
   font-size: 1rem;
@@ -73,30 +75,32 @@
 .modalForm div {
   font-size: 0.7rem;
   font-weight: bold;
-  
 }
-.modalForm a { 
+.modalForm a {
   text-decoration: none;
 }
-.modalForm p:visited { 
-  color : black
+.modalForm p:visited {
+  color: black;
 }
-.modalForm input{
-  border : 1px solid lightgray;
+.modalForm input {
+  border: 1px solid lightgray;
   margin-bottom: 0;
 }
 
 .social {
-  padding-top : 0.5rem;
-  padding-bottom : 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid lightgray;
-  
+
   width: 100%;
   text-align: center;
 }
 
-img { 
+img {
   box-sizing: border-box;
   width: 60%;
-  
+}
+
+.invaild-message {
+  color: red;
 }

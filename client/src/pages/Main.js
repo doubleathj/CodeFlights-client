@@ -19,12 +19,15 @@ function Main() {
     }
   };
   let searchDate = () => {
-    axios.get(`https://codeflights.xyz/search?departureDate=${depDate}&arrivalDate=${period}`)
-    .then((res) => {
-      availiable = true
-      console.log(res.data)
-    })
-  }
+    axios
+      .get(
+        `https://codeflights.xyz/search?departureDate=${depDate}&arrivalDate=${period}`
+      )
+      .then((res) => {
+        availiable = true;
+        console.log(res.data);
+      });
+  };
   return (
     <div className='Main'>
       <video
@@ -43,7 +46,7 @@ function Main() {
           <div>
             <h1>며칠 후에 출발하실 건가요?</h1>
             <input
-              type='text'
+              type='number'
               pattern='[0-9]'
               onKeyPress={handleKeyPressDep}
               className='dep'
@@ -59,19 +62,15 @@ function Main() {
             <input
               className='period'
               onKeyPress={handleKeyPressPeriod}
-              type='text'
+              type='number'
               placeholder='숫자를 입력해주세요.'
             ></input>
           </div>
         ) : (
           false
         )}
-        {period !== null && depDate !== null ? 
-          searchDate()
-          : 
-          false
-        } 
-        {availiable ? <Redirect to="/search/result"></Redirect> : false}
+        {period !== null && depDate !== null ? searchDate() : false}
+        {availiable ? <Redirect to='/search/result'></Redirect> : false}
       </div>
     </div>
   );

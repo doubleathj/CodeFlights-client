@@ -10,54 +10,18 @@ import * as loginActions from '../../modules/loginModal';
 import * as signupActions from '../../modules/signupModal';
 import * as signinActions from '../../modules/isLogin';
 import './Navbar.css';
-import axios from 'axios'
+import axios from 'axios';
 
 function Navbar(props) {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
-  const { login }= props;
+  const { login } = props;
   let logOut = () => {
-    axios.post("https://codeflights.xyz/user/logout").then(() => props.loginStatus())
-  }
-  if (login){
-  return (
-    <>
-      <IconContext.Provider value={{ color: '#fff' }}>
-        <div className='navbar'>
-          <Link to='#' className='menu-bars'>
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-        </div>
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-          <ul className='nav-menu-items' onClick={showSidebar}>
-            <li className='navbar-toggle'>
-              <Link to='#' className='menu-bars'>
-                <FaIcons.FaWindowClose />
-              </Link>
-            </li>
-            {SidebarUserData.map((item, index) => {
-              return (
-                
-                <li key={index} className={item.className}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-                
-              );
-            })}
-            <li onClick={logOut}className="nav-text">
-                  <Link to="/">
-                  <FaIcons.FaSignOutAlt />
-                    <span>LOGOUT</span>
-                  </Link>
-                </li>
-          </ul>
-        </nav>
-      </IconContext.Provider>
-    </>
-  )} else {
+    axios
+      .post('https://codeflights.xyz/user/logout')
+      .then(() => props.loginStatus());
+  };
+  if (login) {
     return (
       <>
         <IconContext.Provider value={{ color: '#fff' }}>
@@ -68,24 +32,57 @@ function Navbar(props) {
           </div>
           <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
             <ul className='nav-menu-items' onClick={showSidebar}>
-              <li className='navbar-toggle'>
-                <Link to='#' className='menu-bars'>
-                  <FaIcons.FaWindowClose />
+              <li className='navbar-toggle'></li>
+              {SidebarUserData.map((item, index) => {
+                return (
+                  <li key={index} className={item.className}>
+                    <Link to={item.path}>
+                      {item.icon}
+                      <span>{item.title}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+              <li onClick={logOut} className='nav-text'>
+                <Link to='/'>
+                  <FaIcons.FaSignOutAlt />
+                  <span>LOGOUT</span>
                 </Link>
               </li>
+            </ul>
+          </nav>
+        </IconContext.Provider>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <IconContext.Provider value={{ color: '#fff' }}>
+          <div className='navbar'>
+            <Link to='#' className='menu-bars'>
+              <FaIcons.FaBars onClick={showSidebar} />
+            </Link>
+          </div>
+          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <ul className='nav-menu-items' onClick={showSidebar}>
+              <li className='navbar-toggle'></li>
               <li className='nav-text'>
                 <FaIcons.FaHome />
-                
-                <span><Link to='/'>Main</Link></span>
-                
+                <span>
+                  <Link to='/'>Main</Link>
+                </span>
               </li>
               <li className='nav-text'>
                 <FiIcons.FiUserPlus />
-                <span onClick={props.changeSignup}><Link>SIGN UP</Link></span>
+                <span onClick={props.changeSignup}>
+                  <Link>SIGN UP</Link>
+                </span>
               </li>
               <li className='nav-text'>
                 <IoIcons.IoIosLogIn />
-                <span onClick={props.changeLogin}><Link>LOGIN</Link></span>
+                <span onClick={props.changeLogin}>
+                  <Link>LOGIN</Link>
+                </span>
               </li>
             </ul>
           </nav>
@@ -95,10 +92,15 @@ function Navbar(props) {
   }
 }
 
-export default connect((state) => ({
-  loginModal: state.loginModal.loginModal,
-  signupModal : state.signupModal.signupModal,
-  login : state.isLogin.login
-}), (dispatch) => ({
-  changeLogin: () => dispatch(loginActions.changeLogin()), changeSignup : () => dispatch(signupActions.changeSignup()), loginStatus : () => dispatch(signinActions.loginStatus()),
-}))(Navbar);
+export default connect(
+  (state) => ({
+    loginModal: state.loginModal.loginModal,
+    signupModal: state.signupModal.signupModal,
+    login: state.isLogin.login,
+  }),
+  (dispatch) => ({
+    changeLogin: () => dispatch(loginActions.changeLogin()),
+    changeSignup: () => dispatch(signupActions.changeSignup()),
+    loginStatus: () => dispatch(signinActions.loginStatus()),
+  })
+)(Navbar);
