@@ -6,7 +6,7 @@ import axios from 'axios';
 function Main() {
   const [depDate, setDep] = useState(null);
   const [period, setPeriod] = useState(null);
-
+  let availiable = false;
   let handleKeyPressDep = (e) => {
     if (e.key === 'Enter') {
       setDep(e.target.value);
@@ -20,6 +20,10 @@ function Main() {
   };
   let searchDate = () => {
     axios.get(`https://codeflights.xyz/search?departureDate=${depDate}&arrivalDate=${period}`)
+    .then((res) => {
+      availiable = true
+      console.log(res.data)
+    })
   }
   return (
     <div className='Main'>
@@ -66,7 +70,8 @@ function Main() {
           searchDate()
           : 
           false
-        }
+        } 
+        {availiable ? <Redirect to="/search/result"></Redirect> : false}
       </div>
     </div>
   );

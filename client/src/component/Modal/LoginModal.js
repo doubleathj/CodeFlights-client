@@ -7,7 +7,6 @@ import * as loginActions from '../../modules/loginModal';
 import * as signupActions from '../../modules/signupModal';
 import * as signinActions from '../../modules/isLogin';
 import * as userActions from '../../modules/user';
-import google from '../../Images/google.png';
 import GoogleLogin from 'react-google-login';
 
 axios.defaults.withCredentials = true;
@@ -37,11 +36,13 @@ class LoginModal extends React.Component {
       withCredentials: true,
       crendtials: 'include',
     }).then((res) => {
-      this.props.userinfo(res);
+      this.props.userinfo(res.data);
     });
   };
+  
   handleLoginSubmit(e) {
     const { email, password } = this.state;
+    console.log('submit')
     let data = { email: email, password: password };
     axios
       .post('https://codeflights.xyz/user/signin', data, {
@@ -60,10 +61,12 @@ class LoginModal extends React.Component {
 
   responseGoogle = (res) => {
     this.props.changeLogin()
-    let data = { tokenId : res.tokenId}
+    let data = { tokenId : res.tokenId }
+    console.log(data)
     axios.post('https://codeflights.xyz/auth/google', data)
-    .then(() => {
-      this.updateUserinfo()
+    .then((data) => {
+      this.props.userinfo(data.data)
+      this.props.loginStatus()
     })
   }
   render() {
@@ -125,6 +128,6 @@ export default connect(
     changeLogin: () => dispatch(loginActions.changeLogin()),
     changeSignup: () => dispatch(signupActions.changeSignup()),
     loginStatus: () => dispatch(signinActions.loginStatus()),
-    userinfo: () => dispatch(userActions.userinfo()),
+    userinfo: (data) => dispatch(userActions.userinfo(data)),
   })
 )(LoginModal);

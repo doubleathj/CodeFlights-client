@@ -5,15 +5,30 @@ import Main from './pages/Main';
 import Mypage from './pages/Mypage';
 import Posting from './pages/Editor';
 import './App.css';
+import axios from 'axios'
 import Result from './pages/Result';
 import Schedule from './pages/Schedule';
 import View from './pages/View';
 import LoginModal from './component/Modal/LoginModal';
 import SignupModal from './component/Modal/SignupModal';
-
+import { connect } from 'react-redux'
+import * as signinActions from './modules/isLogin';
+import * as userActions from './modules/user';
+axios.defaults.withCredentials = true;
 class App extends React.Component {
   constructor(props) {
     super(props);
+  }
+  componentDidMount(){
+    axios({
+      method: 'GET',
+      url: 'https://codeflights.xyz/user/info',
+      withCredentials: true,
+      crendtials: 'include',
+    }).then((res) => {
+      this.props.userinfo(res.data)
+      this.props.loginStatus()
+    }).catch(() => (console.log('not logged')))
   }
 
   render() {
@@ -37,4 +52,13 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect(
+  (state) => ({
+    isLogin: state.isLogin.isLogin,
+    info: state.user.userinfo,
+  }),
+  (dispatch) => ({
+    loginStatus: () => dispatch(signinActions.loginStatus()),
+    userinfo: (data) => dispatch(userActions.userinfo(data)),
+  })
+)(App);
