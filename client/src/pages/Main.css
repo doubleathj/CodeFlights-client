@@ -10,8 +10,8 @@
 .search {
   position: fixed;
   top: 30vh;
-  left: 10vh;
-  right: 10vh;
+  left: 10vw;
+  right: 10vw;
   text-align: center;
   color: white;
 }
