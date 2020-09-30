@@ -1,7 +1,6 @@
 import React from 'react';
 import './Mypage.css';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as userActions from '../modules/user';
 axios.defaults.withCredentials = true;
@@ -41,15 +40,15 @@ class Mypage extends React.Component {
 
   render() {
     const { info } = this.props;
-
+    console.log(info)
     return (
       <div className='mypage'>
         <video
           className='video'
-          autoPlay='true' //모바일 재생 필수 태그
-          playsInline='true' //모바일 재생 필수 태그
+          autoPlay='true'
+          playsInline='true'
           loop='loop'
-          muted='true' //모바일 재생 필수 태그 ios 저전력 모드일 때는 작동 불가 애플 정책
+          muted='true'
           width='1280'
           height='720'
         >
@@ -62,11 +61,11 @@ class Mypage extends React.Component {
             </span>
             <h3>
               username:
-              {/* <span className='username'>{info.username}</span> */}
+              <span className='username'>{info.username}</span>
             </h3>
             <h3>
               email:
-              {/* <span className='email'>{info.email}</span> */}
+              <span className='email'>{info.email}</span>
             </h3>
           </div>
           <hr />
@@ -74,7 +73,6 @@ class Mypage extends React.Component {
             <span className='changeinfotitle'>
               <h1>회원정보 수정</h1>
             </span>
-
             <form
               className='changeinfo'
               onSubmit={this.handleChangeUserInfoSubmit}
@@ -116,7 +114,7 @@ class Mypage extends React.Component {
 }
 export default connect(
   (state) => ({
-    userinfo: state.user.userinfo,
+    info: state.user.info,
   }),
   (dispatch) => ({
     userinfo: () => dispatch(userActions.userinfo()),

@@ -7,52 +7,52 @@
   overflow: hidden;
 }
 
-/* .video {
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} App.css 로 이동 전역으로 적용 시킴 확인 후 삭제 */
-
 .search {
-  position: absolute;
-  top: 50%;
-  width: 100%;
+  position: fixed;
+  top: 30vh;
+  left: 10vw;
+  right: 10vw;
   text-align: center;
   color: white;
 }
 
-input {
+.search input {
   background: none;
   outline: none;
   box-shadow: 0 0;
   color: white;
-  font-size: xx-large;
   font-weight: bold;
   border: none;
   text-align: center;
+  font-size: large;
 }
 
-@media screen and (max-width: 768px) {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media screen and (max-width: 640px) {
   .search {
-    width: 50%;
-    top: 40%;
-    left: 25%;
+    width: 70%;
+    top: 30vh;
     margin: 0 auto;
     padding-bottom: 30%;
     color: rgb(250, 248, 248);
-    font-size: 1.7vh;
+    font-size: x-small;
   }
   .search input {
     width: 100%;
-    left: 30%;
     margin: 0 auto;
     padding-bottom: 30%;
+    font-size: x-small;
     color: rgb(250, 248, 248);
     font-size: 1rem;
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 }

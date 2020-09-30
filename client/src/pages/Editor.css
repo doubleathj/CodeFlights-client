@@ -10,8 +10,8 @@
 .article-container {
   position: absolute;
   top: 20vh;
-  left: 20vh;
-  right: 20vh;
+  left: 10vw;
+  right: 10vw;
   display: flex;
   z-index: 100;
   padding: 1.5rem;
@@ -38,16 +38,15 @@
   width: 100%;
   border: none;
   outline: none;
-  font-size: 1.5rem;
+  font-size: medium;
   margin-bottom: 1rem;
-  resize: none;
+  resize: both;
 }
 
 .article button {
-  border: none;
   background-color: #99ccdd;
   border: none;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   font-weight: bolder;
   font-size: 1rem;
 }
@@ -59,4 +58,18 @@ hr {
   width: 96%;
   background-color: #070707;
   height: 1px;
+}
+
+@media screen and (max-width: 640px) {
+  .article-container {
+    position: absolute;
+    top: 20vh;
+    display: flex;
+    z-index: 100;
+    padding: 1.5rem;
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 2rem;
+    color: rgb(5, 5, 5);
+  }
 }
