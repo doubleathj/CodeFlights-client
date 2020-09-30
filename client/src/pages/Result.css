@@ -10,24 +10,27 @@
 .result-container {
   position: absolute;
   top: 20vh;
-  left: 20vh;
-  right: 20vh;
+  left: 10vw;
+  right: 10vw;
   display: block;
   z-index: 100;
   padding: 1.5rem;
   background-color: white;
-  border-radius: 2rem;
-  color: black;
   opacity: 0.9;
+  border-radius: 2rem;
+  color: rgb(5, 5, 5);
+  flex-direction: row;
 }
 
 .result-title {
   display: flex;
-  flex-direction: column;
   align-items: center;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  flex-direction: column;
+  font-size: xx-large;
+  font-weight: bolder;
 }
 
 .cities {
@@ -42,4 +45,39 @@
   border: 5px solid black;
   background-size: cover;
   color: white;
+}
+
+@media screen and (max-width: 640px) {
+  .result-container {
+    position: absolute;
+    top: 20vh;
+    left: 10vw;
+    right: 10vw;
+    display: block;
+    z-index: 100;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 2rem;
+    color: black;
+    opacity: 0.9;
+  }
+
+  .result-title {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    font-size: small;
+  }
+
+  .cities {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: auto;
+    grid-gap: 10px;
+    grid-auto-rows: minmax(50%, auto);
+    margin: 3vh;
+    font-size: xx-small;
+  }
 }
