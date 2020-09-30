@@ -8,7 +8,6 @@ import * as planCheck from '../modules/destinations';
 function Main() {
   const [depDate, setDep] = useState(null);
   const [period, setPeriod] = useState(null);
-  let availiable = false;
   let handleKeyPressDep = (e) => {
     if (e.key === 'Enter') {
       setDep(e.target.value);
