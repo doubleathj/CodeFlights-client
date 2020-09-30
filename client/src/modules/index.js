@@ -5,11 +5,13 @@ import isLogin from './isLogin'
 import user from './user'
 import destinations from './destinations'
 import plan from './plan'
+import travel from './travel'
 export default combineReducers({
   loginModal,
   signupModal,
   isLogin,
   user,
   destinations,
-  plan
+  plan,
+  travel
 });

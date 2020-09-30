@@ -34,7 +34,7 @@ function Schedule(props) {
   }
   let blog = [];
   for (let i = 0; i < counter; i++) {
-    blog[i] = (
+    blog.push(
       <li className='article'>
         <a className='view' href={blogPostings[i].link}>
           <p className='title'>{blogPostings[i].title}</p>
@@ -43,7 +43,7 @@ function Schedule(props) {
       </li>
     );
   }
-
+  console.log(blog)
   return (
     <div className='schedule'>
       <video
@@ -59,7 +59,7 @@ function Schedule(props) {
       </video>
       <div className='schedule-containaer'>
         <div className='info'>
-          <h2>{city}로 가는 항공편</h2>
+          <h2>{city}에 가는 항공편</h2>
         </div>
         <ul className='ticket-container'>{tickets}</ul>
         <div className='tip'>
