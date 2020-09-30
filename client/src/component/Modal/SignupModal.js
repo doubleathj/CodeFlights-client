@@ -14,7 +14,7 @@ class SignupModal extends React.Component {
       email: '',
       username: '',
       password: '',
-      password_confirm: '',
+      passwordConfirm: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
@@ -26,6 +26,23 @@ class SignupModal extends React.Component {
   handleChange = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
+
+  handlePasswordMatch() {
+    const { password, passwordConfirm } = this.state;
+    return password === passwordConfirm;
+  }
+
+  renderPasswordCheckMessage() {
+    const { passwordConfirm } = this.state;
+
+    if (passwordConfirm) {
+      if (!this.handlePasswordMatch()) {
+        return (
+          <div className='invaild-message'>패스워드가 일치하지 않습니다.</div>
+        );
+      }
+    }
+  }
 
   handleSignupSubmit(e) {
     const { email, username, password, passwordConfirm } = this.state;
@@ -94,6 +111,7 @@ class SignupModal extends React.Component {
                 value={this.state.passwordConfirm}
                 onChange={this.handleChange('passwordConfirm')}
               />
+              {this.renderPasswordCheckMessage()}
               <button type='submit'>submit</button>
               <div>
                 <p onClick={this.goToLogin}>이미 아이디가 있으신가요?</p>
