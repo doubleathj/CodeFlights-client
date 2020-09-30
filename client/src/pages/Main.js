@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import './Main.css';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-
-function Main() {
+import { connect } from 'react-redux';
+import * as travelActions from '../modules/travel';
+import * as planCheck from '../modules/destinations';
+function Main(props) {
   const [depDate, setDep] = useState(null);
   const [period, setPeriod] = useState(null);
-  let availiable = false;
   let handleKeyPressDep = (e) => {
     if (e.key === 'Enter') {
       setDep(e.target.value);
@@ -19,15 +20,15 @@ function Main() {
     }
   };
   let searchDate = () => {
-    axios
-      .get(
-        `https://codeflights.xyz/search?departureDate=${depDate}&arrivalDate=${period}`
-      )
-      .then((res) => {
-        availiable = true;
-        console.log(res.data);
-      });
-  };
+
+    axios.post("https://codeflights.xyz/search/result", {
+      departureDate: depDate,
+      arrivalDate: period
+    }).then((res) => {
+      props.destinationsCheck(res.data)
+    }).then(() => props.start())
+  }
+
   return (
     <div className='Main'>
       <video
@@ -69,11 +70,30 @@ function Main() {
         ) : (
           false
         )}
-        {period !== null && depDate !== null ? searchDate() : false}
-        {availiable ? <Redirect to='/search/result'></Redirect> : false}
+
+        {period !== null && depDate !== null ? 
+          searchDate()
+          : 
+          false
+        } 
+        {props.isLoad ? <Redirect to="/search/result"></Redirect> : <></>}
+
       </div>
     </div>
   );
 }
 
-export default Main;
+
+export default connect(
+  (state) => ({
+    departureDate : state.travel.departureDate,
+    arrivalDate : state.travel.arrivalDate,
+    isLoad : state.travel.isLoad,
+    place: state.destinations.place,
+  }),
+  (dispatch) => ({
+    start: () => dispatch(travelActions.whenIsDepDate()),
+    destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data))
+  })
+)(Main);
+
