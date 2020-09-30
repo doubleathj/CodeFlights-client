@@ -40,7 +40,7 @@ class Mypage extends React.Component {
 
   render() {
     const { info } = this.props;
-
+    console.log(info)
     return (
       <div className='mypage'>
         <video
@@ -114,7 +114,7 @@ class Mypage extends React.Component {
 }
 export default connect(
   (state) => ({
-    userinfo: state.user.userinfo,
+    info: state.user.info,
   }),
   (dispatch) => ({
     userinfo: () => dispatch(userActions.userinfo()),

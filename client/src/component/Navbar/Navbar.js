@@ -10,12 +10,15 @@ import * as loginActions from '../../modules/loginModal';
 import * as signupActions from '../../modules/signupModal';
 import * as signinActions from '../../modules/isLogin';
 import './Navbar.css';
+import axios from 'axios'
 
 function Navbar(props) {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
   const { login }= props;
-
+  let logOut = () => {
+    axios.post("https://codeflights.xyz/user/logout").then(() => props.loginStatus())
+  }
   if (login){
   return (
     <>
@@ -34,14 +37,22 @@ function Navbar(props) {
             </li>
             {SidebarUserData.map((item, index) => {
               return (
+                
                 <li key={index} className={item.className}>
                   <Link to={item.path}>
                     {item.icon}
                     <span>{item.title}</span>
                   </Link>
                 </li>
+                
               );
             })}
+            <li onClick={logOut}className="nav-text">
+                  <Link to="/">
+                  <FaIcons.FaSignOutAlt />
+                    <span>LOGOUT</span>
+                  </Link>
+                </li>
           </ul>
         </nav>
       </IconContext.Provider>
