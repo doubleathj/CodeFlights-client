@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import './Main.css';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-
+import { connect } from 'react-redux';
+import * as travelActions from '../modules/travel';
+import * as planCheck from '../modules/destinations';
 function Main() {
   const [depDate, setDep] = useState(null);
   const [period, setPeriod] = useState(null);
@@ -19,11 +21,12 @@ function Main() {
     }
   };
   let searchDate = () => {
-    axios.get(`https://codeflights.xyz/search?departureDate=${depDate}&arrivalDate=${period}`)
-    .then((res) => {
-      availiable = true
-      console.log(res.data)
-    })
+    axios.post("https://codeflights.xyz/search/result", {
+      departureDate: this.props.departureDate,
+      arrivalDate: this.props.arrivalDate
+    }).then((res) => {
+      this.props.destinationsCheck(res.data)
+    }).then(() => this.props.start())
   }
   return (
     <div className='Main'>
@@ -71,10 +74,21 @@ function Main() {
           : 
           false
         } 
-        {availiable ? <Redirect to="/search/result"></Redirect> : false}
+        {this.props.isLoad ? <Redirect to="/search/result"></Redirect> : <></>}
       </div>
     </div>
   );
 }
 
-export default Main;
+export default connect(
+  (state) => ({
+    departureDate : state.travel.departureDate,
+    arrivalDate : state.travel.arrivalDate,
+    isLoad : state.travel.isLoad,
+    place: state.destinations.place,
+  }),
+  (dispatch) => ({
+    start: () => dispatch(travelActions.whenIsDepDate()),
+    destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data))
+  })
+)(Main);

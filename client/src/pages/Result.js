@@ -17,14 +17,14 @@ class Result extends React.Component {
         this.props.loaded()
     })
   }
-  componentDidMount(){
-    axios.get('https://codeflights.xyz/search/result')
-    .then(data => {console.log(data.data)
-    this.props.destinationsCheck(data.data)})
-  }
+  // componentDidMount(){
+  //   axios.get('https://codeflights.xyz/search/result')
+  //   .then(data => {console.log(data.data)
+  //   this.props.destinationsCheck(data.data)})
+  // }
   render () {
     let city = this.props.place.map((ele) => (
-      <div onClick={() => this.planToGo(ele.portName)}>{this.props.load ? <Redirect className='city' to={`/result/${ele.portName}`}>
+      <div onClick={() => this.planToGo(ele.destinations)}>{this.props.load ? <Redirect className='city' to={`/result/${ele.destinations}`}>
       </Redirect> : <h3>{ele.portName}</h3>}
       </div>
     ));
