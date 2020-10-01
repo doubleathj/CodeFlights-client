@@ -37,28 +37,30 @@ class App extends React.Component {
     return (
       <>
         <Router>
-          <video
-            className='video'
-            autoPlay='true'
-            playsInline='true'
-            loop='loop'
-            muted='true'
-            width='1280'
-            height='720'
-          >
-            <source src='/Videos/background.mp4' type='video/mp4' />
-          </video>
-          <Navbar />
-          <SignupModal />
-          <LoginModal />
-          <Switch>
-            <Route path='/' exact component={Main} />
-            <Route path='/Mypage' component={Mypage} />
-            <Route path='/Posting' component={Posting} />
-            <Route path='/result/:city/:article' component={View} />
-            <Route path='/result/:city' component={Schedule} />
-            <Route path='/search/result' component={Result} />
-          </Switch>
+          <div className='App-component'>
+            <video
+              className='video'
+              autoPlay='true'
+              playsInline='true'
+              loop='loop'
+              muted='true'
+              width='1280'
+              height='720'
+            >
+              <source src='/Videos/background.mp4' type='video/mp4' />
+            </video>
+            <Navbar />
+            <SignupModal />
+            <LoginModal />
+            <Switch>
+              <Route path='/' exact component={Main} />
+              <Route path='/Mypage' component={Mypage} />
+              <Route path='/Posting' component={Posting} />
+              <Route path='/result/:city/:article' component={View} />
+              <Route path='/result/:city' component={Schedule} />
+              <Route path='/search/result' component={Result} />
+            </Switch>
+          </div>
         </Router>
       </>
     );
