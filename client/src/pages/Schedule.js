@@ -9,7 +9,6 @@ import * as plan from '../modules/plan';
 function Schedule(props) {
   const { city } = props.match.params;
   const { flights, userPostings, blogPostings } = JSON.parse(localStorage.plan);
-
   let counter = 10;
   if (userPostings) counter -= userPostings.length;
   let tickets = flights.map((ele) => (
@@ -25,8 +24,9 @@ function Schedule(props) {
       <li className='article'>
         <Link className='view' to={`/result/${city}/${ele.id}`}>
           <p className='title'>{ele.title}</p>
+          </Link>
           <p className='contents'>{ele.contents}</p>
-        </Link>
+        
       </li>
     ));
   }
