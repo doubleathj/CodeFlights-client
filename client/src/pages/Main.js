@@ -20,14 +20,16 @@ function Main(props) {
     }
   };
   let searchDate = () => {
-
-    axios.post("https://codeflights.xyz/search/result", {
-      departureDate: depDate,
-      arrivalDate: period
-    }).then((res) => {
-      props.destinationsCheck(res.data)
-    }).then(() => props.start())
-  }
+    axios
+      .post('https://codeflights.xyz/search/result', {
+        departureDate: depDate,
+        arrivalDate: period,
+      })
+      .then((res) => {
+        props.destinationsCheck(res.data);
+      })
+      .then(() => props.start());
+  };
 
   return (
     <div className='Main'>
@@ -48,7 +50,7 @@ function Main(props) {
             <h1>며칠 후에 출발하실 건가요?</h1>
             <input
               type='number'
-              pattern='[0-9]'
+              pattern='[0-9]+'
               onKeyPress={handleKeyPressDep}
               className='dep'
               placeholder='숫자를 입력해주세요.'
@@ -64,6 +66,7 @@ function Main(props) {
               className='period'
               onKeyPress={handleKeyPressPeriod}
               type='number'
+              pattern='[0-9]+'
               placeholder='숫자를 입력해주세요.'
             ></input>
           </div>
@@ -71,29 +74,22 @@ function Main(props) {
           false
         )}
 
-        {period !== null && depDate !== null ? 
-          searchDate()
-          : 
-          false
-        } 
-        {props.isLoad ? <Redirect to="/search/result"></Redirect> : <></>}
-
+        {period !== null && depDate !== null ? searchDate() : false}
+        {props.isLoad ? <Redirect to='/search/result'></Redirect> : <></>}
       </div>
     </div>
   );
 }
 
-
 export default connect(
   (state) => ({
-    departureDate : state.travel.departureDate,
-    arrivalDate : state.travel.arrivalDate,
-    isLoad : state.travel.isLoad,
+    departureDate: state.travel.departureDate,
+    arrivalDate: state.travel.arrivalDate,
+    isLoad: state.travel.isLoad,
     place: state.destinations.place,
   }),
   (dispatch) => ({
     start: () => dispatch(travelActions.whenIsDepDate()),
-    destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data))
+    destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
   })
 )(Main);
-

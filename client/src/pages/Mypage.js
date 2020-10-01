@@ -23,6 +23,23 @@ class Mypage extends React.Component {
     this.setState({ [key]: e.target.value });
   };
 
+  handlePasswordMatch() {
+    const { password, passwordConfirm } = this.state;
+    return password === passwordConfirm;
+  }
+
+  renderPasswordCheckMessage() {
+    const { passwordConfirm } = this.state;
+
+    if (passwordConfirm) {
+      if (!this.handlePasswordMatch()) {
+        return (
+          <div className='invaild-message'>패스워드가 일치하지 않습니다.</div>
+        );
+      }
+    }
+  }
+
   handleChangeUserInfoSubmit(e) {
     const { username, password } = this.state;
     axios({
@@ -40,7 +57,7 @@ class Mypage extends React.Component {
 
   render() {
     const { info } = this.props;
-    console.log(info)
+    console.log(info);
     return (
       <div className='mypage'>
         <video
@@ -61,11 +78,11 @@ class Mypage extends React.Component {
             </span>
             <h3>
               username:
-              <span className='username'>{info.username}</span>
+              {/* <span className='username'>{info.username}</span> */}
             </h3>
             <h3>
               email:
-              <span className='email'>{info.email}</span>
+              {/* <span className='email'>{info.email}</span> */}
             </h3>
           </div>
           <hr />
@@ -101,6 +118,7 @@ class Mypage extends React.Component {
                 onChange={this.handleChange('passwordConfirm')}
               />
               <div>
+                {this.renderPasswordCheckMessage()}
                 <button className='submitBtn' type='submit'>
                   submit
                 </button>
