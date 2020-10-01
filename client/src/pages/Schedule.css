@@ -12,6 +12,7 @@
   top: 20vh;
   left: 10vw;
   right: 10vw;
+  bottom: 20vh;
   display: block;
   z-index: 100;
   padding: 1.5rem;
@@ -19,14 +20,12 @@
   border-radius: 2rem;
   color: black;
   opacity: 0.9;
-  overflow: auto;
 }
 
 .ticket-container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  box-sizing: border-box;
+  text-align: center;
+  box-sizing: content-box;
   width: 100%;
   height: auto;
   overflow: auto;
@@ -34,21 +33,24 @@
 
 .ticket {
   flex: content;
+  min-width: 25vh;
   border: 1px solid black;
   text-align: center;
 }
 .article-list {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   position: relative;
-  top: 50%;
-  left: 0%;
-  height: 100%;
+  top: 3vh;
+  bottom: 2vh;
+  height: 30vh;
+
+  overflow: auto;
 }
 
-.view {
+.list {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .article {
   flex: auto;

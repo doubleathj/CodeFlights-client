@@ -23,7 +23,7 @@ function Schedule(props) {
   if (userPostings) {
     userPost = userPostings.map((ele) => (
       <li className='article'>
-        <Link className='view' to={`/result/${city}/${ele.id}`}>
+        <Link className='list' to={`/result/${city}/${ele.id}`}>
           <p className='title'>{ele.title}</p>
           <p className='contents'>{ele.contents}</p>
         </Link>
@@ -34,14 +34,14 @@ function Schedule(props) {
   for (let i = 0; i < counter; i++) {
     blog.push(
       <li className='article'>
-        <a className='view' href={blogPostings[i].link}>
+        <a className='list' href={blogPostings[i].link}>
           <p className='title'>{blogPostings[i].title}</p>
           <p className='contents'>{blogPostings[i].contents}</p>
         </a>
       </li>
     );
   }
-  console.log(blog)
+  console.log(blog);
   return (
     <div className='schedule'>
       <video
