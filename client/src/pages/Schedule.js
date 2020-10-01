@@ -56,13 +56,10 @@ function Schedule(props) {
         <source src='/Videos/background.mp4' type='video/mp4' />
       </video>
       <div className='schedule-containaer'>
-        <div className='info'>
-          <h2>{city}에 가는 항공편</h2>
-        </div>
+        <div className='info'>{city}에 가는 항공편</div>
         <ul className='ticket-container'>{tickets}</ul>
-        <div className='tip'>
-          <h2>{city}의 여행 팁</h2>
-        </div>
+
+        <div className='tip'>{city}의 여행 팁</div>
         <ul className='article-list'>
           {userPost ? userPost : false}
           {blog}
