@@ -26,7 +26,8 @@ class Result extends React.Component {
   // }
   render() {
     let destination = this.props.place;
-    if(destination.length === 0) destination = JSON.parse(localStorage.destinations)
+    if (destination.length === 0)
+      destination = JSON.parse(localStorage.destinations);
     let city = destination.map((ele) => (
       <div onClick={() => this.planToGo(ele.destinations)}>
         {this.props.load && this.props.city === ele.destinations ? (
@@ -45,10 +46,12 @@ class Result extends React.Component {
         <div className='result'>
           <div className='result-container'>
             <div className='result-title'>
-              예정된 기간 동안 방문 가능한 {destination.length}개 도시
-              입니다.
+              예정된 기간 동안 방문 가능한 {destination.length}개 도시 입니다.
             </div>
-            <div className='cities'>{city}</div>
+            <div className='cities'>
+              {city}
+              <img src='https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20130523_231%2Ftaxinsurance_1369312160615RzjQ8_JPEG%2Fprivate-charter-flights-to-cancun.jpg&type=b400'></img>
+            </div>
           </div>
         </div>
       </>
