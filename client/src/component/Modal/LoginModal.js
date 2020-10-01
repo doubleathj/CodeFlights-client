@@ -29,17 +29,7 @@ class LoginModal extends React.Component {
     this.props.changeLogin();
     this.props.changeSignup();
   };
-  updateUserinfo = () => {
-    axios({
-      method: 'GET',
-      url: 'https://codeflights.xyz/user/info',
-      withCredentials: true,
-      crendtials: 'include',
-    }).then((res) => {
-      this.props.userinfo(res.data);
-    });
-  };
-  
+
   handleLoginSubmit(e) {
     const { email, password } = this.state;
     console.log('submit')
@@ -48,11 +38,12 @@ class LoginModal extends React.Component {
       .post('https://codeflights.xyz/user/signin', data, {
         withCredentials: true,
       })
-      .then(() => {
+      .then(res => {
+        console.log(res.data)
+        this.props.userinfo(res.data);
         this.props.loginStatus();
         this.props.changeLogin();
       })
-      .then(() => this.updateUserinfo())
       .catch((err) => {
         console.log('err: ', err);
       });
