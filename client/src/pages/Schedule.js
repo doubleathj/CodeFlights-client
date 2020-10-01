@@ -8,10 +8,8 @@ import * as plan from '../modules/plan';
 
 function Schedule(props) {
   const { city } = props.match.params;
-  const { flights, userPostings, blogPostings } = props;
-  console.log(city);
-  console.log(props);
-  console.log(flights, userPostings, blogPostings);
+  const { flights, userPostings, blogPostings } = JSON.parse(localStorage.plan);
+
   let counter = 10;
   if (userPostings) counter -= userPostings.length;
   let tickets = flights.map((ele) => (
@@ -36,10 +34,10 @@ function Schedule(props) {
   for (let i = 0; i < counter; i++) {
     blog.push(
       <li className='article'>
-        {/* <a className='view' href={blogPostings[i].link}>
+        <a className='view' href={blogPostings[i].link}>
           <p className='title'>{blogPostings[i].title}</p>
           <p className='contents'>{blogPostings[i].contents}</p>
-        </a> */}
+        </a>
       </li>
     );
   }

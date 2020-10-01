@@ -27,6 +27,7 @@ function Main(props) {
       })
       .then((res) => {
         props.destinationsCheck(res.data);
+        localStorage.destinations = JSON.stringify(res.data);
       })
       .then(() => props.start());
   };

@@ -15,6 +15,7 @@ class Result extends React.Component {
       .get(`https://codeflights.xyz/search/result/destination?city=${city}`)
       .then((res) => {
         this.props.getPlan(res.data);
+        localStorage.plan = JSON.stringify(res.data);
         this.props.loaded(city);
       });
   };
@@ -24,7 +25,9 @@ class Result extends React.Component {
   //   this.props.destinationsCheck(data.data)})
   // }
   render() {
-    let city = this.props.place.map((ele) => (
+    let destination = this.props.place;
+    if(destination.length === 0) destination = JSON.parse(localStorage.destinations)
+    let city = destination.map((ele) => (
       <div onClick={() => this.planToGo(ele.destinations)}>
         {this.props.load && this.props.city === ele.destinations ? (
           <Redirect
@@ -53,7 +56,7 @@ class Result extends React.Component {
           </video>
           <div className='result-container'>
             <div className='result-title'>
-              예정된 기간 동안 방문 가능한 {this.props.place.length}개 도시
+              예정된 기간 동안 방문 가능한 {destination.length}개 도시
               입니다.
             </div>
             <div className='cities'>{city}</div>
