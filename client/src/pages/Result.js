@@ -11,22 +11,29 @@ class Result extends React.Component {
     super(props);
   }
   planToGo = (city) => {
-
-    axios.get(`https://codeflights.xyz/search/result/destination?city=${city}`)
-      .then(res => {
-        this.props.getPlan(res.data)
-        this.props.loaded(city)
-    })
-  }
+    axios
+      .get(`https://codeflights.xyz/search/result/destination?city=${city}`)
+      .then((res) => {
+        this.props.getPlan(res.data);
+        this.props.loaded(city);
+      });
+  };
   // componentDidMount(){
   //   axios.get('https://codeflights.xyz/search/result')
   //   .then(data => {console.log(data.data)
   //   this.props.destinationsCheck(data.data)})
   // }
-  render () {
+  render() {
     let city = this.props.place.map((ele) => (
-      <div onClick={() => this.planToGo(ele.destinations)}>{this.props.load && this.props.city=== ele.destinations ? <Redirect className='city' to={`/result/${ele.destinations}`}>
-      </Redirect> : <h3>{ele.destinations}</h3>}
+      <div onClick={() => this.planToGo(ele.destinations)}>
+        {this.props.load && this.props.city === ele.destinations ? (
+          <Redirect
+            className='city'
+            to={`/result/${ele.destinations}`}
+          ></Redirect>
+        ) : (
+          <h3>{ele.destinations}</h3>
+        )}
       </div>
     ));
 

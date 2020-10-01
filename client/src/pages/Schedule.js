@@ -36,10 +36,10 @@ function Schedule(props) {
   for (let i = 0; i < counter; i++) {
     blog.push(
       <li className='article'>
-        <a className='view' href={blogPostings[i].link}>
+        {/* <a className='view' href={blogPostings[i].link}>
           <p className='title'>{blogPostings[i].title}</p>
           <p className='contents'>{blogPostings[i].contents}</p>
-        </a>
+        </a> */}
       </li>
     );
   }
