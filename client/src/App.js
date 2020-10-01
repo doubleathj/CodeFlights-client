@@ -5,13 +5,13 @@ import Main from './pages/Main';
 import Mypage from './pages/Mypage';
 import Posting from './pages/Editor';
 import './App.css';
-import axios from 'axios'
+import axios from 'axios';
 import Result from './pages/Result';
 import Schedule from './pages/Schedule';
 import View from './pages/View';
 import LoginModal from './component/Modal/LoginModal';
 import SignupModal from './component/Modal/SignupModal';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import * as signinActions from './modules/isLogin';
 import * as userActions from './modules/user';
 axios.defaults.withCredentials = true;
@@ -19,16 +19,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount(){
+  componentDidMount() {
     axios({
       method: 'GET',
       url: 'https://codeflights.xyz/user/info',
       withCredentials: true,
       crendtials: 'include',
-    }).then((res) => {
-      this.props.userinfo(res.data)
-      this.props.loginStatus()
-    }).catch(() => (console.log('not logged')))
+    })
+      .then((res) => {
+        this.props.userinfo(res.data);
+        this.props.loginStatus();
+      })
+      .catch(() => console.log('not logged'));
   }
 
   render() {
@@ -36,13 +38,13 @@ class App extends React.Component {
       <>
         <Router>
           <video
-          className='video'
-          autoPlay='true' //모바일 재생 필수 태그
-          playsInline='true' //모바일 재생 필수 태그
-          loop='loop'
-          muted='true' //모바일 재생 필수 태그 ios 저전력 모드일 때는 작동 불가 애플 정책
-          width='1280'
-          height='720'
+            className='video'
+            autoPlay='true'
+            playsInline='true'
+            loop='loop'
+            muted='true'
+            width='1280'
+            height='720'
           >
             <source src='/Videos/background.mp4' type='video/mp4' />
           </video>

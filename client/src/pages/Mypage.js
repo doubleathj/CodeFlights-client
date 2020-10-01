@@ -60,7 +60,6 @@ class Mypage extends React.Component {
     console.log(info);
     return (
       <div className='mypage'>
-        
         <div className='userinfo-container'>
           <div className='userinfo'>
             <span className='usertitle'>

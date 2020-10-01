@@ -9,6 +9,7 @@ import * as plan from '../modules/plan';
 function Schedule(props) {
   const { city } = props.match.params;
   const { flights, userPostings, blogPostings } = JSON.parse(localStorage.plan);
+
   let counter = 10;
   if (userPostings) counter -= userPostings.length;
   let tickets = flights.map((ele) => (
@@ -24,9 +25,8 @@ function Schedule(props) {
       <li className='article'>
         <Link className='list' to={`/result/${city}/${ele.id}`}>
           <p className='title'>{ele.title}</p>
-          </Link>
           <p className='contents'>{ele.contents}</p>
-        
+        </Link>
       </li>
     ));
   }
@@ -36,14 +36,25 @@ function Schedule(props) {
       <li className='article'>
         <a className='list' href={blogPostings[i].link}>
           <p className='title'>{blogPostings[i].title}</p>
+          <p className='contents'>{blogPostings[i].contents}</p>
         </a>
-        <p className='contents'>{blogPostings[i].contents}</p>
       </li>
     );
   }
   console.log(blog);
   return (
     <div className='schedule'>
+      <video
+        className='video'
+        autoPlay='true'
+        playsInline='true'
+        loop='loop'
+        muted='true'
+        width='1280'
+        height='720'
+      >
+        <source src='/Videos/background.mp4' type='video/mp4' />
+      </video>
       <div className='schedule-containaer'>
         <div className='info'>{city}에 가는 항공편</div>
         <ul className='ticket-container'>{tickets}</ul>
