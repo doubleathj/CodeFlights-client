@@ -14,6 +14,7 @@
   background: none;
   position: fixed;
   right: 2rem;
+  top: 3vh;
 }
 
 .nav-menu {
@@ -74,4 +75,24 @@
 
 span {
   margin-left: 16px;
+}
+
+@media screen and (max-width: 604px) {
+  .navbar {
+    position: absolute;
+    z-index: 9998;
+    background-color: none;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+  .menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+    position: fixed;
+    right: 2rem;
+    top: 4vh;
+  }
 }
