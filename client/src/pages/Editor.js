@@ -30,17 +30,6 @@ class Posting extends React.Component {
   render() {
     return (
       <div className='editor'>
-        <video
-          className='video'
-          autoPlay='true'
-          playsInline='true'
-          loop='loop'
-          muted='true'
-          width='1280'
-          height='720'
-        >
-          <source src='/Videos/background.mp4' type='video/mp4' />
-        </video>
         <div className='article-container'>
           <form
             className='article'
