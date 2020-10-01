@@ -60,17 +60,7 @@ class Mypage extends React.Component {
     console.log(info);
     return (
       <div className='mypage'>
-        <video
-          className='video'
-          autoPlay='true'
-          playsInline='true'
-          loop='loop'
-          muted='true'
-          width='1280'
-          height='720'
-        >
-          <source src='/Videos/background.mp4' type='video/mp4' />
-        </video>
+        
         <div className='userinfo-container'>
           <div className='userinfo'>
             <span className='usertitle'>

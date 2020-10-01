@@ -17,17 +17,6 @@ function View({ match }) {
   return (
     <>
       <div className='view'>
-        <video
-          className='video'
-          autoPlay='true'
-          playsInline='true'
-          loop='loop'
-          muted='true'
-          width='1280'
-          height='720'
-        >
-          <source src='/Videos/background.mp4' type='video/mp4' />
-        </video>
         <div className='aticleview'>
           <h1>{title}</h1>
           <hr />

@@ -36,25 +36,14 @@ function Schedule(props) {
       <li className='article'>
         <a className='list' href={blogPostings[i].link}>
           <p className='title'>{blogPostings[i].title}</p>
-          <p className='contents'>{blogPostings[i].contents}</p>
         </a>
+        <p className='contents'>{blogPostings[i].contents}</p>
       </li>
     );
   }
   console.log(blog);
   return (
     <div className='schedule'>
-      <video
-        className='video'
-        autoPlay='true'
-        playsInline='true'
-        loop='loop'
-        muted='true'
-        width='1280'
-        height='720'
-      >
-        <source src='/Videos/background.mp4' type='video/mp4' />
-      </video>
       <div className='schedule-containaer'>
         <div className='info'>{city}에 가는 항공편</div>
         <ul className='ticket-container'>{tickets}</ul>

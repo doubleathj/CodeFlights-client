@@ -43,17 +43,6 @@ class Result extends React.Component {
     return (
       <>
         <div className='result'>
-          <video
-            className='video'
-            autoPlay='true'
-            playsInline='true'
-            loop='loop'
-            muted='true'
-            width='1280'
-            height='720'
-          >
-            <source src='/Videos/background.mp4' type='video/mp4' />
-          </video>
           <div className='result-container'>
             <div className='result-title'>
               예정된 기간 동안 방문 가능한 {destination.length}개 도시

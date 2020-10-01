@@ -17,9 +17,9 @@ function Navbar(props) {
   const showSidebar = () => setSidebar(!sidebar);
   const { login } = props;
   let logOut = () => {
+    props.loginStatus()
     axios
       .post('https://codeflights.xyz/user/logout')
-      .then(() => props.loginStatus());
   };
   if (login) {
     return (
