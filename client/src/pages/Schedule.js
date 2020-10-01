@@ -22,7 +22,7 @@ function Schedule(props) {
   if (userPostings) {
     userPost = userPostings.map((ele) => (
       <li className='article'>
-        <Link className='view' to={`/result/${city}/${ele.id}`}>
+        <Link className='list' to={`/result/${city}/${ele.id}`}>
           <p className='title'>{ele.title}</p>
           </Link>
           <p className='contents'>{ele.contents}</p>
@@ -34,14 +34,14 @@ function Schedule(props) {
   for (let i = 0; i < counter; i++) {
     blog.push(
       <li className='article'>
-        <a className='view' href={blogPostings[i].link}>
+        <a className='list' href={blogPostings[i].link}>
           <p className='title'>{blogPostings[i].title}</p>
           <p className='contents'>{blogPostings[i].contents}</p>
         </a>
       </li>
     );
   }
-  console.log(blog)
+  console.log(blog);
   return (
     <div className='schedule'>
       <video
@@ -56,13 +56,10 @@ function Schedule(props) {
         <source src='/Videos/background.mp4' type='video/mp4' />
       </video>
       <div className='schedule-containaer'>
-        <div className='info'>
-          <h2>{city}에 가는 항공편</h2>
-        </div>
+        <div className='info'>{city}에 가는 항공편</div>
         <ul className='ticket-container'>{tickets}</ul>
-        <div className='tip'>
-          <h2>{city}의 여행 팁</h2>
-        </div>
+
+        <div className='tip'>{city}의 여행 팁</div>
         <ul className='article-list'>
           {userPost ? userPost : false}
           {blog}

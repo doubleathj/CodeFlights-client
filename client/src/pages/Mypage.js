@@ -78,11 +78,11 @@ class Mypage extends React.Component {
             </span>
             <h3>
               username:
-              {/* <span className='username'>{info.username}</span> */}
+              <span className='username'>{info.username}</span>
             </h3>
             <h3>
               email:
-              {/* <span className='email'>{info.email}</span> */}
+              <span className='email'>{info.email}</span>
             </h3>
           </div>
           <hr />
