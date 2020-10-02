@@ -49,9 +49,13 @@ class Mypage extends React.Component {
         username: username,
         password: password,
       },
-    }).catch((err) => {
-      console.log('err: ', err);
-    });
+    })
+      // .then((res) => {
+      //   this.props.history.push('/');
+      // }) 세션 문제 해결 후 테스트
+      .catch((err) => {
+        console.log('err: ', err);
+      });
     e.preventDefault();
   }
 

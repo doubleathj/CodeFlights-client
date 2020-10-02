@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import './Main.css';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as travelActions from '../modules/travel';
 import * as planCheck from '../modules/destinations';
+import { CircularProgress } from '@material-ui/core';
 
 function Main(props) {
   const [depDate, setDep] = useState(null);
   const [period, setPeriod] = useState(null);
-
   let handleKeyPressDep = (e) => {
     if (e.key === 'Enter') {
       setDep(e.target.value);
@@ -21,7 +21,6 @@ function Main(props) {
       setPeriod(e.target.value);
     }
   };
-
   let searchDate = () => {
     axios
       .post('https://codeflights.xyz/search/result', {
@@ -29,14 +28,10 @@ function Main(props) {
         arrivalDate: period,
       })
       .then((res) => {
-        setDep(0);
-        setPeriod(0);
         props.destinationsCheck(res.data);
         localStorage.destinations = JSON.stringify(res.data);
       })
-      .then(() => {
-        props.start();
-      });
+      .then(() => props.start());
   };
 
   return (
@@ -70,14 +65,9 @@ function Main(props) {
         ) : (
           false
         )}
-          {period !== null && depDate !== null ?
-          <CircularProgress />
-          : false}
-          {period !== null && depDate !== null ? 
-          searchDate()
-          : false}
+        {period !== null && depDate !== null ? <CircularProgress /> : false}
+        {period !== null && depDate !== null ? searchDate() : false}
         {props.isLoad ? props.history.push('/search/result') : <></>}
-
       </div>
     </div>
   );

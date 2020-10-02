@@ -1,7 +1,6 @@
 import React from 'react';
 import './Schedule.css';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import * as planCheck from '../modules/destinations';
 import * as plan from '../modules/plan';
