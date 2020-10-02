@@ -12,7 +12,7 @@ class Result extends React.Component {
   }
   planToGo = (city) => {
     axios
-      .get(`https://codeflights.xyz/search/result/destination?city=${city}`)
+      .post('https://codeflights.xyz/search/result/destination', { city : city})
       .then((res) => {
         this.props.getPlan(res.data);
         localStorage.plan = JSON.stringify(res.data);
