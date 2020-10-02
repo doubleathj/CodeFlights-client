@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import './Result.css';
 import { connect } from 'react-redux';
 import * as planCheck from '../modules/destinations';
@@ -12,7 +12,7 @@ class Result extends React.Component {
   }
   planToGo = (city) => {
     axios
-      .post('https://codeflights.xyz/search/result/destination', { city : city})
+      .post('https://codeflights.xyz/search/result/destination', { city: city })
       .then((res) => {
         this.props.getPlan(res.data);
         localStorage.plan = JSON.stringify(res.data);
@@ -27,13 +27,12 @@ class Result extends React.Component {
     let city = destination.map((ele) => (
       <div onClick={() => this.planToGo(ele.destinations)}>
         {this.props.load && this.props.city === ele.destinations ? (
-          <Redirect
-            className='city'
-            to={`/result/${ele.destinations}`}
-          ></Redirect>
+          this.props.history.push(`/result/${ele.destnation}`)
         ) : (
-          <div className="where" style={{backgroundImage: `url(${ele.img})`}}>
-          <div className="titlelayer"><h3>{ele.destinations}</h3></div>
+          <div className='where' style={{ backgroundImage: `url(${ele.img})` }}>
+            <div className='titlelayer'>
+              <h3>{ele.destinations}</h3>
+            </div>
           </div>
         )}
       </div>
@@ -46,9 +45,7 @@ class Result extends React.Component {
             <div className='result-title'>
               예정된 기간 동안 방문 가능한 {destination.length}개 도시 입니다.
             </div>
-            <div className='cities'>
-              {city}
-            </div>
+            <div className='cities'>{city}</div>
           </div>
         </div>
       </>
@@ -70,4 +67,4 @@ export default connect(
     getPlan: (data) => dispatch(plan.getPlan(data)),
     loaded: (data) => dispatch(plan.loaded(data)),
   })
-)(Result);
+)(withRouter(Result));
