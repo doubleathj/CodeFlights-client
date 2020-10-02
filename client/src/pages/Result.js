@@ -19,11 +19,7 @@ class Result extends React.Component {
         this.props.loaded(city);
       });
   };
-  // componentDidMount(){
-  //   axios.get('https://codeflights.xyz/search/result')
-  //   .then(data => {console.log(data.data)
-  //   this.props.destinationsCheck(data.data)})
-  // }
+
   render() {
     let destination = this.props.place;
     if (destination.length === 0)
@@ -36,7 +32,9 @@ class Result extends React.Component {
             to={`/result/${ele.destinations}`}
           ></Redirect>
         ) : (
-          <h3>{ele.destinations}</h3>
+          <div className="where" style={{backgroundImage: `url(${ele.img})`}}>
+          <div className="titlelayer"><h3>{ele.destinations}</h3></div>
+          </div>
         )}
       </div>
     ));
@@ -50,7 +48,6 @@ class Result extends React.Component {
             </div>
             <div className='cities'>
               {city}
-              <img src='https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20130523_231%2Ftaxinsurance_1369312160615RzjQ8_JPEG%2Fprivate-charter-flights-to-cancun.jpg&type=b400'></img>
             </div>
           </div>
         </div>

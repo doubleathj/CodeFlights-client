@@ -5,6 +5,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import * as travelActions from '../modules/travel';
 import * as planCheck from '../modules/destinations';
+import { CircularProgress } from '@material-ui/core'
 function Main(props) {
   const [depDate, setDep] = useState(null);
   const [period, setPeriod] = useState(null);
@@ -64,8 +65,12 @@ function Main(props) {
         ) : (
           false
         )}
-
-        {period !== null && depDate !== null ? searchDate() : false}
+{period !== null && depDate !== null ?
+          <CircularProgress />
+          : false}
+        {period !== null && depDate !== null ? 
+          searchDate()
+          : false}
         {props.isLoad ? <Redirect to='/search/result'></Redirect> : <></>}
       </div>
     </div>
