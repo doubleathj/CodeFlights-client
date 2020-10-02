@@ -27,6 +27,8 @@ function Main(props) {
         arrivalDate: period,
       })
       .then((res) => {
+        setDep(0);
+        setPeriod(0);
         props.destinationsCheck(res.data);
         localStorage.destinations = JSON.stringify(res.data);
       })
@@ -65,10 +67,10 @@ function Main(props) {
         ) : (
           false
         )}
-{period !== null && depDate !== null ?
+          {period !== null && depDate !== null ?
           <CircularProgress />
           : false}
-        {period !== null && depDate !== null ? 
+          {period !== null && depDate !== null ? 
           searchDate()
           : false}
         {props.isLoad ? <Redirect to='/search/result'></Redirect> : <></>}

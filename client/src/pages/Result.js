@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as planCheck from '../modules/destinations';
 import * as plan from '../modules/plan';
 import axios from 'axios';
+import * as travelActions from '../modules/travel';
 
 class Result extends React.Component {
   constructor(props) {
@@ -19,7 +20,9 @@ class Result extends React.Component {
         this.props.loaded(city);
       });
   };
-
+  componentDidMount() {
+    this.props.start();
+  }
   render() {
     let destination = this.props.place;
     if (destination.length === 0)
@@ -64,10 +67,12 @@ export default connect(
     userPostings: state.plan.userPostings,
     load: state.plan.load,
     city: state.plan.city,
+    isLoad: state.travel.isLoad,
   }),
   (dispatch) => ({
     destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
     getPlan: (data) => dispatch(plan.getPlan(data)),
     loaded: (data) => dispatch(plan.loaded(data)),
+    start: () => dispatch(travelActions.whenIsDepDate()),
   })
 )(Result);
