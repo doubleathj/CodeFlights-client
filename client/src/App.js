@@ -14,6 +14,7 @@ import SignupModal from './component/Modal/SignupModal';
 import { connect } from 'react-redux';
 import * as signinActions from './modules/isLogin';
 import * as userActions from './modules/user';
+
 axios.defaults.withCredentials = true;
 class App extends React.Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class App extends React.Component {
             </Switch>
           </div>
         </Router>
+        
       </>
     );
   }
