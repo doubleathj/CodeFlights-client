@@ -32,10 +32,8 @@ class Result extends React.Component {
         {this.props.load && this.props.city === ele.destinations ? (
           this.props.history.push(`/result/${this.props.city}`)
         ) : (
-          <div className='where' style={{ backgroundImage: `url(${ele.img})` }}>
-            <div className='titlelayer'>
-              <h3>{ele.destinations}</h3>
-            </div>
+          <div className='where focus' style={{ backgroundImage: `url(${ele.img})` }}>
+            <div className='titlelayer'><h2 className='cityname'>{ele.destinations}</h2></div>
           </div>
         )}
       </div>
@@ -45,9 +43,9 @@ class Result extends React.Component {
       
         <div className='result'>
           <div className='result-container'>
-            <div className='result-title'>
-              예정된 기간 동안 방문 가능한 {destination.length}개 도시 입니다.
-            </div>
+            <p className='result-title'>
+              방문 가능한 {destination.length}개의 도시
+            </p>
             <div className='cities'>{city}</div>
           </div>
         </div>

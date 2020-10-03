@@ -53,11 +53,11 @@ class App extends React.Component {
               <source src='/Videos/background.mp4' type='video/mp4' />
             </video>
 
-            <div className={info ? 'test' : false}>
+            <div className={info && 'test'}>
               <Navbar />
               <SignupModal />
               <LoginModal />
-              <div className={this.props.sidebar ? 'App-contents' : false}>
+              <div className={this.props.sidebar && 'App-contents'}>
                 <Switch>
                   <Route path='/' exact component={Main} />
                   <Route path='/Mypage' component={Mypage} />

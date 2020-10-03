@@ -5,9 +5,10 @@ import {
 
 const GETPLAN = 'getPlan';
 const LOADED = 'loaded'
-
+const CHANGELOAD = 'changeLoad'
 export const getPlan = createAction(GETPLAN)
 export const loaded = createAction(LOADED)
+export const changeLoad = createAction(CHANGELOAD)
 
 const initialState = {
   flights: [],
@@ -28,7 +29,14 @@ export default handleActions({
     flights: state.flights,
     blogPostings: state.blogPostings,
     userPostings: state.userPostings,
-    load: !state.load,
+    load: true,
     city: action.payload
-  })
+  }),
+  [CHANGELOAD]: (state, action) => ({
+    flights: state.flights,
+    blogPostings: state.blogPostings,
+    userPostings: state.userPostings,
+    load: false,
+    city: action.payload
+  }),
 }, initialState);

@@ -8,9 +8,8 @@
 }
 
 .userinfo-container {
-  
   position: absolute;
-  top: 20vh;
+  top: 30vh;
   left: 40vw;
   right: 40vw;
   display: block;
