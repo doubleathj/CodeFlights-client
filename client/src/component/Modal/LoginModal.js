@@ -38,6 +38,8 @@ class LoginModal extends React.Component {
         withCredentials: true,
       })
       .then((res) => {
+        console.log(document.cookie)
+        console.log(res);
         console.log(res.data);
         this.props.userinfo(res.data);
         localStorage.userinfo = JSON.stringify(res.data);
