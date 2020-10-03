@@ -8,12 +8,16 @@ const WHENISDEPDATE = 'whenIsDepDate';
 export const whenIsDepDate = createAction(WHENISDEPDATE);
 
 const initialState = {
-  isLoad : false
+  isLoad: false
 };
 
 export default handleActions({
-    [WHENISDEPDATE]: ({ isLoad }) => ({ isLoad : ! isLoad })
-    
+    [WHENISDEPDATE]: ({
+      isLoad
+    }) => ({
+      isLoad: !isLoad
+    })
+
   },
   initialState
 );

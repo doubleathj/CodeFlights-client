@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 function View(props) {
-  let { city } = props.match.params;
+  let { city } = props.match.params;  
   const { title, contents, id }= JSON.parse(localStorage.article)
   const totalLikes = props.numOfLikes
   const handleClickLikes = () => {
@@ -17,7 +17,6 @@ function View(props) {
       console.log(data)
       props.likes(data.data.likes)})
   }
-
   return (
     <>
       <div className='view'>

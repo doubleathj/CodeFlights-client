@@ -13,8 +13,8 @@ const initialState = {
   flights: [],
   blogPostings: [],
   userPostings: [],
-  load : false,
-  city : null
+  load: false,
+  city: null
 };
 
 export default handleActions({
@@ -22,13 +22,13 @@ export default handleActions({
     flights: action.payload.flights,
     blogPostings: action.payload.blogPostings,
     userPostings: action.payload.userPostings,
-    load : state.load
+    load: state.load
   }),
-  [LOADED] : (state, action) => ({ 
+  [LOADED]: (state, action) => ({
     flights: state.flights,
     blogPostings: state.blogPostings,
     userPostings: state.userPostings,
-    load : !  state.load,
-    city : action.payload
+    load: !state.load,
+    city: action.payload
   })
 }, initialState);

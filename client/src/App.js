@@ -43,7 +43,7 @@ class App extends React.Component {
             <video
               className='video'
               autoPlay
-              playsInline
+              playsInline 
               loop='loop'
               muted
               width='1280'
