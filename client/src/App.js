@@ -34,9 +34,9 @@ class App extends React.Component {
       })
       .catch(() => console.log('not logged'));
   }
-
+  
   render() {
-    let info = this.state;
+    let info = this.state
     return (
       <>
         <Router>
@@ -52,6 +52,7 @@ class App extends React.Component {
             >
               <source src='/Videos/background.mp4' type='video/mp4' />
             </video>
+
             <div className={info ? 'test' : false}>
               <Navbar />
               <SignupModal />
@@ -67,7 +68,7 @@ class App extends React.Component {
                 </Switch>
               </div>
             </div>
-          </div>
+          </div>          
         </Router>
       </>
     );
@@ -86,7 +87,3 @@ export default connect(
     changeSidebar: () => dispatch(sidebarActions.changeSidebar()),
   })
 )(App);
-
-//
-// loginModal false <=> true
-// isMoblieModal false

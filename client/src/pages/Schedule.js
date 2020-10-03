@@ -33,6 +33,7 @@ function Schedule(props) {
     });
   };
 
+
   let counter = 10;
   if (userPostings) counter -= userPostings.length;
   let tickets = flights.map((ele) => (
@@ -51,6 +52,7 @@ function Schedule(props) {
         <li className='article' onClick={() => getArticle(ele.id)}>
           <p className='articleTitle'>{ele.title}</p>
           <p className='articleContents'>{ele.contents}</p>
+
         </li>
       </ul>
     ));
@@ -90,6 +92,7 @@ export default connect(
     userPostings: state.plan.userPostings,
     articleLoaded: state.view.articleLoaded,
     isLogin: state.isLogin.login,
+
   }),
   (dispatch) => ({
     destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),

@@ -10,6 +10,7 @@ import travel from './travel';
 import navbar from './navbar';
 import likes from './likes';
 
+
 export default combineReducers({
   loginModal,
   signupModal,
