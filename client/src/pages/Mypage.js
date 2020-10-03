@@ -3,6 +3,7 @@ import './Mypage.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as userActions from '../modules/user';
+
 axios.defaults.withCredentials = true;
 
 class Mypage extends React.Component {
@@ -64,7 +65,8 @@ class Mypage extends React.Component {
     console.log(info);
     let { username , email } = JSON.parse(localStorage.userinfo);
     return (
-      <div className='mypage'>
+      
+     <div className='mypage'>
         <div className='userinfo-container'>
           <div className='userinfo'>
             <span className='usertitle'>
@@ -121,6 +123,7 @@ class Mypage extends React.Component {
           </div>
         </div>
       </div>
+      
     );
   }
 }

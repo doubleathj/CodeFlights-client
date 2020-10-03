@@ -2,17 +2,13 @@ import React from 'react';
 import { data } from '../Datas/Dummy';
 import { Link } from 'react-router-dom';
 import './View.css';
+import * as view from '../modules/view';
+import { connect } from 'react-redux';
 
-function View({ match }) {
-  let { article, city } = match.params;
-  let articles = data[city].articles;
-  let title, contents;
-  articles.forEach((ele) => {
-    if (ele.id === Number(article)) {
-      title = ele.title;
-      contents = ele.contents;
-    }
-  });
+function View(props) {
+  let { city } = props.match.params;
+  const { title, contents }= JSON.parse(localStorage.article)
+  
 
   return (
     <>
@@ -30,4 +26,11 @@ function View({ match }) {
   );
 }
 
-export default View;
+export default connect(
+  (state) => ({
+    articleContent : state.view.article
+  }),
+  (dispatch) => ({
+    article : (data) => dispatch(view.view(data))
+  })
+)(View);
