@@ -17,6 +17,14 @@
   top: 3vh;
 }
 
+.logo {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  left: 2vw;
+  top: 2vh;
+}
+
 .nav-menu {
   background-color: none;
   color: white;
@@ -93,6 +101,14 @@ span {
     background: none;
     position: fixed;
     right: 2rem;
+    top: 4vh;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 3vw;
     top: 4vh;
   }
 

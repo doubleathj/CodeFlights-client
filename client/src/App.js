@@ -52,22 +52,23 @@ class App extends React.Component {
             >
               <source src='/Videos/background.mp4' type='video/mp4' />
             </video>
-            <div className={info? "test": false} >
-            <Navbar />
-            <SignupModal />
-            <LoginModal />
-            <div className={this.props.sidebar ? 'App-contents' : false}>
-              <Switch>
-                <Route path='/' exact component={Main} />
-                <Route path='/Mypage' component={Mypage} />
-                <Route path='/Posting' component={Posting} />
-                <Route path='/result/:city/:article' component={View} />
-                <Route path='/result/:city' component={Schedule} />
-                <Route path='/search/result' component={Result} />
-              </Switch>
+
+            <div className={info ? 'test' : false}>
+              <Navbar />
+              <SignupModal />
+              <LoginModal />
+              <div className={this.props.sidebar ? 'App-contents' : false}>
+                <Switch>
+                  <Route path='/' exact component={Main} />
+                  <Route path='/Mypage' component={Mypage} />
+                  <Route path='/Posting' component={Posting} />
+                  <Route path='/result/:city/:article' component={View} />
+                  <Route path='/result/:city' component={Schedule} />
+                  <Route path='/search/result' component={Result} />
+                </Switch>
+              </div>
             </div>
-          </div>
-          </div>
+          </div>          
         </Router>
       </>
     );
@@ -86,8 +87,3 @@ export default connect(
     changeSidebar: () => dispatch(sidebarActions.changeSidebar()),
   })
 )(App);
-
-
-// 
-// loginModal false <=> true
-// isMoblieModal false 

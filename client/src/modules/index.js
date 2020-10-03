@@ -8,7 +8,8 @@ import destinations from './destinations';
 import plan from './plan';
 import travel from './travel';
 import navbar from './navbar';
-import likes from './likes'
+import likes from './likes';
+
 
 export default combineReducers({
   loginModal,
@@ -20,5 +21,5 @@ export default combineReducers({
   travel,
   view,
   likes,
-  navbar
+  navbar,
 });
