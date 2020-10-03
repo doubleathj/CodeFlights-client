@@ -9,14 +9,14 @@ import axios from 'axios';
 
 function View(props) {
   let { city } = props.match.params;
-  const { title, contents, id }= JSON.parse(localStorage.article)
-  const totalLikes = props.numOfLikes
+  const { title, contents, id } = JSON.parse(localStorage.article);
+  const totalLikes = props.numOfLikes;
   const handleClickLikes = () => {
-    axios.post(`https://codeflights.xyz/post/likes/${id}`)
-    .then(data => {
-      console.log(data)
-      props.likes(data.data.likes)})
-  }
+    axios.post(`https://codeflights.xyz/post/likes/${id}`).then((data) => {
+      console.log(data);
+      props.likes(data.data.likes);
+    });
+  };
 
   return (
     <>
@@ -28,7 +28,8 @@ function View(props) {
           <Link to={`/result/${city}`}>
             <button>목록</button>
           </Link>
-            <span onClick={handleClickLikes}>💖</span>{totalLikes}
+          <span onClick={handleClickLikes}>💖</span>
+          {totalLikes}
         </div>
       </div>
     </>
@@ -37,11 +38,11 @@ function View(props) {
 
 export default connect(
   (state) => ({
-    articleContent : state.view.article,
-    numOfLikes : state.likes.likes
+    articleContent: state.view.article,
+    numOfLikes: state.likes.likes,
   }),
   (dispatch) => ({
-    article : (data) => dispatch(view.view(data)),
-    likes : (data) => dispatch(likes.likes(data))
+    article: (data) => dispatch(view.view(data)),
+    likes: (data) => dispatch(likes.likes(data)),
   })
 )(View);

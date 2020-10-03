@@ -12,24 +12,27 @@ import axios from 'axios';
 function Schedule(props) {
   const { city } = props.match.params;
   const { flights, userPostings, blogPostings } = JSON.parse(localStorage.plan);
-  let { article, history, isLogin } = props
+  let { article, history, isLogin } = props;
   const getArticle = (id) => {
-    axios.get(`https://codeflights.xyz/post/article/${id}`)
-    .then(res => {
-      article(res.data);
-      localStorage.article = JSON.stringify(res.data)
-    }).then(()=> getLikes(id))
-  }
+    axios
+      .get(`https://codeflights.xyz/post/article/${id}`)
+      .then((res) => {
+        article(res.data);
+        localStorage.article = JSON.stringify(res.data);
+      })
+      .then(() => getLikes(id));
+  };
   const getLikes = (id) => {
-    axios.get(`https://codeflights.xyz/post/likes/${id}`)
-    .then(data => {
-      let likes = data.data.likes  
-      props.likes(likes)
-      localStorage.likes = JSON.stringify(likes)
-      isLogin ? history.push(`/result/${city}/${id}`) : alert("로그인하시면 보실 수 있어요")
-    })
-  }
-  
+    axios.get(`https://codeflights.xyz/post/likes/${id}`).then((data) => {
+      let likes = data.data.likes;
+      props.likes(likes);
+      localStorage.likes = JSON.stringify(likes);
+      isLogin
+        ? history.push(`/result/${city}/${id}`)
+        : alert('로그인하시면 보실 수 있어요');
+    });
+  };
+
   let counter = 10;
   if (userPostings) counter -= userPostings.length;
   let tickets = flights.map((ele) => (
@@ -45,13 +48,9 @@ function Schedule(props) {
   if (userPostings) {
     userPost = userPostings.map((ele) => (
       <ul>
-        <li className='article' onClick={()=>
-          getArticle(ele.id)
-        }> 
-          
-            <p className='articleTitle'>{ele.title}</p>
-            <p className='articleContents'>{ele.contents}</p>
-          
+        <li className='article' onClick={() => getArticle(ele.id)}>
+          <p className='articleTitle'>{ele.title}</p>
+          <p className='articleContents'>{ele.contents}</p>
         </li>
       </ul>
     ));
@@ -69,7 +68,6 @@ function Schedule(props) {
   }
   props.loaded(null);
   return (
-    
     <div className='schedule'>
       <div className='schedule-containaer'>
         <div className='info'>{city}에 가는 항공편</div>
@@ -81,7 +79,6 @@ function Schedule(props) {
         </ul>
       </div>
     </div>
-    
   );
 }
 
@@ -91,14 +88,14 @@ export default connect(
     flights: state.plan.flights,
     blogPostings: state.plan.blogPostings,
     userPostings: state.plan.userPostings,
-    articleLoaded : state.view.articleLoaded,
-    isLogin : state.isLogin.login
+    articleLoaded: state.view.articleLoaded,
+    isLogin: state.isLogin.login,
   }),
   (dispatch) => ({
     destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
     getPlan: (data) => dispatch(plan.getPlan(data)),
     loaded: (data) => dispatch(plan.loaded(data)),
-    article : (data) => dispatch(view.view(data)),
-    likes : (data) => dispatch(likes.likes(data))
+    article: (data) => dispatch(view.view(data)),
+    likes: (data) => dispatch(likes.likes(data)),
   })
 )(Schedule);
