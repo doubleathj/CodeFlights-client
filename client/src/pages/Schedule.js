@@ -44,7 +44,7 @@ function Schedule(props) {
       </li>
     );
   }
-  console.log(blog);
+  props.loaded(null);
   return (
     <div className='schedule'>
       <video
@@ -61,7 +61,6 @@ function Schedule(props) {
       <div className='schedule-containaer'>
         <div className='info'>{city}에 가는 항공편</div>
         <ul className='ticket-container'>{tickets}</ul>
-
         <div className='tip'>{city}의 여행 팁</div>
         <ul className='article-list'>
           {userPost ? userPost : false}
@@ -82,5 +81,6 @@ export default connect(
   (dispatch) => ({
     destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
     getPlan: (data) => dispatch(plan.getPlan(data)),
+    loaded: (data) => dispatch(plan.loaded(data)),
   })
 )(Schedule);
