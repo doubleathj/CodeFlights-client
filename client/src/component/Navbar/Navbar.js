@@ -29,9 +29,10 @@ function Navbar(props) {
       <>
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
-            <a href='/'>
-              <img src={logo} className='logo' />
-            </a>
+            <Link to='/' >
+              <img src={logo} className='logo focus' />
+            </Link>
+            <p className="welcome blink">{props.username.username} 여행자님</p>
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={props.changeSidebar} />
             </Link>
@@ -65,9 +66,9 @@ function Navbar(props) {
       <>
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
-            <a href='/'>
+            <Link to='/'>
               <img src={logo} className='logo' />
-            </a>
+            </Link>
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={props.changeSidebar} />
             </Link>
@@ -107,6 +108,7 @@ export default connect(
     signupModal: state.signupModal.signupModal,
     login: state.isLogin.login,
     sidebar: state.navbar.sidebar,
+    username : state.user.info
   }),
   (dispatch) => ({
     changeLogin: () => dispatch(loginActions.changeLogin()),

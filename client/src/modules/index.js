@@ -1,4 +1,6 @@
-import { combineReducers } from 'redux';
+import {
+  combineReducers
+} from 'redux';
 import loginModal from './loginModal';
 import view from './view';
 import signupModal from './signupModal';

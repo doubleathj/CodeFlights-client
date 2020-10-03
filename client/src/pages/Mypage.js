@@ -3,7 +3,8 @@ import './Mypage.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as userActions from '../modules/user';
-
+import lock from '../Images/lock.png'
+import modify from '../Images/modify.png'
 axios.defaults.withCredentials = true;
 
 class Mypage extends React.Component {
@@ -65,26 +66,25 @@ class Mypage extends React.Component {
     console.log(info);
     let { username , email } = JSON.parse(localStorage.userinfo);
     return (
-      
-     <div className='mypage'>
+      <div className='mypage'>
         <div className='userinfo-container'>
           <div className='userinfo'>
             <span className='usertitle'>
-              <h1>Mypage</h1>
+              <img className='myPageIcons' src={lock}></img>
             </span>
             <h3>
-              username:
+              Username 
               <span className='username'>{username}</span>
             </h3>
-            <h3>
-              email:
+            <h3 className='emailH3'>
+              E-mail 
               <span className='email'>{email}</span>
             </h3>
           </div>
           <hr />
           <div className='changeinfo-container'>
             <span className='changeinfotitle'>
-              <h1>회원정보 수정</h1>
+              <img className='myPageIcons' src={modify}></img>
             </span>
             <form
               className='changeinfo'
@@ -116,7 +116,7 @@ class Mypage extends React.Component {
               <div>
                 {this.renderPasswordCheckMessage()}
                 <button className='submitBtn' type='submit'>
-                  submit
+                  Submit
                 </button>
               </div>
             </form>

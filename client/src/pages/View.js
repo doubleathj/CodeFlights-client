@@ -10,17 +10,17 @@ import axios from 'axios';
 import { SvgIcon } from '@material-ui/core';
 
 function View(props) {
+
   let { city } = props.match.params;
   const { title, contents, id } = JSON.parse(localStorage.article);
   const totalLikes = props.numOfLikes;
 
   const handleClickLikes = () => {
-    axios.post(`https://codeflights.xyz/post/likes/${id}`).then((data) => {
-      console.log(data);
-      props.likes(data.data.likes);
-    });
-  };
-
+    axios.post(`https://codeflights.xyz/post/likes/${id}`)
+    .then(data => {
+      console.log(data)
+      props.likes(data.data.likes)})
+  }
   return (
     <>
       <div className='view'>
