@@ -1,6 +1,5 @@
 import React from 'react';
 import './Modal.css';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as loginActions from '../../modules/loginModal';
@@ -32,14 +31,14 @@ class LoginModal extends React.Component {
 
   handleLoginSubmit(e) {
     const { email, password } = this.state;
-    console.log('submit')
+    console.log('submit');
     let data = { email: email, password: password };
     axios
       .post('https://codeflights.xyz/user/signin', data, {
         withCredentials: true,
       })
-      .then(res => {
-        console.log(res.data)
+      .then((res) => {
+        console.log(res.data);
         this.props.userinfo(res.data);
         this.props.loginStatus();
         this.props.changeLogin();
@@ -51,15 +50,14 @@ class LoginModal extends React.Component {
   }
 
   responseGoogle = (res) => {
-    this.props.changeLogin()
-    let data = { tokenId : res.tokenId }
-    console.log(data)
-    axios.post('https://codeflights.xyz/auth/google', data)
-    .then((data) => {
-      this.props.userinfo(data.data)
-      this.props.loginStatus()
-    })
-  }
+    this.props.changeLogin();
+    let data = { tokenId: res.tokenId };
+    console.log(data);
+    axios.post('https://codeflights.xyz/auth/google', data).then((data) => {
+      this.props.userinfo(data.data);
+      this.props.loginStatus();
+    });
+  };
   render() {
     const { loginModal } = this.props;
     if (loginModal) {
@@ -73,11 +71,11 @@ class LoginModal extends React.Component {
                 <h2>로그인</h2>
               </div>
               <GoogleLogin
-                  clientId="956886343865-f8080heu2d93mukf82e027btrg0mgcl8.apps.googleusercontent.com"
-                  buttonText="Login"
-                  onSuccess={this.responseGoogle}
-                  onFailure={this.responseGoogle}
-                  cookiePolicy={'single_host_origin'}
+                clientId='956886343865-f8080heu2d93mukf82e027btrg0mgcl8.apps.googleusercontent.com'
+                buttonText='Login'
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+                cookiePolicy={'single_host_origin'}
               />
               <input
                 type='email'

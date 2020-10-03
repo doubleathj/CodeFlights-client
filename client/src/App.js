@@ -41,10 +41,10 @@ class App extends React.Component {
           <div className='App-component'>
             <video
               className='video'
-              autoPlay='true'
-              playsInline='true'
+              autoPlay
+              playsInline
               loop='loop'
-              muted='true'
+              muted
               width='1280'
               height='720'
             >

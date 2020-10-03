@@ -50,9 +50,9 @@ class Mypage extends React.Component {
         password: password,
       },
     })
-      // .then((res) => {
-      //   this.props.history.push('/');
-      // }) 세션 문제 해결 후 테스트
+      .then((res) => {
+        this.props.history.push('/');
+      })
       .catch((err) => {
         console.log('err: ', err);
       });

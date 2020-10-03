@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Main.css';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as travelActions from '../modules/travel';

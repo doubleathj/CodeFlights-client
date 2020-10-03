@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import './Result.css';
 import { connect } from 'react-redux';
 import * as planCheck from '../modules/destinations';

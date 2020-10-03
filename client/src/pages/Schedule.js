@@ -12,30 +12,34 @@ function Schedule(props) {
   let counter = 10;
   if (userPostings) counter -= userPostings.length;
   let tickets = flights.map((ele) => (
-    <li className='ticket'>
-      <div>{ele.carrier}</div>
-      <div>{ele.carrierNo}</div>
-      <div>{ele.departure}</div>
-    </li>
+    <ul>
+      <li className='ticket'>
+        <div>{ele.carrier}</div>
+        <div>{ele.carrierNo}</div>
+        <div>{ele.departure}</div>
+      </li>
+    </ul>
   ));
   let userPost;
   if (userPostings) {
     userPost = userPostings.map((ele) => (
-      <li className='article'>
-        <Link className='list' to={`/result/${city}/${ele.id}`}>
-          <p className='title'>{ele.title}</p>
-          <p className='contents'>{ele.contents}</p>
-        </Link>
-      </li>
+      <ul>
+        <li className='article'>
+          <Link className='articleLink' to={`/result/${city}/${ele.id}`}>
+            <p className='articleTitle'>{ele.title}</p>
+            <p className='articleContents'>{ele.contents}</p>
+          </Link>
+        </li>
+      </ul>
     ));
   }
   let blog = [];
   for (let i = 0; i < counter; i++) {
     blog.push(
       <li className='article'>
-        <a className='list' href={blogPostings[i].link}>
-          <p className='title'>{blogPostings[i].title}</p>
-          <p className='contents'>{blogPostings[i].contents}</p>
+        <a className='articleLink' href={blogPostings[i].link}>
+          <div className='articleTitle'>{blogPostings[i].title}</div>
+          <div className='articleContents'>{blogPostings[i].contents}</div>
         </a>
       </li>
     );

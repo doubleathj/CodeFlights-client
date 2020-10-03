@@ -60,15 +60,17 @@
   overflow: auto;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-}
-.article {
+.articleTitle {
   flex: auto;
+  font-size: medium;
+  margin: 1vh;
+  color: black;
 }
-.article p {
+.articleContents {
   flex: auto;
+  font-size: small;
+  margin: 2vh;
+  color: black;
 }
 
 @media screen and (max-width: 640px) {
@@ -79,21 +81,30 @@
     right: 10vw;
     bottom: 20vh;
     display: block;
-    z-index: 100;
+    z-index: 1000;
     padding: 1.5rem;
     background-color: white;
-    border-radius: 2rem;
     color: black;
     opacity: 0.9;
   }
+  .info {
+    margin: 1vh;
+    font-size: large;
+    font-weight: bolder;
+  }
 
-  .ticket {
-    margin: 0.5vh;
-    flex: content;
-    min-width: 20vh;
-    border: 1px solid black;
+  .ticket-container {
+    margin: 1vh;
+    display: flex;
     text-align: center;
-    font-size: small;
+    box-sizing: content-box;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+  }
+
+  .tip {
+    font-size: large;
   }
 
   .article-list {
@@ -102,8 +113,7 @@
     position: relative;
     top: 1vh;
     bottom: 2vh;
-    height: 30vh;
+    height: 60%;
     overflow: auto;
-    font-size: small;
   }
 }

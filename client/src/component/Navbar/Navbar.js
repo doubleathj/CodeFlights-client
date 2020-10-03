@@ -17,9 +17,8 @@ function Navbar(props) {
   const showSidebar = () => setSidebar(!sidebar);
   const { login } = props;
   let logOut = () => {
-    props.loginStatus()
-    axios
-      .post('https://codeflights.xyz/user/logout')
+    props.loginStatus();
+    axios.post('https://codeflights.xyz/user/logout');
   };
   if (login) {
     return (
@@ -74,15 +73,11 @@ function Navbar(props) {
               </li>
               <li className='nav-text'>
                 <FiIcons.FiUserPlus />
-                <span onClick={props.changeSignup}>
-                  <Link>SIGN UP</Link>
-                </span>
+                <span onClick={props.changeSignup}>SIGN UP</span>
               </li>
               <li className='nav-text'>
                 <IoIcons.IoIosLogIn />
-                <span onClick={props.changeLogin}>
-                  <Link>LOGIN</Link>
-                </span>
+                <span onClick={props.changeLogin}>LOGIN</span>
               </li>
             </ul>
           </nav>
