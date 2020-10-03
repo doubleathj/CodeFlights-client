@@ -4,6 +4,7 @@
   padding: 0;
   list-style: none;
   text-decoration: none;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 body::-webkit-scrollbar {
@@ -39,4 +40,23 @@ body::-webkit-scrollbar {
   .App-contents {
     display: none;
   }
+}
+
+.blink {
+  -webkit-animation: blink 2.0s linear infinite;
+
+}
+@keyframes blink{
+  0% { color: white;}
+  100% { color : black}
+}
+
+.focus {
+  -webkit-transition:.3s;
+  transition:.3s;
+}
+
+.focus:hover{
+  -webkit-transform:scale(1.1);
+  transform:scale(1.1);
 }

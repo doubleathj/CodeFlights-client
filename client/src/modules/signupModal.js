@@ -1,4 +1,7 @@
-import { createAction, handleActions } from 'redux-actions';
+import {
+  createAction,
+  handleActions
+} from 'redux-actions';
 
 const CHANGESIGNUP = 'changeSignup';
 
@@ -8,9 +11,12 @@ const initialState = {
   signupModal: false,
 };
 
-export default handleActions(
-  {
-    [CHANGESIGNUP]: ({ signupModal }) => ({ signupModal: !signupModal }),
+export default handleActions({
+    [CHANGESIGNUP]: ({
+      signupModal
+    }) => ({
+      signupModal: !signupModal
+    }),
   },
   initialState
 );
