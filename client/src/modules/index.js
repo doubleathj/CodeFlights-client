@@ -7,6 +7,7 @@ import destinations from './destinations'
 import plan from './plan'
 import travel from './travel'
 import view from './view'
+import likes from './likes'
 export default combineReducers({
   loginModal,
   signupModal,
@@ -15,5 +16,6 @@ export default combineReducers({
   destinations,
   plan,
   travel,
-  view
+  view,
+  likes
 });
