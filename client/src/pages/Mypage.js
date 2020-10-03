@@ -11,7 +11,7 @@ class Mypage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      username: null,
       password: '',
       password_confirm: '',
     };
@@ -48,7 +48,7 @@ class Mypage extends React.Component {
       method: 'POST',
       url: 'https://codeflights.xyz/user/info',
       data: {
-        username: username,
+        username: username || JSON.parse(localStorage.userinfo.username),
         password: password,
       },
     })
@@ -62,8 +62,6 @@ class Mypage extends React.Component {
   }
 
   render() {
-    const { info } = this.props;
-    console.log(info);
     let { username , email } = JSON.parse(localStorage.userinfo);
     return (
       <div className='mypage'>

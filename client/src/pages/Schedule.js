@@ -10,7 +10,7 @@ import axios from 'axios';
 
 function Schedule(props) {
   const { city } = props.match.params;
-  const { flights, userPostings, blogPostings } = JSON.parse(localStorage.plan);
+  const { flights, userPostings, blogPostings, estPrice } = JSON.parse(localStorage.plan);
   let { article, history, isLogin } = props;
   const getArticle = (id) => {
     axios
@@ -70,6 +70,7 @@ function Schedule(props) {
   props.changeLoad();
   return (
     <div className='schedule'>
+      <h1 className='focus blink price'>{`${city}행 항공편 평균가격 ${estPrice}`}</h1>
       <div className='schedule-containaer'>
         <div className='info'>{city}에 가는 항공편</div>
         <ul className='ticket-container'>{tickets}</ul>

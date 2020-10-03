@@ -32,7 +32,7 @@ function Navbar(props) {
             <Link to='/' >
               <img src={logo} className='logo focus' />
             </Link>
-            <p className="welcome blink">{props.username.username} 여행자님</p>
+            <p className="welcome blink">행복한 상상중인 {props.username.username} 여행자님</p>
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={props.changeSidebar} />
             </Link>
