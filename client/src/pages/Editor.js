@@ -20,11 +20,15 @@ class Posting extends React.Component {
   };
 
   postingArticle() {
-    return axios.post('https://codeflights.xyz/post/write', {
-      author: this.state.author + 1,
-      title: this.state.title,
-      content: this.state.content,
-    });
+    return axios
+      .post('https://codeflights.xyz/post/write', {
+        author: this.state.author + 1,
+        title: this.state.title,
+        content: this.state.content,
+      })
+      .then((res) => {
+        this.props.history.push('/');
+      });
   }
 
   render() {
@@ -32,7 +36,7 @@ class Posting extends React.Component {
       <div className='editor'>
         <div className='article-container'>
           <form
-            className='article'
+            className='editorArticle'
             onSubmit={(e) => {
               e.preventDefault();
               this.postingArticle();
@@ -40,12 +44,12 @@ class Posting extends React.Component {
           >
             <input
               type='text'
-              className='title'
+              className='editorTitle'
               placeholder='제목을 입력하세요'
               onChange={this.handleChange('title')}
             ></input>
             <textarea
-              className='contents'
+              className='editorContents'
               rows={15}
               placeholder='내용을 입력하세요'
               onChange={this.handleChange('content')}

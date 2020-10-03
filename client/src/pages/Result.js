@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, Redirect, withRouter } from 'react-router-dom';
 import './Result.css';
 import { connect } from 'react-redux';
 import * as planCheck from '../modules/destinations';
@@ -25,12 +24,13 @@ class Result extends React.Component {
   }
   render() {
     let destination = this.props.place;
-    if (destination.length === 0)
+    if (destination.length === 0) {
       destination = JSON.parse(localStorage.destinations);
+    }
     let city = destination.map((ele) => (
       <div onClick={() => this.planToGo(ele.destinations)}>
         {this.props.load && this.props.city === ele.destinations ? (
-          this.props.history.push(`/result/${ele.destnation}`)
+          this.props.history.push(`/result/${this.props.city}`)
         ) : (
           <div className='where' style={{ backgroundImage: `url(${ele.img})` }}>
             <div className='titlelayer'>
@@ -72,4 +72,4 @@ export default connect(
     loaded: (data) => dispatch(plan.loaded(data)),
     start: () => dispatch(travelActions.whenIsDepDate()),
   })
-)(withRouter(Result));
+)(Result);

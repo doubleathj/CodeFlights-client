@@ -49,9 +49,13 @@ class Mypage extends React.Component {
         username: username,
         password: password,
       },
-    }).catch((err) => {
-      console.log('err: ', err);
-    });
+    })
+      .then((res) => {
+        this.props.history.push('/');
+      })
+      .catch((err) => {
+        console.log('err: ', err);
+      });
     e.preventDefault();
   }
 
