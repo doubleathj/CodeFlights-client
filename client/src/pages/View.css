@@ -21,6 +21,12 @@
   opacity: 0.9;
 }
 
+.likebtn {
+  display: inline;
+  position: relative;
+  top: 0.5vh;
+}
+
 hr {
   border: 0;
   clear: both;
