@@ -10,6 +10,10 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.App-contents {
+  display: block;
+}
+
 .App-component {
   position: absolute;
   top: 0;
@@ -29,4 +33,10 @@ body::-webkit-scrollbar {
   left: 50%;
   transform: translate(-50%, -50%);
   overflow: hidden;
+}
+
+@media screen and (max-width: 640px) {
+  .App-contents {
+    display: none;
+  }
 }
