@@ -22,6 +22,11 @@
   color: rgb(5, 5, 5);
   flex-direction: row;
   overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.result-container::-webkit-scrollbar {
+  display: none;
 }
 
 .result-title {
@@ -64,6 +69,12 @@
     color: black;
     opacity: 0.9;
     overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .result-container::-webkit-scrollbar {
+    display: none;
   }
 
   .result-title {
@@ -91,7 +102,7 @@
 .where {
   background-position: center, center;
   background-size: cover;
-  background-repeat : no-repeat;
+  background-repeat: no-repeat;
   width: 100%;
   height: 10rem;
   border-radius: 1rem;

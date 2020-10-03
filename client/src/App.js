@@ -14,6 +14,7 @@ import SignupModal from './component/Modal/SignupModal';
 import { connect } from 'react-redux';
 import * as signinActions from './modules/isLogin';
 import * as userActions from './modules/user';
+import * as sidebarActions from './modules/navbar';
 
 axios.defaults.withCredentials = true;
 class App extends React.Component {
@@ -51,20 +52,23 @@ class App extends React.Component {
             >
               <source src='/Videos/background.mp4' type='video/mp4' />
             </video>
-            <div className={info? "test": false} >
-            <Navbar />
-            <SignupModal />
-            <LoginModal />
-            <Switch>
-              <Route path='/' exact component={Main} />
-              <Route path='/Mypage' component={Mypage} />
-              <Route path='/Posting' component={Posting} />
-              <Route path='/result/:city/:article' component={View} />
-              <Route path='/result/:city' component={Schedule} />
-              <Route path='/search/result' component={Result} />
-            </Switch>
-          </div>
-          </div>
+
+            <div className={info ? 'test' : false}>
+              <Navbar />
+              <SignupModal />
+              <LoginModal />
+              <div className={this.props.sidebar ? 'App-contents' : false}>
+                <Switch>
+                  <Route path='/' exact component={Main} />
+                  <Route path='/Mypage' component={Mypage} />
+                  <Route path='/Posting' component={Posting} />
+                  <Route path='/result/:city/:article' component={View} />
+                  <Route path='/result/:city' component={Schedule} />
+                  <Route path='/search/result' component={Result} />
+                </Switch>
+              </div>
+            </div>
+          </div>          
         </Router>
       </>
     );
@@ -75,14 +79,11 @@ export default connect(
   (state) => ({
     isLogin: state.isLogin.isLogin,
     info: state.user.userinfo,
+    sidebar: state.navbar.sidebar,
   }),
   (dispatch) => ({
     loginStatus: () => dispatch(signinActions.loginStatus()),
     userinfo: (data) => dispatch(userActions.userinfo(data)),
+    changeSidebar: () => dispatch(sidebarActions.changeSidebar()),
   })
 )(App);
-
-
-// 
-// loginModal false <=> true
-// isMoblieModal false 

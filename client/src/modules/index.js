@@ -2,14 +2,17 @@ import {
   combineReducers
 } from 'redux';
 import loginModal from './loginModal';
-import signupModal from './signupModal'
-import isLogin from './isLogin'
-import user from './user'
-import destinations from './destinations'
-import plan from './plan'
-import travel from './travel'
-import view from './view'
-import likes from './likes'
+import view from './view';
+import signupModal from './signupModal';
+import isLogin from './isLogin';
+import user from './user';
+import destinations from './destinations';
+import plan from './plan';
+import travel from './travel';
+import navbar from './navbar';
+import likes from './likes';
+
+
 export default combineReducers({
   loginModal,
   signupModal,
@@ -19,5 +22,6 @@ export default combineReducers({
   plan,
   travel,
   view,
-  likes
+  likes,
+  navbar,
 });

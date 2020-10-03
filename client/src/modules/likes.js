@@ -3,7 +3,7 @@ import {
   handleActions
 } from 'redux-actions';
 
-const LIKES = 'likes'
+const LIKES = 'likes';
 
 export const likes = createAction(LIKES);
 

@@ -27,7 +27,8 @@ function View(props) {
           <Link to={`/result/${city}`}>
             <button>목록</button>
           </Link>
-            <span onClick={handleClickLikes}>💖</span>{totalLikes}
+          <span onClick={handleClickLikes}>💖</span>
+          {totalLikes}
         </div>
       </div>
     </>
@@ -36,11 +37,11 @@ function View(props) {
 
 export default connect(
   (state) => ({
-    articleContent : state.view.article,
-    numOfLikes : state.likes.likes
+    articleContent: state.view.article,
+    numOfLikes: state.likes.likes,
   }),
   (dispatch) => ({
-    article : (data) => dispatch(view.view(data)),
-    likes : (data) => dispatch(likes.likes(data))
+    article: (data) => dispatch(view.view(data)),
+    likes: (data) => dispatch(likes.likes(data)),
   })
 )(View);
