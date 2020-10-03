@@ -9,28 +9,31 @@ import { connect } from 'react-redux';
 import * as loginActions from '../../modules/loginModal';
 import * as signupActions from '../../modules/signupModal';
 import * as signinActions from '../../modules/isLogin';
+import * as sidebarActions from '../../modules/navbar';
 import './Navbar.css';
 import axios from 'axios';
 
 function Navbar(props) {
-  const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
+  // const [sidebar, setSidebar] = useState(false);
+  // const changeSidebar() = () => setSidebar(!sidebar);
+
   const { login } = props;
   let logOut = () => {
     props.loginStatus();
     axios.post('https://codeflights.xyz/user/logout');
   };
+
   if (login) {
     return (
       <>
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
             <Link to='#' className='menu-bars'>
-              <FaIcons.FaBars onClick={showSidebar} />
+              <FaIcons.FaBars onClick={props.changeSidebar} />
             </Link>
           </div>
-          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className='nav-menu-items' onClick={showSidebar}>
+          <nav className={props.sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <ul className='nav-menu-items' onClick={props.changeSidebar}>
               <li className='navbar-toggle'></li>
               {SidebarUserData.map((item, index) => {
                 return (
@@ -59,11 +62,11 @@ function Navbar(props) {
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
             <Link to='#' className='menu-bars'>
-              <FaIcons.FaBars onClick={showSidebar} />
+              <FaIcons.FaBars onClick={props.changeSidebar} />
             </Link>
           </div>
-          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className='nav-menu-items' onClick={showSidebar}>
+          <nav className={props.sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <ul className='nav-menu-items' onClick={props.changeSidebar}>
               <li className='navbar-toggle'></li>
               <li className='nav-text'>
                 <FaIcons.FaHome />
@@ -96,10 +99,12 @@ export default connect(
     loginModal: state.loginModal.loginModal,
     signupModal: state.signupModal.signupModal,
     login: state.isLogin.login,
+    sidebar: state.navbar.sidebar,
   }),
   (dispatch) => ({
     changeLogin: () => dispatch(loginActions.changeLogin()),
     changeSignup: () => dispatch(signupActions.changeSignup()),
     loginStatus: () => dispatch(signinActions.loginStatus()),
+    changeSidebar: () => dispatch(sidebarActions.changeSidebar()),
   })
 )(Navbar);
