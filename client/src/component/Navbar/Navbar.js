@@ -73,11 +73,15 @@ function Navbar(props) {
               </li>
               <li className='nav-text'>
                 <FiIcons.FiUserPlus />
-                <span onClick={props.changeSignup}>SIGN UP</span>
+                <span onClick={props.changeSignup}>
+                  <Link to='#'>SIGN UP</Link>
+                </span>
               </li>
               <li className='nav-text'>
                 <IoIcons.IoIosLogIn />
-                <span onClick={props.changeLogin}>LOGIN</span>
+                <span onClick={props.changeLogin}>
+                  <Link to='#'>LOGIN</Link>
+                </span>
               </li>
             </ul>
           </nav>
