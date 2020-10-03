@@ -45,13 +45,14 @@ class Posting extends React.Component {
             <input
               type='text'
               className='editorTitle'
-              placeholder='어디를 다녀오셨나요?'
+              placeholder='어디를 추억하고 싶으신가요?'
               onChange={this.handleChange('title')}
             ></input>
+            <hr />
             <textarea
               className='editorContents'
               rows={15}
-              placeholder='나만의 추천 여행지를 알려주세요. '
+              placeholder='여행의 기억을 기록해주세요.'
               onChange={this.handleChange('content')}
             ></textarea>
             <button type='submit'>Submit</button>
