@@ -79,3 +79,12 @@
     width: 70vw;
   }
 }
+
+.editorArticle hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: #a09292;
+  height: 1px;
+}
