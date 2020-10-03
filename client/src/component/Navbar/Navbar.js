@@ -10,6 +10,7 @@ import * as loginActions from '../../modules/loginModal';
 import * as signupActions from '../../modules/signupModal';
 import * as signinActions from '../../modules/isLogin';
 import * as sidebarActions from '../../modules/navbar';
+import logo from '../../Images/logo.png';
 import './Navbar.css';
 import axios from 'axios';
 
@@ -28,6 +29,9 @@ function Navbar(props) {
       <>
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
+            <a href='/'>
+              <img src={logo} className='logo' />
+            </a>
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={props.changeSidebar} />
             </Link>
@@ -61,6 +65,9 @@ function Navbar(props) {
       <>
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
+            <a href='/'>
+              <img src={logo} className='logo' />
+            </a>
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={props.changeSidebar} />
             </Link>
