@@ -62,6 +62,7 @@ class Mypage extends React.Component {
   render() {
     const { info } = this.props;
     console.log(info);
+    let { username , email } = JSON.parse(localStorage.userinfo);
     return (
       <div className='mypage'>
         <div className='userinfo-container'>
@@ -71,11 +72,11 @@ class Mypage extends React.Component {
             </span>
             <h3>
               username:
-              <span className='username'>{info.username}</span>
+              <span className='username'>{username}</span>
             </h3>
             <h3>
               email:
-              <span className='email'>{info.email}</span>
+              <span className='email'>{email}</span>
             </h3>
           </div>
           <hr />

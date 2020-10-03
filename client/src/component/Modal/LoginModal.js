@@ -40,6 +40,7 @@ class LoginModal extends React.Component {
       .then((res) => {
         console.log(res.data);
         this.props.userinfo(res.data);
+        localStorage.userinfo = JSON.stringify(res.data);
         this.props.loginStatus();
         this.props.changeLogin();
       })
