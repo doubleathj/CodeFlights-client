@@ -55,7 +55,13 @@
   font-weight: bolder;
 }
 
-
+.price {
+  position: absolute;
+  top: 10vh;
+  left : 20vw;
+  right: 20vw;
+  text-align: center;
+}
 .tip {
   margin: 1vh;
   font-size: x-large;
