@@ -30,7 +30,14 @@
   width: 100%;
   height: auto;
   overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+
+.ticket-container::-webkit-scrollbar {
+  display: none;
+}
+
 .info {
   margin: 1vh;
   font-size: x-large;
@@ -58,8 +65,13 @@
   bottom: 2vh;
   height: 40vh;
   overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
+.article-list::-webkit-scrollbar {
+  display: none;
+}
 .articleTitle {
   flex: auto;
   font-size: medium;
@@ -101,6 +113,12 @@
     width: 100%;
     height: auto;
     overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .ticket-container::-webkit-scrollbar {
+    display: none;
   }
 
   .tip {
@@ -115,5 +133,10 @@
     bottom: 2vh;
     height: 60%;
     overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .article-list::-webkit-scrollbar {
+    display: none;
   }
 }

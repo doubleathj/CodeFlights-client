@@ -9,6 +9,7 @@
 body::-webkit-scrollbar {
   display: none;
 }
+
 .App-contents {
   display: block;
 }
