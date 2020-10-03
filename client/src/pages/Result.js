@@ -42,7 +42,7 @@ class Result extends React.Component {
     ));
 
     return (
-      <>
+      
         <div className='result'>
           <div className='result-container'>
             <div className='result-title'>
@@ -51,7 +51,7 @@ class Result extends React.Component {
             <div className='cities'>{city}</div>
           </div>
         </div>
-      </>
+      
     );
   }
 }
