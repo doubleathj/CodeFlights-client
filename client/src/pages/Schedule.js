@@ -1,19 +1,34 @@
 import React from 'react';
 import './Schedule.css';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import * as planCheck from '../modules/destinations';
 import * as plan from '../modules/plan';
 import * as view from '../modules/view';
 import * as likes from '../modules/likes';
-import axios from 'axios';
 
 function Schedule(props) {
-  const { city } = props.match.params;
-  const { flights, userPostings, blogPostings, estPrice } = JSON.parse(
-    localStorage.plan
+  const { match } = props;
+  const { city } = match.params;
+  const {
+    flights, userPostings, blogPostings, estPrice,
+  } = JSON.parse(
+    localStorage.plan,
   );
-  let { article, history, isLogin } = props;
+  const {
+    article, history, isLogin, likes, changeLoad,
+  } = props;
+  const getLikes = (id) => {
+    axios.get(`https://codeflights.xyz/post/likes/${id}`).then((data) => {
+      const like = data.data.likes;
+      likes(like);
+      localStorage.likes = JSON.stringify(like);
+      isLogin
+        ? history.push(`/result/${city}/${id}`)
+        : alert('로그인하시면 보실 수 있어요');
+    });
+  };
+
   const getArticle = (id) => {
     axios
       .get(`https://codeflights.xyz/post/article/${id}`)
@@ -23,27 +38,18 @@ function Schedule(props) {
       })
       .then(() => getLikes(id));
   };
-  const getLikes = (id) => {
-    axios.get(`https://codeflights.xyz/post/likes/${id}`).then((data) => {
-      let likes = data.data.likes;
-      props.likes(likes);
-      localStorage.likes = JSON.stringify(likes);
-      isLogin
-        ? history.push(`/result/${city}/${id}`)
-        : alert('로그인하시면 보실 수 있어요');
-    });
-  };
 
   let counter = 10;
   if (userPostings) counter -= userPostings.length;
-  let tickets = flights.map((ele, index) => (
+  const tickets = flights.map((ele, index) => (
     <ul key={index}>
       <li key={index + 1} className='ticket focus'>
         <img
           key={index + 2}
           className='airlineLogo'
           src={ele.carrierLogo}
-        ></img>
+          alt='ci'
+        />
         <div key={index + 3}>{ele.carrierNo}</div>
         <div key={index + 4}>{ele.departure}</div>
       </li>
@@ -69,7 +75,7 @@ function Schedule(props) {
     ));
   }
   let blog = [];
-  for (let i = 0; i < counter; i++) {
+  for (let i = 0; i < counter; i += 1) {
     blog.push(
       <li key={i} className='article'>
         <a key={i + 1} className='articleLink' href={blogPostings[i].link}>
@@ -83,19 +89,28 @@ function Schedule(props) {
       </li>
     );
   }
-  props.changeLoad();
+  changeLoad();
   return (
     <div className='schedule'>
       <div className='focus blink price'>
         <h1>{`${city}행 항공편 `}</h1>
-        <h1>평균 {estPrice}</h1>
+        <h1>
+          평균
+          {estPrice}
+        </h1>
       </div>
       <div className='schedule-containaer'>
-        <div className='info'>{city}에 가는 항공편</div>
+        <div className='info'>
+          {city}
+          에 가는 항공편
+        </div>
         <ul className='ticket-container'>{tickets}</ul>
-        <div className='tip'>{city} 여행 후기</div>
+        <div className='tip'>
+          {city}
+           여행 후기
+        </div>
         <ul className='article-list'>
-          {userPost ? userPost : false}
+          {userPost && userPost}
           {blog}
         </ul>
       </div>
@@ -118,5 +133,5 @@ export default connect(
     changeLoad: (data) => dispatch(plan.changeLoad(data)),
     article: (data) => dispatch(view.view(data)),
     likes: (data) => dispatch(likes.likes(data)),
-  })
+  }),
 )(Schedule);

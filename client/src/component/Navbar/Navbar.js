@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { SidebarUserData } from './LoginSidelist';
 import { IconContext } from 'react-icons';
 import * as FaIcons from 'react-icons/fa';
 import * as IoIcons from 'react-icons/io';
 import * as FiIcons from 'react-icons/fi';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import SidebarUserData from './LoginSidelist';
 import * as loginActions from '../../modules/loginModal';
 import * as signupActions from '../../modules/signupModal';
 import * as signinActions from '../../modules/isLogin';
 import * as sidebarActions from '../../modules/navbar';
 import logo from '../../Images/logo.png';
 import './Navbar.css';
-import axios from 'axios';
 
 function Navbar(props) {
   // const [sidebar, setSidebar] = useState(false);
   // const changeSidebar() = () => setSidebar(!sidebar);
 
   const { login } = props;
-  let logOut = () => {
+  const logOut = () => {
     props.loginStatus();
     axios.post('https://codeflights.xyz/user/logout');
   };
+
+  const {
+    username, changeSidebar, sidebar, changeLogin, changeSignup,
+  } = props;
 
   if (login) {
     return (
@@ -30,28 +34,28 @@ function Navbar(props) {
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
             <Link to='/'>
-              <img src={logo} className='logo focus' />
+              <img src={logo} className='logo focus' alt='logo' />
             </Link>
             <p className='welcome blink'>
-              행복한 상상 중인 {props.username.username}님
+              행복한 상상 중인
+              {username.username}
+              님
             </p>
             <Link to='#' className='menu-bars'>
-              <FaIcons.FaBars onClick={props.changeSidebar} />
+              <FaIcons.FaBars onClick={changeSidebar} />
             </Link>
           </div>
-          <nav className={props.sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className='nav-menu-items' onClick={props.changeSidebar}>
-              <li className='navbar-toggle'></li>
-              {SidebarUserData.map((item, index) => {
-                return (
-                  <li key={index} className={item.className}>
-                    <Link to={item.path}>
-                      {item.icon}
-                      <span>{item.title}</span>
-                    </Link>
-                  </li>
-                );
-              })}
+          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <ul className='nav-menu-items' onClick={changeSidebar}>
+              <li className='navbar-toggle' />
+              {SidebarUserData.map((item, index) => (
+                <li key={index} className={item.className}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+              ))}
               <li onClick={logOut} className='nav-text'>
                 <Link to='/'>
                   <FaIcons.FaSignOutAlt />
@@ -69,15 +73,15 @@ function Navbar(props) {
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
             <Link to='/'>
-              <img src={logo} className='logo' />
+              <img src={logo} className='logo' alt='logo' />
             </Link>
             <Link to='#' className='menu-bars'>
-              <FaIcons.FaBars onClick={props.changeSidebar} />
+              <FaIcons.FaBars onClick={changeSidebar} />
             </Link>
           </div>
-          <nav className={props.sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className='nav-menu-items' onClick={props.changeSidebar}>
-              <li className='navbar-toggle'></li>
+          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <ul className='nav-menu-items' onClick={changeSidebar}>
+              <li className='navbar-toggle' />
               <li className='nav-text'>
                 <FaIcons.FaHome />
                 <span>
@@ -86,13 +90,13 @@ function Navbar(props) {
               </li>
               <li className='nav-text'>
                 <FiIcons.FiUserPlus />
-                <span onClick={props.changeSignup}>
+                <span onClick={changeSignup}>
                   <Link to='#'>SIGN UP</Link>
                 </span>
               </li>
               <li className='nav-text'>
                 <IoIcons.IoIosLogIn />
-                <span onClick={props.changeLogin}>
+                <span onClick={changeLogin}>
                   <Link to='#'>LOGIN</Link>
                 </span>
               </li>
@@ -117,5 +121,5 @@ export default connect(
     changeSignup: () => dispatch(signupActions.changeSignup()),
     loginStatus: () => dispatch(signinActions.loginStatus()),
     changeSidebar: () => dispatch(sidebarActions.changeSidebar()),
-  })
+  }),
 )(Navbar);

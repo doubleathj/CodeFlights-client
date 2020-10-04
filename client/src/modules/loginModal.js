@@ -12,5 +12,5 @@ export default handleActions(
   {
     [CHANGELOGIN]: ({ loginModal }) => ({ loginModal: !loginModal }),
   },
-  initialState
+  initialState,
 );
