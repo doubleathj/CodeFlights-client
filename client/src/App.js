@@ -30,14 +30,14 @@ class App extends React.Component {
     })
       .then((res) => {
         this.props.userinfo(res.data);
-        localStorage.userinfo = JSON.stringify(res.data)
+        localStorage.userinfo = JSON.stringify(res.data);
         this.props.loginStatus();
       })
       .catch(() => console.log('not logged'));
   }
-  
+
   render() {
-    let info = this.state
+    let info = this.state;
     return (
       <>
         <Router>
@@ -68,7 +68,7 @@ class App extends React.Component {
                 </Switch>
               </div>
             </div>
-          </div>          
+          </div>
         </Router>
       </>
     );
