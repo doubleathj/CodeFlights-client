@@ -37,9 +37,7 @@ function Navbar(props) {
               <img src={logo} className='logo focus' alt='logo' />
             </Link>
             <p className='welcome blink'>
-              행복한 상상 중인
-              {username.username}
-              님
+              행복한 상상 중인 {username.username}님
             </p>
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={changeSidebar} />

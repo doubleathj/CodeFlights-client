@@ -44,8 +44,7 @@ function Main(props) {
             <h1>며칠 후에 출발하실 건가요?</h1>
             <input
               type='number'
-              min='0'
-              pattern='[0-9]*'
+              pattern='[0-9]+'
               onKeyPress={handleKeyPressDep}
               className='dep'
               placeholder='숫자를 입력해주세요.'
@@ -57,9 +56,9 @@ function Main(props) {
             <h1>얼마동안 여행하실 건가요?</h1>
             <input
               className='period'
+              type='number'
               onKeyPress={handleKeyPressPeriod}
-              min='0'
-              pattern='[0-9]*'
+              pattern='[0-9]+'
               placeholder='숫자를 입력해주세요.'
             />
           </div>

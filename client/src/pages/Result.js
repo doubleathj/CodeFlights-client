@@ -67,8 +67,7 @@ class Result extends React.Component {
             </div>
           )}
           <p className='result-title'>
-            방문 가능한
-            {destination.length}
+            방문 가능한 {destination.length}
             개의 도시
           </p>
           <div className='cities'>{travel}</div>
