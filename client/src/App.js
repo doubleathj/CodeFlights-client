@@ -15,7 +15,6 @@ import { connect } from 'react-redux';
 import * as signinActions from './modules/isLogin';
 import * as userActions from './modules/user';
 import * as sidebarActions from './modules/navbar';
-import TextEditor from './component/textEditor';
 
 axios.defaults.withCredentials = true;
 class App extends React.Component {
@@ -31,13 +30,14 @@ class App extends React.Component {
     })
       .then((res) => {
         this.props.userinfo(res.data);
+        localStorage.userinfo = JSON.stringify(res.data)
         this.props.loginStatus();
       })
       .catch(() => console.log('not logged'));
   }
-
+  
   render() {
-    let info = this.state;
+    let info = this.state
     return (
       <>
         <Router>
@@ -53,7 +53,6 @@ class App extends React.Component {
             >
               <source src='/Videos/background.mp4' type='video/mp4' />
             </video>
-
             <div className={info && 'test'}>
               <Navbar />
               <SignupModal />
@@ -64,13 +63,12 @@ class App extends React.Component {
                   <Route path='/Mypage' component={Mypage} />
                   <Route path='/Posting' component={Posting} />
                   <Route path='/result/:city/:article' component={View} />
-                  <Route path='/Editor' component={TextEditor} />
                   <Route path='/result/:city' component={Schedule} />
                   <Route path='/search/result' component={Result} />
                 </Switch>
               </div>
             </div>
-          </div>
+          </div>          
         </Router>
       </>
     );

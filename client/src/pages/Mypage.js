@@ -48,11 +48,14 @@ class Mypage extends React.Component {
       method: 'POST',
       url: 'https://codeflights.xyz/user/info',
       data: {
-        username: username || JSON.parse(localStorage.userinfo.username),
+        username: username,
         password: password,
       },
     })
       .then((res) => {
+        let data = {email : this.props.info.email, username : username}
+        this.props.userinfo(data)
+        localStorage.userinfo = JSON.stringify(data)
         this.props.history.push('/');
       })
       .catch((err) => {
@@ -130,6 +133,6 @@ export default connect(
     info: state.user.info,
   }),
   (dispatch) => ({
-    userinfo: () => dispatch(userActions.userinfo()),
+    userinfo: (data) => dispatch(userActions.userinfo(data)),
   })
 )(Mypage);
