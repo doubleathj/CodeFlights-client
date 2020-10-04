@@ -1,27 +1,25 @@
 import React from 'react';
-import Navbar from './component/Navbar/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import Navbar from './component/Navbar/Navbar';
 import Main from './pages/Main';
 import Mypage from './pages/Mypage';
 import Posting from './pages/Editor';
 import './App.css';
-import axios from 'axios';
 import Result from './pages/Result';
 import Schedule from './pages/Schedule';
 import View from './pages/View';
 import LoginModal from './component/Modal/LoginModal';
 import SignupModal from './component/Modal/SignupModal';
-import { connect } from 'react-redux';
 import * as signinActions from './modules/isLogin';
 import * as userActions from './modules/user';
 import * as sidebarActions from './modules/navbar';
 
 axios.defaults.withCredentials = true;
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
+    const { userinfo, loginStatus } = this.props;
     axios({
       method: 'GET',
       url: 'https://codeflights.xyz/user/info',
@@ -29,15 +27,16 @@ class App extends React.Component {
       crendtials: 'include',
     })
       .then((res) => {
-        this.props.userinfo(res.data);
-        localStorage.userinfo = JSON.stringify(res.data)
-        this.props.loginStatus();
+        userinfo(res.data);
+        localStorage.userinfo = JSON.stringify(res.data);
+        loginStatus();
       })
-      .catch(() => console.log('not logged'));
+      .catch();
   }
-  
+
   render() {
-    let info = this.state
+    const info = this.state;
+    const { sidebar } = this.props;
     return (
       <>
         <Router>
@@ -57,7 +56,7 @@ class App extends React.Component {
               <Navbar />
               <SignupModal />
               <LoginModal />
-              <div className={this.props.sidebar && 'App-contents'}>
+              <div className={sidebar && 'App-contents'}>
                 <Switch>
                   <Route path='/' exact component={Main} />
                   <Route path='/Mypage' component={Mypage} />
@@ -68,7 +67,7 @@ class App extends React.Component {
                 </Switch>
               </div>
             </div>
-          </div>          
+          </div>
         </Router>
       </>
     );
@@ -85,5 +84,5 @@ export default connect(
     loginStatus: () => dispatch(signinActions.loginStatus()),
     userinfo: (data) => dispatch(userActions.userinfo(data)),
     changeSidebar: () => dispatch(sidebarActions.changeSidebar()),
-  })
+  }),
 )(App);

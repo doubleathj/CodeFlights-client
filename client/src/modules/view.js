@@ -1,20 +1,20 @@
 import {
   createAction,
-  handleActions
+  handleActions,
 } from 'redux-actions';
 
 const VIEW = 'view';
 
-export const view = createAction(VIEW)
+export const view = createAction(VIEW);
 
 const initialState = {
   article: null,
-  articleLoaded: false
+  articleLoaded: false,
 };
 
 export default handleActions({
   [VIEW]: (state, action) => ({
     article: action.payload,
-    articleLoaded: !state.articleLoaded
-  })
+    articleLoaded: !state.articleLoaded,
+  }),
 }, initialState);

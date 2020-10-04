@@ -12,5 +12,5 @@ export default handleActions(
   {
     [ISLOGIN]: ({ login }) => ({ login: !login }),
   },
-  initialState
+  initialState,
 );

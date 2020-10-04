@@ -46,7 +46,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   grid-auto-rows: minmax(50px, auto);
-  padding : 5vh;
+  padding: 5vh;
   overflow: auto;
 }
 
@@ -54,6 +54,13 @@
   border: 5px solid black;
   background-size: cover;
   color: white;
+}
+
+.Circular {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
 }
 
 @media screen and (max-width: 640px) {
@@ -92,8 +99,10 @@
     display: flex;
     flex-direction: column;
     font-size: x-small;
+
     padding : 4vw;
     gap : 2rem
+
   }
 }
 .titlelayer {
@@ -132,8 +141,6 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
-
-.titlelayer:hover{
-  opacity: 0;  
+.titlelayer:hover {
+  opacity: 0;
 }
-
