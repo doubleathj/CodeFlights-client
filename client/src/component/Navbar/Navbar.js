@@ -71,7 +71,7 @@ function Navbar(props) {
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
             <Link to='/'>
-              <img src={logo} className='logo' alt='logo' />
+              <img src={logo} className='logo focus' alt='logo' />
             </Link>
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={changeSidebar} />
