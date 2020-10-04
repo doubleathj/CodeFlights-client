@@ -9,7 +9,7 @@
 
 body::-webkit-scrollbar {
   display: none;
-}
+} 
 
 .App-contents {
   display: block;
@@ -44,11 +44,10 @@ body::-webkit-scrollbar {
 
 .blink {
   -webkit-animation: blink 2.0s linear infinite;
-
 }
 @keyframes blink{
   0% { color: white;}
-  100% { color : black}
+  100% { color : rgb(232, 255, 26)}
 }
 
 .focus {

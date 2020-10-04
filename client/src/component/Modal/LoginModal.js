@@ -54,6 +54,7 @@ class LoginModal extends React.Component {
     let data = { tokenId: res.tokenId };
     console.log(data);
     axios.post('https://codeflights.xyz/auth/google', data).then((data) => {
+      localStorage.userinfo = JSON.stringify(data.data)
       this.props.userinfo(data.data);
       this.props.loginStatus();
     });

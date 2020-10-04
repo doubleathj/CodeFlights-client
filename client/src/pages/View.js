@@ -34,7 +34,9 @@ function View(props) {
           <div className='likebtn' onClick={handleClickLikes}>
             <span>
               <ThumbUpAltOutlinedIcon color='action' fontSize='small' />
+              
             </span>
+
             {totalLikes}
           </div>
         </div>

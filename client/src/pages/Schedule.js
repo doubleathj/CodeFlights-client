@@ -70,7 +70,9 @@ function Schedule(props) {
   props.changeLoad();
   return (
     <div className='schedule'>
-      <h1 className='focus blink price'>{`${city}행 항공편 평균가격 ${estPrice}`}</h1>
+      <div className='focus blink price'>
+      <h1 >{`${city}행 항공편 `}</h1><h1>평균 {estPrice}</h1>
+      </div>
       <div className='schedule-containaer'>
         <div className='info'>{city}에 가는 항공편</div>
         <ul className='ticket-container'>{tickets}</ul>
