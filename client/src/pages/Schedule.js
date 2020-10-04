@@ -10,7 +10,9 @@ import axios from 'axios';
 
 function Schedule(props) {
   const { city } = props.match.params;
-  const { flights, userPostings, blogPostings, estPrice } = JSON.parse(localStorage.plan);
+  const { flights, userPostings, blogPostings, estPrice } = JSON.parse(
+    localStorage.plan
+  );
   let { article, history, isLogin } = props;
   const getArticle = (id) => {
     axios
@@ -32,16 +34,18 @@ function Schedule(props) {
     });
   };
 
-
   let counter = 10;
   if (userPostings) counter -= userPostings.length;
   let tickets = flights.map((ele, index) => (
     <ul key={index}>
-      <li key={index+1} className='ticket focus' >
-        <img key={index+2} className='airlineLogo' src={ele.carrierLogo}></img>
-        <div key={index+3}>{ele.carrierNo}</div>
-        <div key={index+4}>{ele.departure}</div>
-
+      <li key={index + 1} className='ticket focus'>
+        <img
+          key={index + 2}
+          className='airlineLogo'
+          src={ele.carrierLogo}
+        ></img>
+        <div key={index + 3}>{ele.carrierNo}</div>
+        <div key={index + 4}>{ele.departure}</div>
       </li>
     </ul>
   ));
@@ -49,9 +53,17 @@ function Schedule(props) {
   if (userPostings) {
     userPost = userPostings.map((ele, index) => (
       <ul key={index}>
-        <li key={index+1} className='article' onClick={() => getArticle(ele.id)}>
-          <p key={index+2} className='articleTitle'>{ele.title}</p>
-          <p key={index+3} className='articleContents'>{ele.contents}</p>
+        <li
+          key={index + 1}
+          className='article'
+          onClick={() => getArticle(ele.id)}
+        >
+          <p key={index + 2} className='articleTitle'>
+            {ele.title}
+          </p>
+          <p key={index + 3} className='articleContents'>
+            {ele.contents}
+          </p>
         </li>
       </ul>
     ));
@@ -60,9 +72,13 @@ function Schedule(props) {
   for (let i = 0; i < counter; i++) {
     blog.push(
       <li key={i} className='article'>
-        <a key={i+1}className='articleLink' href={blogPostings[i].link}>
-          <div key={i+2}className='naver-articleTitle'>{blogPostings[i].title}</div>
-          <div key={i+3}className='articleContents'>{blogPostings[i].contents}</div>
+        <a key={i + 1} className='articleLink' href={blogPostings[i].link}>
+          <div key={i + 2} className='naver-articleTitle'>
+            {blogPostings[i].title}
+          </div>
+          <div key={i + 3} className='articleContents'>
+            {blogPostings[i].contents}
+          </div>
         </a>
       </li>
     );
@@ -71,7 +87,8 @@ function Schedule(props) {
   return (
     <div className='schedule'>
       <div className='focus blink price'>
-      <h1 >{`${city}행 항공편 `}</h1><h1>평균 {estPrice}</h1>
+        <h1>{`${city}행 항공편 `}</h1>
+        <h1>평균 {estPrice}</h1>
       </div>
       <div className='schedule-containaer'>
         <div className='info'>{city}에 가는 항공편</div>
@@ -94,7 +111,6 @@ export default connect(
     userPostings: state.plan.userPostings,
     articleLoaded: state.view.articleLoaded,
     isLogin: state.isLogin.login,
-
   }),
   (dispatch) => ({
     destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),

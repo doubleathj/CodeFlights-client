@@ -29,10 +29,12 @@ function Navbar(props) {
       <>
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
-            <Link to='/' >
+            <Link to='/'>
               <img src={logo} className='logo focus' />
             </Link>
-            <p className="welcome blink">행복한 상상중인 {props.username.username} 여행자님</p>
+            <p className='welcome blink'>
+              행복한 상상 중인 {props.username.username}님
+            </p>
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={props.changeSidebar} />
             </Link>
@@ -108,7 +110,7 @@ export default connect(
     signupModal: state.signupModal.signupModal,
     login: state.isLogin.login,
     sidebar: state.navbar.sidebar,
-    username : state.user.info
+    username: state.user.info,
   }),
   (dispatch) => ({
     changeLogin: () => dispatch(loginActions.changeLogin()),

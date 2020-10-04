@@ -5,6 +5,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import * as loginActions from '../../modules/loginModal';
 import * as signupActions from '../../modules/signupModal';
+import { TransferWithinAStationSharp } from '@material-ui/icons';
 axios.defaults.withCredentials = true;
 
 class SignupModal extends React.Component {
@@ -60,7 +61,7 @@ class SignupModal extends React.Component {
       crendtials: 'include',
     })
       .then(() => {
-        this.props.handleSignupModal();
+        this.props.changeSignup();
       })
       .catch((err) => {
         console.log('err: ', err);

@@ -5,12 +5,17 @@ import * as planCheck from '../modules/destinations';
 import * as plan from '../modules/plan';
 import axios from 'axios';
 import * as travelActions from '../modules/travel';
+import { CircularProgress } from '@material-ui/core';
 
 class Result extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = { inload: false };
   }
+
   planToGo = (city) => {
+    this.setState({ inload: true });
     axios
       .post('https://codeflights.xyz/search/result/destination', { city: city })
       .then((res) => {
@@ -32,24 +37,32 @@ class Result extends React.Component {
         {this.props.load && this.props.city === ele.destinations ? (
           this.props.history.push(`/result/${this.props.city}`)
         ) : (
-          <div className='where focus' style={{ backgroundImage: `url(${ele.img})` }}>
-            <div className='titlelayer'><h2 className='cityname'>{ele.destinations}</h2></div>
+          <div
+            className='where focus'
+            style={{ backgroundImage: `url(${ele.img})` }}
+          >
+            <div className='titlelayer'>
+              <h2 className='cityname'>{ele.destinations}</h2>
+            </div>
           </div>
         )}
       </div>
     ));
 
     return (
-      
-        <div className='result'>
-          <div className='result-container'>
-            <p className='result-title'>
-              방문 가능한 {destination.length}개의 도시
-            </p>
-            <div className='cities'>{city}</div>
-          </div>
+      <div className='result'>
+        <div className='result-container'>
+          {this.state.inload && (
+            <div className='Circular'>
+              <CircularProgress />
+            </div>
+          )}
+          <p className='result-title'>
+            방문 가능한 {destination.length}개의 도시
+          </p>
+          <div className='cities'>{city}</div>
         </div>
-      
+      </div>
     );
   }
 }
