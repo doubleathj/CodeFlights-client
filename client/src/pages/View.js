@@ -14,28 +14,28 @@ function View(props) {
   const [isClick, setClick] = useState(false);
 
   const handleClickLikes = () => {
-    
     axios.post(`https://codeflights.xyz/post/likes/${id}`).then((data) => {
-      setClick(data.data.like)  ;
+      setClick(data.data.like);
       props.likes(data.data.likes);
-    })
+    });
   };
 
   return (
     <>
       <div className='view'>
-        <div className='articleTitle'>{title}</div>
-        <span className={isClick ? 'noHeart' : 'heart'}
-              onClick={handleClickLikes}
-            ></span><h2 className='numb'>{totalLikes}</h2>
+        <div className='viewTitle'>{title}</div>
+        <span
+          className={isClick ? 'noHeart' : 'heart'}
+          onClick={handleClickLikes}
+        ></span>
+        <h2 className='numb'>{totalLikes}</h2>
         <hr />
-        <div className='aticleContents'>{contents}</div>
+        <div className='viewContents'>{contents}</div>
         <hr />
-        <div className='articleFooter'>
-            <Link to={`/result/${city}`}>
+        <div className='viewFooter'>
+          <Link to={`/result/${city}`}>
             <button className='gobacklist'>목록으로 돌아가기</button>
           </Link>
-         
         </div>
       </div>
     </>

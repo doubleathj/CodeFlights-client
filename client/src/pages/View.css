@@ -1,4 +1,3 @@
-
 .view {
   position: absolute;
   top: 20vh;
@@ -13,34 +12,34 @@
   opacity: 0.9;
 }
 
-.articleTitle {
+.viewTitle {
   font-size: xx-large;
 }
 
-.aticleContents {
+.viewContents {
   font-size: medium;
 }
 
-.articleFooter {
+.viewFooter {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap : 5px
+  gap: 5px;
 }
 
 .gobacklist {
-  width : 100%;
+  width: 100%;
   height: 100%;
   border: 2px solid #eae2e1;
   border-radius: 5px;
   padding: 1px;
   background-color: rgb(214, 227, 245);
-  flex : 1
+  flex: 1;
 }
 
 .likebox {
-  width : 100%;
+  width: 100%;
   height: 100%;
-  flex:1;
+  flex: 1;
   border: 2px solid #eae2e1;
   border-radius: 5px;
   display: flex;
@@ -48,17 +47,17 @@
   background-color: rgb(214, 227, 245);
 }
 
-.heart, .noHeart {
+.heart,
+.noHeart {
   position: absolute;
   top: 21%;
-  right : 10%;
+  right: 10%;
 }
 .numb {
-  
   color: black;
   position: absolute;
   top: 20%;
-  right : 8%;
+  right: 8%;
 }
 .heart {
   height: 30px;
@@ -90,10 +89,6 @@
   }
 }
 
-
-
-
-
 hr {
   border: 0;
   clear: both;
@@ -104,7 +99,7 @@ hr {
 }
 
 @media screen and (max-width: 640px) {
-  .aticleview {
+  .view {
     position: absolute;
     top: 20vh;
     left: 10vw;
@@ -118,5 +113,3 @@ hr {
     opacity: 0.9;
   }
 }
-
-
