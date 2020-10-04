@@ -43,20 +43,23 @@ body::-webkit-scrollbar {
 }
 
 .blink {
-  -webkit-animation: blink 2.0s linear infinite;
-
+  -webkit-animation: blink 2s linear infinite;
 }
-@keyframes blink{
-  0% { color: white;}
-  100% { color : black}
+@keyframes blink {
+  0% {
+    color: white;
+  }
+  100% {
+    color: black;
+  }
 }
 
 .focus {
-  -webkit-transition:.3s;
-  transition:.3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
-.focus:hover{
-  -webkit-transform:scale(1.1);
-  transform:scale(1.1);
+.focus:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }

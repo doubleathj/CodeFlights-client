@@ -1,42 +1,48 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './View.css';
 import * as view from '../modules/view';
 import * as likes from '../modules/likes';
-import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { SvgIcon } from '@material-ui/core';
+import Heart from 'react-animated-heart';
 
 function View(props) {
-
   let { city } = props.match.params;
   const { title, contents, id } = JSON.parse(localStorage.article);
   const totalLikes = props.numOfLikes;
 
+  const [isClick, setClick] = useState(false);
+
   const handleClickLikes = () => {
-    axios.post(`https://codeflights.xyz/post/likes/${id}`)
-    .then(data => {
-      console.log(data)
-      props.likes(data.data.likes)})
-  }
+    axios.post(`https://codeflights.xyz/post/likes/${id}`).then((data) => {
+      console.log(data);
+      props.likes(data.data.likes);
+    });
+  };
+
   return (
     <>
       <div className='view'>
-        <div className='aticleview'>
-          <h1>{title}</h1>
-          <hr />
-          <p>{contents}</p>
+        <div className='articleTitle'>{title}</div>
+        <hr />
+        <div className='aticleContents'>{contents}</div>
+        <hr />
+        <div className='articleFooter'>
           <Link to={`/result/${city}`}>
-            <button>목록으로 돌아가기</button>
+            <button className='gobacklist'>목록으로 돌아가기</button>
           </Link>
-          <div className='likebtn' onClick={handleClickLikes}>
-            <span>
-              <ThumbUpAltOutlinedIcon color='action' fontSize='small' />
-            </span>
-            {totalLikes}
-          </div>
+
+          <button className='likebox' onClick={handleClickLikes}>
+            <span
+              className='heart'
+              isClick={isClick}
+              onClick={() => setClick(!isClick)}
+            ></span>
+            <Heart isClick={isClick} onClick={() => setClick(!isClick)} />
+            <span className='like'> Like</span>
+            <span className='numb'>{totalLikes}</span>
+          </button>
         </div>
       </div>
     </>
