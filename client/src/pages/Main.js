@@ -42,8 +42,7 @@ function Main(props) {
             <input
               type='number'
               min='0'
-              inputMode='numeric'
-              pattern='[0-9]*'
+              pattern='\d*'
               onKeyPress={handleKeyPressDep}
               className='dep'
               placeholder='숫자를 입력해주세요.'
@@ -59,8 +58,7 @@ function Main(props) {
               className='period'
               onKeyPress={handleKeyPressPeriod}
               min='0'
-              inputMode='numeric'
-              pattern='[0-9]*'
+              pattern='\d*'
               placeholder='숫자를 입력해주세요.'
             ></input>
           </div>
