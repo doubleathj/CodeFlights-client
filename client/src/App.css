@@ -50,7 +50,7 @@ body::-webkit-scrollbar {
     color: white;
   }
   100% {
-    color: black;
+    color: rgb(232, 255, 26);
   }
 }
 

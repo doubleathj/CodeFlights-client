@@ -106,11 +106,13 @@ span {
     font-size: 2rem;
     background: none;
     position: fixed;
-    right: 2rem;
+    right: 1rem;
     top: 4vh;
   }
   .welcome {
-    top: 4vh;
+    top: 5vh;
+    right: 4rem;
+    font-size: x-small;
   }
   .logo {
     width: 60px;

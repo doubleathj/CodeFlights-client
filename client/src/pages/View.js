@@ -32,7 +32,6 @@ function View(props) {
           <Link to={`/result/${city}`}>
             <button className='gobacklist'>목록으로 돌아가기</button>
           </Link>
-
           <button className='likebox' onClick={handleClickLikes}>
             <span
               className='heart'
