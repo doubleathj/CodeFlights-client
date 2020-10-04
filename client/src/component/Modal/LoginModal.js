@@ -111,7 +111,7 @@ export default connect(
   (state) => ({
     loginModal: state.loginModal.loginModal,
     signupModal: state.signupModal.signupModal,
-    isLogin: state.isLogin.isLogin,
+    isLogin: state.isLogin.login,
     userinfo: state.user.userinfo,
   }),
   (dispatch) => ({
