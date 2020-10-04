@@ -1,72 +1,116 @@
 import React from 'react';
 import './Schedule.css';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import * as planCheck from '../modules/destinations';
 import * as plan from '../modules/plan';
+import * as view from '../modules/view';
+import * as likes from '../modules/likes';
 
 function Schedule(props) {
-  const { city } = props.match.params;
-  const { flights, userPostings, blogPostings } = props;
-  console.log(city);
-  console.log(props);
-  console.log(flights, userPostings, blogPostings);
+  const { match } = props;
+  const { city } = match.params;
+  const {
+    flights, userPostings, blogPostings, estPrice,
+  } = JSON.parse(
+    localStorage.plan,
+  );
+  const {
+    article, history, isLogin, likes, changeLoad,
+  } = props;
+  const getLikes = (id) => {
+    axios.get(`https://codeflights.xyz/post/likes/${id}`).then((data) => {
+      const like = data.data.likes;
+      likes(like);
+      localStorage.likes = JSON.stringify(like);
+      isLogin
+        ? history.push(`/result/${city}/${id}`)
+        : alert('로그인하시면 보실 수 있어요');
+    });
+  };
+
+  const getArticle = (id) => {
+    axios
+      .get(`https://codeflights.xyz/post/article/${id}`)
+      .then((res) => {
+        article(res.data);
+        localStorage.article = JSON.stringify(res.data);
+      })
+      .then(() => getLikes(id));
+  };
+
   let counter = 10;
   if (userPostings) counter -= userPostings.length;
-  let tickets = flights.map((ele) => (
-    <li className='ticket'>
-      <div>{ele.carrier}</div>
-      <div>{ele.carrierNo}</div>
-      <div>{ele.departure}</div>
-    </li>
+  const tickets = flights.map((ele, index) => (
+    <ul key={index}>
+      <li key={index + 1} className='ticket focus'>
+        <img
+          key={index + 2}
+          className='airlineLogo'
+          src={ele.carrierLogo}
+          alt='ci'
+        />
+        <div key={index + 3}>{ele.carrierNo}</div>
+        <div key={index + 4}>{ele.departure}</div>
+      </li>
+    </ul>
   ));
   let userPost;
   if (userPostings) {
-    userPost = userPostings.map((ele) => (
-      <li className='article'>
-        <Link className='view' to={`/result/${city}/${ele.id}`}>
-          <p className='title'>{ele.title}</p>
-          <p className='contents'>{ele.contents}</p>
-        </Link>
-      </li>
+    userPost = userPostings.map((ele, index) => (
+      <ul key={index}>
+        <li
+          key={index + 1}
+          className='article'
+          onClick={() => getArticle(ele.id)}
+        >
+          <p key={index + 2} className='articleTitle'>
+            {ele.title}
+          </p>
+          <p key={index + 3} className='articleContents'>
+            {ele.contents}
+          </p>
+        </li>
+      </ul>
     ));
   }
   let blog = [];
-  for (let i = 0; i < counter; i++) {
-    blog[i] = (
-      <li className='article'>
-        {/* <a className='view' href={blogPostings[i].link}>
-          <p className='title'>{blogPostings[i].title}</p>
-          <p className='contents'>{blogPostings[i].contents}</p>
-        </a> */}
+  for (let i = 0; i < counter; i += 1) {
+    blog.push(
+      <li key={i} className='article'>
+        <a key={i + 1} className='articleLink' href={blogPostings[i].link}>
+          <div key={i + 2} className='naver-articleTitle'>
+            {blogPostings[i].title}
+          </div>
+          <div key={i + 3} className='articleContents'>
+            {blogPostings[i].contents}
+          </div>
+        </a>
       </li>
     );
   }
-
+  changeLoad();
   return (
     <div className='schedule'>
-      <video
-        className='video'
-        autoPlay='true'
-        playsInline='true'
-        loop='loop'
-        muted='true'
-        width='1280'
-        height='720'
-      >
-        <source src='/Videos/background.mp4' type='video/mp4' />
-      </video>
+      <div className='focus blink price'>
+        <h1>{`${city}행 항공편 `}</h1>
+        <h1>
+          평균
+          {estPrice}
+        </h1>
+      </div>
       <div className='schedule-containaer'>
         <div className='info'>
-          <h2>{city}로 가는 항공편</h2>
+          {city}
+          에 가는 항공편
         </div>
         <ul className='ticket-container'>{tickets}</ul>
         <div className='tip'>
-          <h2>{city}의 여행 팁</h2>
+          {city}
+           여행 후기
         </div>
         <ul className='article-list'>
-          {userPost ? userPost : false}
+          {userPost && userPost}
           {blog}
         </ul>
       </div>
@@ -80,9 +124,14 @@ export default connect(
     flights: state.plan.flights,
     blogPostings: state.plan.blogPostings,
     userPostings: state.plan.userPostings,
+    articleLoaded: state.view.articleLoaded,
+    isLogin: state.isLogin.login,
   }),
   (dispatch) => ({
     destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
     getPlan: (data) => dispatch(plan.getPlan(data)),
-  })
+    changeLoad: (data) => dispatch(plan.changeLoad(data)),
+    article: (data) => dispatch(view.view(data)),
+    likes: (data) => dispatch(likes.likes(data)),
+  }),
 )(Schedule);

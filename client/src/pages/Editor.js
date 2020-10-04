@@ -1,12 +1,12 @@
 import React from 'react';
 import './Editor.css';
+
 const axios = require('axios');
 
 class Posting extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      author: '',
       title: '',
       content: '',
       // board : [{author : null, title : null, content : null}]
@@ -20,30 +20,24 @@ class Posting extends React.Component {
   };
 
   postingArticle() {
-    return axios.post('https://codeflights.xyz/post/write', {
-      author: this.state.author + 1,
-      title: this.state.title,
-      content: this.state.content,
-    });
+    const { title, content } = this.state;
+    const { history } = this.props;
+    return axios
+      .post('https://codeflights.xyz/post/write', {
+        title,
+        content,
+      })
+      .then(() => {
+        history.push('/');
+      });
   }
 
   render() {
     return (
       <div className='editor'>
-        <video
-          className='video'
-          autoPlay='true'
-          playsInline='true'
-          loop='loop'
-          muted='true'
-          width='1280'
-          height='720'
-        >
-          <source src='/Videos/background.mp4' type='video/mp4' />
-        </video>
         <div className='article-container'>
           <form
-            className='article'
+            className='editorArticle'
             onSubmit={(e) => {
               e.preventDefault();
               this.postingArticle();
@@ -51,16 +45,17 @@ class Posting extends React.Component {
           >
             <input
               type='text'
-              className='title'
-              placeholder='제목을 입력하세요'
+              className='editorTitle'
+              placeholder='어디를 추억하고 싶으신가요?'
               onChange={this.handleChange('title')}
-            ></input>
+            />
+            <hr />
             <textarea
-              className='contents'
+              className='editorContents'
               rows={15}
-              placeholder='내용을 입력하세요'
+              placeholder='여행의 기억을 기록해주세요.'
               onChange={this.handleChange('content')}
-            ></textarea>
+            />
             <button type='submit'>Submit</button>
           </form>
         </div>

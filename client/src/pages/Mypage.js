@@ -3,75 +3,89 @@ import './Mypage.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as userActions from '../modules/user';
+import lock from '../Images/lock.png';
+import modify from '../Images/modify.png';
+
 axios.defaults.withCredentials = true;
 
 class Mypage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      username: null,
       password: '',
-      password_confirm: '',
+      passwordConfirm: '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleChangeUserInfoSubmit = this.handleChangeUserInfoSubmit.bind(
-      this
-    );
+    this.handleChangeUserInfoSubmit = this.handleChangeUserInfoSubmit.bind(this);
   }
 
   handleChange = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
 
+  handlePasswordMatch() {
+    const { password, passwordConfirm } = this.state;
+    return password === passwordConfirm;
+  }
+
   handleChangeUserInfoSubmit(e) {
     const { username, password } = this.state;
+    const { info, userinfo, history } = this.props;
     axios({
       method: 'POST',
       url: 'https://codeflights.xyz/user/info',
       data: {
-        username: username,
-        password: password,
+        username,
+        password,
       },
-    }).catch((err) => {
-      console.log('err: ', err);
-    });
+    })
+      .then(() => {
+        const data = { email: info.email, username };
+        userinfo(data);
+        localStorage.userinfo = JSON.stringify(data);
+        history.push('/');
+      })
+      .catch();
     e.preventDefault();
   }
 
+  renderPasswordCheckMessage() {
+    const { passwordConfirm } = this.state;
+
+    if (passwordConfirm) {
+      if (!this.handlePasswordMatch()) {
+        return (
+          <div className='invaild-message'>패스워드가 일치하지 않습니다.</div>
+        );
+      }
+    }
+    return false;
+  }
+
   render() {
-    const { info } = this.props;
-    console.log(info)
+    const { username, email } = JSON.parse(localStorage.userinfo);
+    const { password, passwordConfirm } = this.state;
     return (
       <div className='mypage'>
-        <video
-          className='video'
-          autoPlay='true'
-          playsInline='true'
-          loop='loop'
-          muted='true'
-          width='1280'
-          height='720'
-        >
-          <source src='/Videos/background.mp4' type='video/mp4' />
-        </video>
         <div className='userinfo-container'>
           <div className='userinfo'>
             <span className='usertitle'>
-              <h1>Mypage</h1>
+              <img className='myPageIcons' src={lock} alt='lock' />
             </span>
             <h3>
-              username:
-              <span className='username'>{info.username}</span>
+              Username
+              <span className='username'>{username}</span>
             </h3>
-            <h3>
-              email:
-              <span className='email'>{info.email}</span>
+            <h3 className='emailH3'>
+              E-mail
+              <span className='email'>{email}</span>
             </h3>
           </div>
           <hr />
           <div className='changeinfo-container'>
             <span className='changeinfotitle'>
-              <h1>회원정보 수정</h1>
+              <img className='myPageIcons' src={modify} alt='modify' />
             </span>
             <form
               className='changeinfo'
@@ -89,7 +103,7 @@ class Mypage extends React.Component {
                 minLength='8'
                 name='password'
                 placeholder='변경할 비밀번호를 입력하세요'
-                value={this.state.password}
+                value={password}
                 onChange={this.handleChange('password')}
               />
               <input
@@ -97,18 +111,20 @@ class Mypage extends React.Component {
                 minLength='8'
                 name='passwordConfirm'
                 placeholder='비밀번호를 다시 한번 입력하세요'
-                value={this.state.passwordConfirm}
+                value={passwordConfirm}
                 onChange={this.handleChange('passwordConfirm')}
               />
               <div>
+                {this.renderPasswordCheckMessage()}
                 <button className='submitBtn' type='submit'>
-                  submit
+                  Submit
                 </button>
               </div>
             </form>
           </div>
         </div>
       </div>
+
     );
   }
 }
@@ -117,6 +133,6 @@ export default connect(
     info: state.user.info,
   }),
   (dispatch) => ({
-    userinfo: () => dispatch(userActions.userinfo()),
-  })
+    userinfo: (data) => dispatch(userActions.userinfo(data)),
+  }),
 )(Mypage);

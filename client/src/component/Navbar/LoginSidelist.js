@@ -1,7 +1,7 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 
-export const SidebarUserData = [
+const SidebarUserData = [
   {
     title: 'Main',
     path: '/',
@@ -20,10 +20,6 @@ export const SidebarUserData = [
     icon: <FaIcons.FaTelegramPlane />,
     className: 'nav-text',
   },
-  // {
-  //   title: 'LOGOUT',
-  //   path: '/',
-  //   icon: <FaIcons.FaSignOutAlt />,
-  //   className: 'nav-text',
-  // },
 ];
+
+export default SidebarUserData;

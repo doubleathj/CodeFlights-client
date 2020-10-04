@@ -1,13 +1,12 @@
+import GoogleLogin from 'react-google-login';
 import React from 'react';
 import './Modal.css';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as loginActions from '../../modules/loginModal';
 import * as signupActions from '../../modules/signupModal';
 import * as signinActions from '../../modules/isLogin';
 import * as userActions from '../../modules/user';
-import GoogleLogin from 'react-google-login';
 
 axios.defaults.withCredentials = true;
 
@@ -25,74 +24,68 @@ class LoginModal extends React.Component {
   handleChange = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
+
   goToSignUp = () => {
-    this.props.changeLogin();
-    this.props.changeSignup();
+    const { changeLogin, changeSignup } = this.props;
+    changeLogin();
+    changeSignup();
   };
-  updateUserinfo = () => {
-    axios({
-      method: 'GET',
-      url: 'https://codeflights.xyz/user/info',
-      withCredentials: true,
-      crendtials: 'include',
-    }).then((res) => {
-      this.props.userinfo(res.data);
+
+  responseGoogle = (res) => {
+    const { changeLogin, userinfo, loginStatus } = this.props;
+    changeLogin();
+    const data = { tokenId: res.tokenId };
+
+    axios.post('https://codeflights.xyz/auth/google', data).then((result) => {
+      localStorage.userinfo = JSON.stringify(result.data);
+      userinfo(result.data);
+      loginStatus();
     });
   };
-  
+
   handleLoginSubmit(e) {
     const { email, password } = this.state;
-    console.log('submit')
-    let data = { email: email, password: password };
+    const { userinfo, loginStatus, changeLogin } = this.props;
+    const data = { email, password };
     axios
       .post('https://codeflights.xyz/user/signin', data, {
         withCredentials: true,
       })
-      .then(() => {
-        this.props.loginStatus();
-        this.props.changeLogin();
+      .then((res) => {
+        userinfo(res.data);
+        localStorage.userinfo = JSON.stringify(res.data);
+        loginStatus();
+        changeLogin();
       })
-      .then(() => this.updateUserinfo())
-      .catch((err) => {
-        console.log('err: ', err);
-      });
+      .catch();
     e.preventDefault();
   }
 
-  responseGoogle = (res) => {
-    this.props.changeLogin()
-    let data = { tokenId : res.tokenId }
-    console.log(data)
-    axios.post('https://codeflights.xyz/auth/google', data)
-    .then((data) => {
-      this.props.userinfo(data.data)
-      this.props.loginStatus()
-    })
-  }
   render() {
-    const { loginModal } = this.props;
+    const { loginModal, changeLogin } = this.props;
+    const { email, password } = this.state;
     if (loginModal) {
       return (
         <div>
-          <div className='modal'></div>
+          <div className='modal' />
           <div className='modalContents'>
             <form className='modalForm' onSubmit={this.handleLoginSubmit}>
               <div className='login'>
-                <h3 onClick={this.props.changeLogin}>✖</h3>
+                <h3 onClick={changeLogin}>✖</h3>
                 <h2>로그인</h2>
               </div>
               <GoogleLogin
-                  clientId="956886343865-f8080heu2d93mukf82e027btrg0mgcl8.apps.googleusercontent.com"
-                  buttonText="Login"
-                  onSuccess={this.responseGoogle}
-                  onFailure={this.responseGoogle}
-                  cookiePolicy={'single_host_origin'}
+                clientId='956886343865-f8080heu2d93mukf82e027btrg0mgcl8.apps.googleusercontent.com'
+                buttonText='Login'
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+                cookiePolicy='single_host_origin'
               />
               <input
                 type='email'
                 name='email'
                 placeholder='Email'
-                value={this.state.email}
+                value={email}
                 onChange={this.handleChange('email')}
               />
               <input
@@ -100,7 +93,7 @@ class LoginModal extends React.Component {
                 minLength='8'
                 name='password'
                 placeholder='Password'
-                value={this.state.password}
+                value={password}
                 onChange={this.handleChange('password')}
               />
               <button type='submit'>Login</button>
@@ -112,7 +105,7 @@ class LoginModal extends React.Component {
         </div>
       );
     } else {
-      return <div></div>;
+      return <div />;
     }
   }
 }
@@ -121,7 +114,7 @@ export default connect(
   (state) => ({
     loginModal: state.loginModal.loginModal,
     signupModal: state.signupModal.signupModal,
-    isLogin: state.isLogin.isLogin,
+    isLogin: state.isLogin.login,
     userinfo: state.user.userinfo,
   }),
   (dispatch) => ({
@@ -129,5 +122,5 @@ export default connect(
     changeSignup: () => dispatch(signupActions.changeSignup()),
     loginStatus: () => dispatch(signinActions.loginStatus()),
     userinfo: (data) => dispatch(userActions.userinfo(data)),
-  })
+  }),
 )(LoginModal);
