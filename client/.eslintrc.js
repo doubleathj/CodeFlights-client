@@ -1,4 +1,5 @@
 module.exports = {
+  parser: 'babel-eslint',
   env: {
     browser: true,
     es6: true,
@@ -17,6 +18,8 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'jsx-quotes': [2, 'single'],
+    'jsx-quotes': [2, 'prefer-single'],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/prop-types': 0
   },
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 import './Editor.css';
+
 const axios = require('axios');
 
 class Posting extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      author: '',
       title: '',
       content: '',
       // board : [{author : null, title : null, content : null}]
@@ -20,14 +20,15 @@ class Posting extends React.Component {
   };
 
   postingArticle() {
+    const { title, content } = this.state;
+    const { history } = this.props;
     return axios
       .post('https://codeflights.xyz/post/write', {
-        author: this.state.author + 1,
-        title: this.state.title,
-        content: this.state.content,
+        title,
+        content,
       })
-      .then((res) => {
-        this.props.history.push('/');
+      .then(() => {
+        history.push('/');
       });
   }
 
@@ -47,14 +48,14 @@ class Posting extends React.Component {
               className='editorTitle'
               placeholder='어디를 추억하고 싶으신가요?'
               onChange={this.handleChange('title')}
-            ></input>
+            />
             <hr />
             <textarea
               className='editorContents'
               rows={15}
               placeholder='여행의 기억을 기록해주세요.'
               onChange={this.handleChange('content')}
-            ></textarea>
+            />
             <button type='submit'>Submit</button>
           </form>
         </div>

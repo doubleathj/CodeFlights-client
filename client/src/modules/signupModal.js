@@ -1,6 +1,6 @@
 import {
   createAction,
-  handleActions
+  handleActions,
 } from 'redux-actions';
 
 const CHANGESIGNUP = 'changeSignup';
@@ -12,11 +12,9 @@ const initialState = {
 };
 
 export default handleActions({
-    [CHANGESIGNUP]: ({
-      signupModal
-    }) => ({
-      signupModal: !signupModal
-    }),
-  },
-  initialState
-);
+  [CHANGESIGNUP]: ({
+    signupModal,
+  }) => ({
+    signupModal: !signupModal,
+  }),
+}, initialState);

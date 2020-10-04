@@ -1,6 +1,6 @@
 import {
   createAction,
-  handleActions
+  handleActions,
 } from 'redux-actions';
 
 const WHENISDEPDATE = 'whenIsDepDate';
@@ -8,16 +8,13 @@ const WHENISDEPDATE = 'whenIsDepDate';
 export const whenIsDepDate = createAction(WHENISDEPDATE);
 
 const initialState = {
-  isLoad: false
+  isLoad: false,
 };
 
 export default handleActions({
-    [WHENISDEPDATE]: ({
-      isLoad
-    }) => ({
-      isLoad: !isLoad
-    })
-
-  },
-  initialState
-);
+  [WHENISDEPDATE]: ({
+    isLoad,
+  }) => ({
+    isLoad: !isLoad,
+  }),
+}, initialState);

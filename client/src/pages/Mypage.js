@@ -3,8 +3,9 @@ import './Mypage.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as userActions from '../modules/user';
-import lock from '../Images/lock.png'
-import modify from '../Images/modify.png'
+import lock from '../Images/lock.png';
+import modify from '../Images/modify.png';
+
 axios.defaults.withCredentials = true;
 
 class Mypage extends React.Component {
@@ -13,12 +14,10 @@ class Mypage extends React.Component {
     this.state = {
       username: null,
       password: '',
-      password_confirm: '',
+      passwordConfirm: '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleChangeUserInfoSubmit = this.handleChangeUserInfoSubmit.bind(
-      this
-    );
+    this.handleChangeUserInfoSubmit = this.handleChangeUserInfoSubmit.bind(this);
   }
 
   handleChange = (key) => (e) => {
@@ -28,6 +27,27 @@ class Mypage extends React.Component {
   handlePasswordMatch() {
     const { password, passwordConfirm } = this.state;
     return password === passwordConfirm;
+  }
+
+  handleChangeUserInfoSubmit(e) {
+    const { username, password } = this.state;
+    const { info, userinfo, history } = this.props;
+    axios({
+      method: 'POST',
+      url: 'https://codeflights.xyz/user/info',
+      data: {
+        username,
+        password,
+      },
+    })
+      .then(() => {
+        const data = { email: info.email, username };
+        userinfo(data);
+        localStorage.userinfo = JSON.stringify(data);
+        history.push('/');
+      })
+      .catch();
+    e.preventDefault();
   }
 
   renderPasswordCheckMessage() {
@@ -40,52 +60,32 @@ class Mypage extends React.Component {
         );
       }
     }
-  }
-
-  handleChangeUserInfoSubmit(e) {
-    const { username, password } = this.state;
-    axios({
-      method: 'POST',
-      url: 'https://codeflights.xyz/user/info',
-      data: {
-        username: username,
-        password: password,
-      },
-    })
-      .then((res) => {
-        let data = {email : this.props.info.email, username : username}
-        this.props.userinfo(data)
-        localStorage.userinfo = JSON.stringify(data)
-        this.props.history.push('/');
-      })
-      .catch((err) => {
-        console.log('err: ', err);
-      });
-    e.preventDefault();
+    return false;
   }
 
   render() {
-    let { username , email } = JSON.parse(localStorage.userinfo);
+    const { username, email } = JSON.parse(localStorage.userinfo);
+    const { password, passwordConfirm } = this.state;
     return (
       <div className='mypage'>
         <div className='userinfo-container'>
           <div className='userinfo'>
             <span className='usertitle'>
-              <img className='myPageIcons' src={lock}></img>
+              <img className='myPageIcons' src={lock} alt='lock' />
             </span>
             <h3>
-              Username 
+              Username
               <span className='username'>{username}</span>
             </h3>
             <h3 className='emailH3'>
-              E-mail 
+              E-mail
               <span className='email'>{email}</span>
             </h3>
           </div>
           <hr />
           <div className='changeinfo-container'>
             <span className='changeinfotitle'>
-              <img className='myPageIcons' src={modify}></img>
+              <img className='myPageIcons' src={modify} alt='modify' />
             </span>
             <form
               className='changeinfo'
@@ -103,7 +103,7 @@ class Mypage extends React.Component {
                 minLength='8'
                 name='password'
                 placeholder='변경할 비밀번호를 입력하세요'
-                value={this.state.password}
+                value={password}
                 onChange={this.handleChange('password')}
               />
               <input
@@ -111,7 +111,7 @@ class Mypage extends React.Component {
                 minLength='8'
                 name='passwordConfirm'
                 placeholder='비밀번호를 다시 한번 입력하세요'
-                value={this.state.passwordConfirm}
+                value={passwordConfirm}
                 onChange={this.handleChange('passwordConfirm')}
               />
               <div>
@@ -124,7 +124,7 @@ class Mypage extends React.Component {
           </div>
         </div>
       </div>
-      
+
     );
   }
 }
@@ -134,5 +134,5 @@ export default connect(
   }),
   (dispatch) => ({
     userinfo: (data) => dispatch(userActions.userinfo(data)),
-  })
+  }),
 )(Mypage);

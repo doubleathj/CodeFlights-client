@@ -2,72 +2,71 @@ import React, { useState } from 'react';
 import './Main.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { CircularProgress } from '@material-ui/core';
 import * as travelActions from '../modules/travel';
 import * as planCheck from '../modules/destinations';
-import { CircularProgress } from '@material-ui/core';
 
 function Main(props) {
   const [depDate, setDep] = useState(null);
   const [period, setPeriod] = useState(null);
-  let handleKeyPressDep = (e) => {
+  const { isLoad, history } = props;
+
+  const handleKeyPressDep = (e) => {
     if (e.key === 'Enter') {
       setDep(e.target.value);
       e.target.value = null;
     }
   };
-  let handleKeyPressPeriod = (e) => {
+  const handleKeyPressPeriod = (e) => {
     if (e.key === 'Enter') {
       setPeriod(e.target.value);
     }
   };
-  let searchDate = () => {
+  const searchDate = () => {
+    const { destinationsCheck, start } = props;
     axios
       .post('https://codeflights.xyz/search/result', {
         departureDate: depDate,
         arrivalDate: period,
       })
       .then((res) => {
-        props.destinationsCheck(res.data);
+        destinationsCheck(res.data);
         localStorage.destinations = JSON.stringify(res.data);
       })
-      .then(() => props.start());
+      .then(() => start());
   };
 
   return (
     <div className='Main'>
       <div className='search'>
-        {depDate === null ? (
+        {depDate === null && (
           <div>
             <h1>며칠 후에 출발하실 건가요?</h1>
             <input
               type='number'
               min='0'
-              pattern='\d*'
+              pattern='[0-9]*'
               onKeyPress={handleKeyPressDep}
               className='dep'
               placeholder='숫자를 입력해주세요.'
-            ></input>
+            />
           </div>
-        ) : (
-          false
         )}
-        {period === null && depDate !== null ? (
+        {period === null && depDate !== null && (
           <div>
             <h1>얼마동안 여행하실 건가요?</h1>
             <input
               className='period'
               onKeyPress={handleKeyPressPeriod}
               min='0'
-              pattern='\d*'
+              pattern='[0-9]*'
               placeholder='숫자를 입력해주세요.'
-            ></input>
+            />
           </div>
-        ) : (
-          false
         )}
-        {period !== null && depDate !== null ? <CircularProgress /> : false}
-        {period !== null && depDate !== null ? searchDate() : false}
-        {props.isLoad ? props.history.push('/search/result') : <></>}
+        {period !== null && depDate !== null && <CircularProgress />}
+        {period !== null && depDate !== null && searchDate()}
+        {isLoad && history.push('/search/result')}
       </div>
     </div>
   );
@@ -83,5 +82,5 @@ export default connect(
   (dispatch) => ({
     start: () => dispatch(travelActions.whenIsDepDate()),
     destinationsCheck: (data) => dispatch(planCheck.destinationsCheck(data)),
-  })
+  }),
 )(Main);

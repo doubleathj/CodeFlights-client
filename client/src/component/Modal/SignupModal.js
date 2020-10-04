@@ -1,11 +1,10 @@
 import React from 'react';
 import './Modal.css';
-import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as loginActions from '../../modules/loginModal';
 import * as signupActions from '../../modules/signupModal';
-import { TransferWithinAStationSharp } from '@material-ui/icons';
+
 axios.defaults.withCredentials = true;
 
 class SignupModal extends React.Component {
@@ -20,10 +19,13 @@ class SignupModal extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
   }
+
   goToLogin = () => {
-    this.props.changeSignup();
-    this.props.changeLogin();
+    const { changeSignup, changeLogin } = this.props;
+    changeSignup();
+    changeLogin();
   };
+
   handleChange = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
@@ -31,6 +33,30 @@ class SignupModal extends React.Component {
   handlePasswordMatch() {
     const { password, passwordConfirm } = this.state;
     return password === passwordConfirm;
+  }
+
+  handleSignupSubmit(e) {
+    const { changeSignup } = this.props;
+    const {
+      email, username, password, passwordConfirm,
+    } = this.state;
+    axios({
+      method: 'post',
+      url: 'https://codeflights.xyz/user/signup',
+      data: {
+        email,
+        username,
+        password,
+        passwordConfirm,
+      },
+      withCredentials: true,
+      crendtials: 'include',
+    })
+      .then(() => {
+        changeSignup();
+      })
+      .catch();
+    e.preventDefault();
   }
 
   renderPasswordCheckMessage() {
@@ -43,57 +69,37 @@ class SignupModal extends React.Component {
         );
       }
     }
-  }
-
-  handleSignupSubmit(e) {
-    const { email, username, password, passwordConfirm } = this.state;
-
-    axios({
-      method: 'post',
-      url: 'https://codeflights.xyz/user/signup',
-      data: {
-        email: email,
-        username: username,
-        password: password,
-        passwordConfirm: passwordConfirm,
-      },
-      withCredentials: true,
-      crendtials: 'include',
-    })
-      .then(() => {
-        this.props.changeSignup();
-      })
-      .catch((err) => {
-        console.log('err: ', err);
-      });
-    e.preventDefault();
+    return false;
   }
 
   render() {
-    const { signupModal } = this.props;
+    const { signupModal, changeSignup } = this.props;
+    const {
+      email, username, password, passwordConfirm,
+    } = this.state;
     if (signupModal) {
       return (
         <div>
-          <div className='modal'></div>
+          <div className='modal' />
           <div className='modalContents'>
             <form className='modalForm' onSubmit={this.handleSignupSubmit}>
               <div className='login'>
                 {' '}
-                <h3 onClick={this.props.changeSignup}>✖</h3>
+                <h3 onClick={changeSignup}>✖</h3>
                 <h2>회원가입</h2>
               </div>
               <input
                 type='email'
                 name='email'
                 placeholder='Email'
-                value={this.state.email}
+                value={email}
                 onChange={this.handleChange('email')}
               />
               <input
                 type='username'
                 name='username'
                 placeholder='Username'
-                value={this.state.username}
+                value={username}
                 onChange={this.handleChange('username')}
               />
               <input
@@ -101,7 +107,7 @@ class SignupModal extends React.Component {
                 minLength='8'
                 name='password'
                 placeholder='Password'
-                value={this.state.password}
+                value={password}
                 onChange={this.handleChange('password')}
               />
               <input
@@ -109,7 +115,7 @@ class SignupModal extends React.Component {
                 minLength='8'
                 name='passwordConfirm'
                 placeholder='PasswordConfirm'
-                value={this.state.passwordConfirm}
+                value={passwordConfirm}
                 onChange={this.handleChange('passwordConfirm')}
               />
               {this.renderPasswordCheckMessage()}
@@ -122,7 +128,7 @@ class SignupModal extends React.Component {
         </div>
       );
     } else {
-      return <div></div>;
+      return <div />;
     }
   }
 }
@@ -135,5 +141,5 @@ export default connect(
   (dispatch) => ({
     changeLogin: () => dispatch(loginActions.changeLogin()),
     changeSignup: () => dispatch(signupActions.changeSignup()),
-  })
+  }),
 )(SignupModal);

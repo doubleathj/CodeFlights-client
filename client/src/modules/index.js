@@ -1,5 +1,5 @@
 import {
-  combineReducers
+  combineReducers,
 } from 'redux';
 import loginModal from './loginModal';
 import view from './view';
@@ -11,7 +11,6 @@ import plan from './plan';
 import travel from './travel';
 import navbar from './navbar';
 import likes from './likes';
-
 
 export default combineReducers({
   loginModal,

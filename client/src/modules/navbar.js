@@ -12,5 +12,5 @@ export default handleActions(
   {
     [CHANGESIDEBAR]: ({ sidebar }) => ({ sidebar: !sidebar }),
   },
-  initialState
+  initialState,
 );
