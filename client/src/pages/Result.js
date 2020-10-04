@@ -33,7 +33,10 @@ class Result extends React.Component {
           this.props.history.push(`/result/${this.props.city}`)
         ) : (
           <div className='where focus' style={{ backgroundImage: `url(${ele.img})` }}>
-            <div className='titlelayer'><h2 className='cityname'>{ele.destinations}</h2></div>
+            <div className='titlelayer'><h2 className='cityname'>{ele.destinations}</h2>
+            <div className='estTime'><h3>{ele.estTime}</h3></div>
+            </div>
+            
           </div>
         )}
       </div>
