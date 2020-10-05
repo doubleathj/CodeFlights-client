@@ -7,16 +7,14 @@ import * as FiIcons from 'react-icons/fi';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import SidebarUserData from './LoginSidelist';
-import * as loginActions from '../../modules/loginModal';
-import * as signupActions from '../../modules/signupModal';
-import * as signinActions from '../../modules/isLogin';
-import * as sidebarActions from '../../modules/navbar';
-import logo from '../../Images/logo.png';
+import * as loginActions from '../modules/loginModal';
+import * as signupActions from '../modules/signupModal';
+import * as signinActions from '../modules/isLogin';
+import * as sidebarActions from '../modules/navbar';
+import logo from '../Images/logo.png';
 import './Navbar.css';
 
 function Navbar(props) {
-  // const [sidebar, setSidebar] = useState(false);
-  // const changeSidebar() = () => setSidebar(!sidebar);
 
   const { login } = props;
   const logOut = () => {
@@ -37,7 +35,7 @@ function Navbar(props) {
               <img src={logo} className='logo focus' alt='logo' />
             </Link>
             <p className='welcome blink'>
-              행복한 상상 중인 {username.username}님
+              {`행복한 상상 중인 ${username.username}님`}
             </p>
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={changeSidebar} />

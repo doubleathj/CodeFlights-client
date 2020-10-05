@@ -93,10 +93,9 @@ function Schedule(props) {
   return (
     <div className='schedule'>
       <div className='focus blink price'>
-        <h1>{`${city}행 항공편 `}</h1>
+        <h1>{`${city} 행 항공편 `}</h1>
         <h1>
-          평균
-          {estPrice}
+          {`평균 ${estPrice}`}
         </h1>
       </div>
       <div className='schedule-containaer'>
@@ -107,7 +106,7 @@ function Schedule(props) {
         <ul className='ticket-container'>{tickets}</ul>
         <div className='tip'>
           {city}
-           여행 후기
+          여행 후기
         </div>
         <ul className='article-list'>
           {userPost && userPost}

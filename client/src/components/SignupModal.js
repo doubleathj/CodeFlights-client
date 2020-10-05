@@ -2,8 +2,8 @@ import React from 'react';
 import './Modal.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import * as loginActions from '../../modules/loginModal';
-import * as signupActions from '../../modules/signupModal';
+import * as loginActions from '../modules/loginModal';
+import * as signupActions from '../modules/signupModal';
 
 axios.defaults.withCredentials = true;
 

@@ -74,11 +74,11 @@ class Mypage extends React.Component {
               <img className='myPageIcons' src={lock} alt='lock' />
             </span>
             <h3>
-              Username
+              Username :
               <span className='username'>{username}</span>
             </h3>
             <h3 className='emailH3'>
-              E-mail
+              E-mail :
               <span className='email'>{email}</span>
             </h3>
           </div>
