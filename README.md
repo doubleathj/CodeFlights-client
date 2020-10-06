@@ -81,11 +81,11 @@
         <br>
       </td>
       <td>
-        <strong>🚩 Frontend</strong>
+        <strong>🖥 Frontend</strong>
       </td>
     </tr>
       <td align="center">
-        <a href="https://github.com/bombamong">           
+        <a href="https://github.com/InseobJeon">           
           <sub>
             <b>전인섭</b>
           </sub>
@@ -93,7 +93,7 @@
         <br>
       </td>
       <td>
-        <strong>🚩 Backend</strong>
+        <strong>💾 Backend</strong>
       </td>
     </tr>
     <tr>     
