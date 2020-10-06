@@ -9,7 +9,6 @@ class Posting extends React.Component {
     this.state = {
       title: '',
       content: '',
-      // board : [{author : null, title : null, content : null}]
     };
     this.handleChange = this.handleChange.bind(this);
     this.postingArticle = this.postingArticle.bind(this);
